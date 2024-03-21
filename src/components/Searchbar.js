@@ -37,7 +37,7 @@ const Searchbar = ({
 
   return (
     <div onClick={() => setShowingOption(true)} ref={wrapperRef}>
-      <span className=" px-3 py-2 rounded-full flex items-center gap-2 bg-white !border-gray-500 text-black">
+      <span className=" px-3 py-2 rounded-full flex items-center gap-2 bg-white !border-gray-500 text-black mb-2">
         <IoSearch className="fill-gray-500" />
         <input
           type="text"
@@ -48,7 +48,7 @@ const Searchbar = ({
         />
       </span>
       {showingOption && (
-        <div className="p-2 bg-white text-black rounded-xl flex flex-col mt-2">
+        <div className="p-2 bg-white text-black rounded-xl flex flex-col my-2">
           {filteredItems.length != 0 ? (
             filteredItems.map((item, index) => {
               return (
