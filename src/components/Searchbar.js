@@ -9,6 +9,7 @@ const Searchbar = ({
   setFilteredItems,
   allItems,
   setSelectedItem,
+  onSelect,
 }) => {
   const wrapperRef = useRef(null);
   const [showingOption, setShowingOption] = useState(false);
@@ -61,6 +62,7 @@ const Searchbar = ({
                     setShowingOption(false);
                     setFilteredItems([]);
                     setSelectedItem(item);
+                    onSelect();
                   }}
                 >
                   <a> {item.name} </a>

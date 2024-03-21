@@ -11,7 +11,8 @@ export default function Home() {
   const [restaurantsData, setRestaurantsData] = useState([]);
   const [filteredItems, setFilteredItems] = useState([]);
   const [searchTerm, setSearchTerm] = useState([]);
-  const [selectedRestaurant, setSelectedRestaurant] = useState(null);
+  const [selectedRestaurant, setSelectedRestaurant] = useState("");
+  const [qrLoading, setQrLoading] = useState(false);
 
   const fetchRestaurantData = async () => {
     try {
@@ -32,6 +33,13 @@ export default function Home() {
     fetchRestaurantData();
   }, []);
 
+  const handleQrLoading = () => {
+    setQrLoading(true);
+    setTimeout(() => {
+      setQrLoading(false);
+    }, 200);
+  };
+
   return (
     <main className="flex flex-col items-center justify-center p-24">
       <h1>QR code generator</h1>
@@ -48,26 +56,28 @@ export default function Home() {
           allItems={restaurantsData.map((restaurant) => {
             return { name: restaurant.name, id: restaurant.id };
           })}
+          onSelect={handleQrLoading}
         />
       )}
-      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-        Generate QR code
-      </button>
       <h1>Restaurant id</h1>
       <p>{selectedRestaurant.id}</p>
-      <Canvas
-        text={`${process.env.NEXT_PUBLIC_URI}/scan/${restaurantId}`}
-        options={{
-          errorCorrectionLevel: "M",
-          margin: 3,
-          scale: 4,
-          width: 200,
-          color: {
-            dark: "#000000",
-            light: "#ffffff",
-          },
-        }}
-      />
+      {qrLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <Canvas
+          text={`${process.env.NEXT_PUBLIC_URI}/scan/${selectedRestaurant.id}`}
+          options={{
+            errorCorrectionLevel: "M",
+            margin: 3,
+            scale: 4,
+            width: 200,
+            color: {
+              dark: "#000000",
+              light: "#ffffff",
+            },
+          }}
+        />
+      )}
     </main>
   );
 }
