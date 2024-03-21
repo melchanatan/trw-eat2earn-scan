@@ -8,15 +8,14 @@ const Searchbar = ({
   filteredItems,
   setFilteredItems,
   allItems,
+  setSelectedItem,
 }) => {
   const wrapperRef = useRef(null);
   const [showingOption, setShowingOption] = useState(false);
-  const toggleShowingOption = () => {
-    setShowingOption((prev) => !prev);
-  };
+
   useEffect(() => {
     document.addEventListener("mousedown", handleClickOutside);
-    return document.addEventListener("mousedown", handleClickOutside);
+    return document.removeEventListener("mousedown", handleClickOutside);
   });
 
   const handleClickOutside = () => {
@@ -26,20 +25,21 @@ const Searchbar = ({
   };
 
   const handleSearch = (e) => {
-    console.log(filteredItems);
     setSearchTerm(e.target.value);
     const searchTerm = e.target.value.toLowerCase();
     const filtered = allItems.filter((item) => {
-      return item.toLowerCase().includes(searchTerm);
+      return item.name.toLowerCase().includes(searchTerm);
     });
     setFilteredItems(filtered);
   };
 
   return (
-    <div onClick={() => setShowingOption(true)} ref={wrapperRef}>
+    <div>
       <span className=" px-3 py-2 rounded-full flex items-center gap-2 bg-white !border-gray-500 text-black mb-2">
         <IoSearch className="fill-gray-500" />
         <input
+          onClick={() => setShowingOption(true)}
+          tabIndex={0}
           type="text"
           onChange={handleSearch}
           value={searchTerm}
@@ -47,21 +47,30 @@ const Searchbar = ({
           className="placeholder:text-gray-500 placeholder:select-none focus:outline-none bg-transparent paragraph text-center w-full pr-2"
         />
       </span>
-      {showingOption && (
-        <div className="p-2 bg-white text-black rounded-xl flex flex-col my-2">
+      {(searchTerm && showingOption) != "" && (
+        <ul className="p-2 bg-white text-black rounded-xl flex flex-col my-2">
           {filteredItems.length != 0 ? (
             filteredItems.map((item, index) => {
               return (
-                <a className="p-2 hover:bg-gray-400 flex-1 rounded-lg">
-                  {" "}
-                  {item}{" "}
-                </a>
+                <li
+                  key={"search-result-" + index}
+                  tabIndex={0}
+                  className="p-2 hover:bg-gray-400 flex-1 rounded-lg"
+                  onClick={() => {
+                    setSearchTerm(item.name);
+                    setShowingOption(false);
+                    setFilteredItems([]);
+                    setSelectedItem(item);
+                  }}
+                >
+                  <a> {item.name} </a>
+                </li>
               );
             })
           ) : (
             <p className="text-gray-400">no search result</p>
           )}
-        </div>
+        </ul>
       )}
     </div>
   );
