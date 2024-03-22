@@ -2,11 +2,38 @@
 import React, { useState } from "react";
 import MyWebcam from "@/components/MyWebcam";
 
-const ScanPage = () => {
+const ScanPage = ({ params }) => {
   const [image, setImage] = useState(null);
 
   const getScreenshot = () => {
     getScreenshot({ width: 1920, height: 1080 });
+  };
+
+  const sendToDb = () => {
+    const requestBody = {
+      authId: "authId",
+      image: "image",
+      amount: 100,
+      sourceId: params.resId,
+    };
+    try {
+      const data = fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URI}/v1/user/point/patch`,
+        {
+          method: "POST",
+          model: "cors",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify({
+            point: 100,
+          }),
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -23,7 +50,12 @@ const ScanPage = () => {
       {image && (
         <div>
           <img src={`${image}`} alt="My webcam" />
-          <button clsa>send to db</button>
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+            onClick={sendToDb}
+          >
+            to db
+          </button>
         </div>
       )}
     </div>

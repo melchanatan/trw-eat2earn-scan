@@ -15,7 +15,7 @@ const MyWebcam = ({ params, setImage }) => {
   };
   return (
     <>
-      <div className="w-[100%] h-[100%] relative">
+      <div className="w-[100%] h-[100%] relative flex justify-center items-center">
         {cameraFakeCapturing && (
           <div className="w-full h-full bg-gray-200 absolute top-0 left-0"></div>
         )}
