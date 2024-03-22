@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
 
 import { IoSearch } from "react-icons/io5";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Searchbar = ({
   searchTerm,
@@ -36,7 +37,7 @@ const Searchbar = ({
 
   return (
     <div>
-      <span className=" px-3 py-2 rounded-full flex items-center gap-2 bg-white !border-gray-500 text-black mb-2">
+      <span className=" px-3 py-2 rounded-full flex items-center gap-2 bg-white !border-gray-500 text-black mb-2 relative">
         <IoSearch className="fill-gray-500" />
         <input
           onClick={() => setShowingOption(true)}
@@ -48,8 +49,8 @@ const Searchbar = ({
           className="placeholder:text-gray-500 placeholder:select-none focus:outline-none bg-transparent paragraph text-center w-full pr-2"
         />
       </span>
-      {(searchTerm && showingOption) != "" && (
-        <ul className="p-2 bg-white text-black rounded-xl flex flex-col my-2">
+      {showingOption && searchTerm != 0 && (
+        <ul className="p-2 bg-white text-black rounded-xl flex flex-col my-2 absolute min-w-[230px] right-[50%] translate-x-[50%]">
           {filteredItems.length != 0 ? (
             filteredItems.map((item, index) => {
               return (
@@ -60,7 +61,6 @@ const Searchbar = ({
                   onClick={() => {
                     setSearchTerm(item.name);
                     setShowingOption(false);
-                    setFilteredItems([]);
                     setSelectedItem(item);
                     onSelect();
                   }}

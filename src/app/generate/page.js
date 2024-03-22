@@ -3,6 +3,8 @@ import Image from "next/image";
 import { useQRCode } from "next-qrcode";
 import { useEffect, useState } from "react";
 import Searchbar from "@/components/Searchbar";
+import ClipLoader from "react-spinners/ClipLoader";
+
 export default function Home() {
   const defaultItems = ["hello world", "hi", "its me"];
   const { Canvas } = useQRCode();
@@ -21,11 +23,9 @@ export default function Home() {
       );
       const data = await response.json();
       setRestaurantsData(data);
-      console.log(data);
+      setLoading(false);
     } catch (error) {
       console.log(error);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -42,10 +42,12 @@ export default function Home() {
 
   return (
     <main className="flex flex-col items-center justify-center p-24">
-      <h1>QR code generator</h1>
-      <label htmlFor="">Please enter the restaurant name:</label>
+      <h1 className="text-2xl font-bold mb-10">QR code generator</h1>
+      <label htmlFor="" className="mb-2">
+        Please enter the restaurant name:
+      </label>
       {loading ? (
-        <p>Loading...</p>
+        <p className="text-gray-600">Loading...</p>
       ) : (
         <Searchbar
           searchTerm={searchTerm}
@@ -59,10 +61,10 @@ export default function Home() {
           onSelect={handleQrLoading}
         />
       )}
-      <h1>Restaurant id</h1>
-      <p>{selectedRestaurant.id}</p>
-      {qrLoading ? (
-        <p>Loading...</p>
+      <h1 className="mt-5">Restaurant id</h1>
+      <p className="mb-5 text-gray-400">{selectedRestaurant.id}</p>
+      {qrLoading || loading ? (
+        <p className="text-gray-600">Generating...</p>
       ) : (
         <Canvas
           text={`${process.env.NEXT_PUBLIC_URI}/scan/${selectedRestaurant.id}`}
