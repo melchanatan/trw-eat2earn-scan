@@ -1,8 +1,12 @@
 "use client";
 import React, { useState } from "react";
-import MyWebcam from "@/components/MyWebcam";
+import MyWebcam from "../../../components/MyWebcam";
+import SignInOverlay from "../../../components/SignInOverlay";
+import { signIn, useSession, signOut } from "next-auth/react";
 
 const ScanPage = ({ params }) => {
+  const { data: session } = useSession();
+
   const [image, setImage] = useState(null);
 
   const getScreenshot = () => {
@@ -20,7 +24,7 @@ const ScanPage = ({ params }) => {
       const data = fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URI}/v1/user/point/patch`,
         {
-          method: "POST",
+          method: "PATCH",
           model: "cors",
           headers: {
             "Content-Type": "application/json",
@@ -36,8 +40,20 @@ const ScanPage = ({ params }) => {
     }
   };
 
+  if (!session) return <div>loading</div>;
+  console.log(session);
+
   return (
-    <div className="flex flex-col items-center justify-center p-24">
+    <div className="flex flex-col items-center justify-center p-24 relative">
+      {!session && <SignInOverlay />}
+      <div className="flex flex-row justify-center items-center gap-3">
+        <h1>{session?.user.name}</h1>
+        <img
+          src={session?.user.image}
+          alt=""
+          className="w-10 h-10 rounded-full object-cover "
+        />
+      </div>
       <h1 className="text-2xl font-bold mb-10">Scan Page</h1>
       <label htmlFor="">Enter paid amount:</label>
       <input
