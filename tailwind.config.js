@@ -6,6 +6,10 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    fontFamily: {
+      avant: ["Avant Garde", "sans-serif"],
+      futura: ["Futura", "sans-serif"],
+    },
     extend: {
       colors: {
         primary: "var(--primary-color)",

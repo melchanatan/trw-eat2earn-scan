@@ -11,21 +11,43 @@
   --grey-color: #4D4B4B
 }
 
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-} */
+@font-face {
+  font-family: "Avant Garde";
+  font-weight: 400;
 
-body {
-  background-color: rgb(46, 0, 0);
-  color: aliceblue;
+  src: url("/fonts/AvantGarde-regular.ttf") format('truetype');
+}
+
+@font-face {
+  font-family: "Avant Garde";
+  font-weight: 600;
+  src: url("/fonts/AvantGarde-semibold.ttf") format('truetype');
+}
+
+@font-face {
+  font-family: "Futura";
+  font-weight: 400;
+  src: url("/fonts/Futura-regular.ttf") format('truetype');
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+.box-container {
+  @apply max-w-[370px] mx-auto;
+}
+
+body {
+  @apply bg-gradient-background text-dark h-screen w-screen;
+}
+
+h1 {
+  @apply text-4xl font-semibold font-avant leading-[1.2];
+}
+
+h4 {
+  @apply text-lg font-futura;
 }
