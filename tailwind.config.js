@@ -7,10 +7,25 @@ module.exports = {
   ],
   theme: {
     extend: {
+      colors: {
+        primary: "var(--primary-color)",
+        secondary: "var(--secondary-color)",
+        accent: "var(--accent-color)",
+        background: "var(--background-color)",
+        dark: "var(--dark-color)",
+        grey: "var(--grey-color)",
+      },
       backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "gradient-primary-lighter":
+          "linear-gradient(180deg, #FF5348 -2.68%, #FF7D75 99.94%)",
+        "gradient-primary":
+          "linear-gradient(98deg, #FF5348 0.47%, #BD3A28 100%)",
+        "gradient-accent":
+          "linear-gradient(136deg, #EFC625 0%, #E2BC26 98.11%)",
+        "gradient-secondary":
+          "linear-gradient(136deg, #F68C23 0%, #C57526 98.11%)",
+        "gradient-background":
+          "linear-gradient(180deg, #FEFFDC 0%, #FFFFF3 59.79%, #E5E5C7 94.91%)",
       },
     },
   },
