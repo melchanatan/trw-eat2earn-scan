@@ -12,4 +12,19 @@ export default NextAuth({
       clientSecret: process.env.GOOGLE_SECRET,
     }),
   ],
+  callbacks: {
+    async jwt({ token, user, account }) {
+      // Persist the OAuth access_token to the token right after signin
+
+      if (account) {
+        token.user_id = user.id;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      // Send properties to the client, like an access_token from a provider.
+      session.user_id = token.user_id;
+      return session;
+    },
+  },
 });

@@ -7,7 +7,8 @@ import { signIn, useSession, signOut } from "next-auth/react";
 const ScanPage = ({ params }) => {
   const { data: session } = useSession();
 
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState("");
+  const [paidAmount, setPaidAmount] = useState(0);
 
   const getScreenshot = () => {
     getScreenshot({ width: 1920, height: 1080 });
@@ -15,14 +16,14 @@ const ScanPage = ({ params }) => {
 
   const sendToDb = () => {
     const requestBody = {
-      authId: "authId",
-      image: "image",
+      authId: session.user_id,
+      image: image,
       amount: 100,
       sourceId: params.resId,
     };
     try {
       const data = fetch(
-        `${process.env.NEXT_PUBLIC_SERVER_URI}/v1/user/point/patch`,
+        `${process.env.NEXT_PUBLIC_SERVER_URI}/v1/user/point/addreceipt`,
         {
           method: "PATCH",
           model: "cors",
@@ -30,9 +31,7 @@ const ScanPage = ({ params }) => {
             "Content-Type": "application/json",
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
-          body: JSON.stringify({
-            point: 100,
-          }),
+          body: JSON.stringify(requestBody),
         }
       );
     } catch (error) {
@@ -40,9 +39,7 @@ const ScanPage = ({ params }) => {
     }
   };
 
-  if (!session) return <div>loading</div>;
-  console.log(session);
-
+  // console.log(session.user_id);
   return (
     <div className="flex flex-col items-center justify-center p-24 relative">
       {!session && <SignInOverlay />}
@@ -57,7 +54,10 @@ const ScanPage = ({ params }) => {
       <h1 className="text-2xl font-bold mb-10">Scan Page</h1>
       <label htmlFor="">Enter paid amount:</label>
       <input
-        type="text"
+        type="number"
+        value={paidAmount}
+        onChange={(e) => setPaidAmount(e.target.value)}
+        min="0"
         placeholder="Enter text"
         className=" placeholder:text-gray-600 text-black"
       />
