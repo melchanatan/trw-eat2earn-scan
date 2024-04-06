@@ -20,14 +20,16 @@ module.exports = {
         grey: "var(--grey-color)",
       },
       backgroundImage: {
-        "gradient-primary-lighter":
+        "gradient-accent-lighter":
           "linear-gradient(180deg, #FF5348 -2.68%, #FF7D75 99.94%)",
-        "gradient-primary":
-          "linear-gradient(98deg, #FF5348 0.47%, #BD3A28 100%)",
         "gradient-accent":
-          "linear-gradient(136deg, #EFC625 0%, #E2BC26 98.11%)",
+          "linear-gradient(98deg, #FF5348 0.47%, #BD3A28 100%)",
         "gradient-secondary":
+          "linear-gradient(136deg, #EFC625 0%, #E2BC26 98.11%)",
+        "gradient-primary":
           "linear-gradient(136deg, #F68C23 0%, #C57526 98.11%)",
+        "gradient-primary-lighter":
+          "linear-gradient(136deg, rgba(246, 140, 35, 0.6) 0%, rgba(197, 117, 38, 0.6) 98.11%)",
         "gradient-background":
           "linear-gradient(180deg, #FEFFDC 0%, #FFFFF3 59.79%, #E5E5C7 94.91%)",
       },

@@ -52,8 +52,16 @@ h4 {
   @apply text-lg font-futura;
 }
 
-.primary-button--yellow {
-  @apply px-5 py-3 bg-secondary font-avant text-white rounded-[14px] text-xl w-full active:scale-90 duration-100 transition-all hover:brightness-90;
+.primary-button {
+  @apply px-5 py-3 font-avant text-white rounded-[14px] text-xl w-full active:scale-90 duration-100 transition-all hover:brightness-90;
+}
+
+.primary-button--primary {
+  @apply bg-secondary;
+}
+
+.primary-button--accent {
+  @apply bg-accent;
 }
 
 .link-button {
