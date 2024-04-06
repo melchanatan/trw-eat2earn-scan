@@ -48,12 +48,20 @@ h1 {
   @apply text-4xl font-semibold font-avant leading-[1.2];
 }
 
+h2 {
+  @apply text-2xl font-semibold font-avant leading-[1.2];
+}
+
 h4 {
   @apply text-lg font-futura;
 }
 
+p {
+  @apply text-base font-avant
+}
+
 .primary-button {
-  @apply px-5 py-3 font-avant text-white rounded-[14px] text-xl w-full active:scale-90 duration-100 transition-all hover:brightness-90;
+  @apply px-8 py-3 font-avant text-white rounded-[14px]  active:scale-90 duration-100 transition-all hover:brightness-90;
 }
 
 .primary-button--primary {
@@ -61,13 +69,17 @@ h4 {
 }
 
 .primary-button--accent {
-  @apply bg-accent;
+  @apply bg-gradient-accent;
 }
 
 .link-button {
   @apply text-white font-avant underline active:scale-90 duration-100 transition-all hover:brightness-90;
 }
 
+.input {
+  @apply  px-3 py-4 bg-white rounded-[14px] flex items-center
+}
 
-
-
+.floating-icon-button {
+  @apply bg-secondary shadow-md p-6 rounded-full absolute left-[50%] translate-x-[-50%] bottom-[-48px] active:scale-90 transition-all active:brightness-75 duration-100
+}

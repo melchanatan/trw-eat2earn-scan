@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Webcam from "react-webcam";
-import { IoCameraOutline } from "react-icons/io5";
+import { FaCamera } from "react-icons/fa";
 
 const MyWebcam = ({ params, setImage }) => {
   const [cameraFakeCapturing, setCameraFakeCapturing] = useState(false);
@@ -23,24 +23,52 @@ const MyWebcam = ({ params, setImage }) => {
   return (
     <>
       <div className="w-[100%] h-[100%] relative flex justify-center items-center">
-        {cameraFakeCapturing && (
-          <div className="w-full h-full bg-gray-200 absolute top-0 left-0"></div>
-        )}
+        <span className="w-[calc(100%-2rem)] h-[calc(100%-2rem)] absolute top-1/2 translate-y-[-50%] left-1/2 translate-x-[-50%] opacity-50">
+          {" "}
+          <img
+            src="/assets/camera-frame.svg"
+            alt=""
+            className="absolute bottom-0 right-0"
+          />
+          <img
+            src="/assets/camera-frame.svg"
+            alt=""
+            className="absolute bottom-0 left-0 rotate-90"
+          />
+          <img
+            src="/assets/camera-frame.svg"
+            alt=""
+            className="absolute top-0 left-0 rotate-[-180deg]"
+          />
+          <img
+            src="/assets/camera-frame.svg"
+            alt=""
+            className="absolute top-0 right-0 rotate-[270deg]"
+          />
+        </span>
+
+        <div
+          className="w-full h-full bg-gray-200 absolute top-0 left-0 rounded-[28px] duration-[2000ms] transition-all ease-[cubic-bezier(0,1.67,.08,1.06)]"
+          style={{
+            opacity: cameraFakeCapturing ? "100%" : "0%",
+          }}
+        ></div>
         <Webcam
           audio={false}
           screenshotFormat="image/jpeg"
           videoConstraints={videoConstraints}
+          className="rounded-[26px]"
         >
           {({ getScreenshot }) => (
             <button
-              className="bg-white p-5 rounded-full absolute left-[50%] translate-x-[-50%] bottom-[-48px] active:scale-90 transition-all active:brightness-75"
+              className="floating-icon-button"
               onClick={() => {
                 const imageSrc = getScreenshot();
                 setImage(imageSrc);
                 handleCameraCapturing();
               }}
             >
-              <IoCameraOutline className="w-[48px] h-[48px] fill-black stroke-black" />
+              <FaCamera className="w-[32px] h-[32px] fill-white stroke-white" />
             </button>
           )}
         </Webcam>

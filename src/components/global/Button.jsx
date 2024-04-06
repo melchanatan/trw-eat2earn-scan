@@ -1,6 +1,6 @@
 import React from "react";
 
-const Button = ({ children, color = "primary" }) => {
+const Button = ({ children, color = "primary", className = "", onClick }) => {
   const avaliableColor = {
     accent: "primary-button--accent",
     primary: "primary-button--primary",
@@ -11,8 +11,13 @@ const Button = ({ children, color = "primary" }) => {
   }
 
   return (
-    <button className={`primary-button ${avaliableColor[color]}`}>
-      <p>{children}</p>
+    <button
+      className={`primary-button ${avaliableColor[color]} ${className}`}
+      onClick={onClick}
+    >
+      <p className="flex flex-row items-center justify-center gap-4 text-xl">
+        {children}
+      </p>
     </button>
   );
 };

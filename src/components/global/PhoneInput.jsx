@@ -2,7 +2,7 @@ import React from "react";
 
 const PhoneInput = () => {
   return (
-    <div className="mt-2 p-3 py-4 bg-white rounded-[14px] flex items-center">
+    <div className="mt-2 input">
       <div className="flex gap-2">
         <img src="/assets/usa-flag-avatar.png" alt="" />
         <h4>US+1</h4>
