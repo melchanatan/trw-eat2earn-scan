@@ -24,7 +24,6 @@ const MyWebcam = ({ params, setImage }) => {
     <>
       <div className="w-[100%] h-[100%] relative flex justify-center items-center">
         <span className="w-[calc(100%-2rem)] h-[calc(100%-2rem)] absolute top-1/2 translate-y-[-50%] left-1/2 translate-x-[-50%] opacity-50">
-          {" "}
           <img
             src="/assets/camera-frame.svg"
             alt=""
@@ -53,6 +52,7 @@ const MyWebcam = ({ params, setImage }) => {
             opacity: cameraFakeCapturing ? "100%" : "0%",
           }}
         ></div>
+
         <Webcam
           audio={false}
           screenshotFormat="image/jpeg"
