@@ -5,7 +5,7 @@ import SummaryContainer from "../components/scan_qr/summary/SummaryContainer";
 const App = () => {
   return (
     <div>
-      <SummaryContainer />
+      <Stepper />
     </div>
   );
 };

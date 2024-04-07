@@ -21,15 +21,6 @@ const Stepper = () => {
 
   const step = [
     {
-      top: (
-        <BottomContainer className="top-[6rem] !max-w-[350px] pt-5">
-          <PriceInputContainer isCompact={true} />
-        </BottomContainer>
-      ),
-      bottom: <OpenCameraContainer />,
-      color: "accent",
-    },
-    {
       top: <SignInContainer.top />,
       bottom: <SignInContainer />,
       color: "accent",
@@ -38,6 +29,15 @@ const Stepper = () => {
       top: <UserAvatar />,
       bottom: <PriceInputContainer />,
       color: "primary",
+    },
+    {
+      top: (
+        <BottomContainer className="top-[6rem] !max-w-[350px] pt-5">
+          <PriceInputContainer isCompact={true} />
+        </BottomContainer>
+      ),
+      bottom: <OpenCameraContainer />,
+      color: "accent",
     },
   ];
 
