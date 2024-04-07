@@ -1,24 +1,21 @@
 "use client";
 import React, { useState } from "react";
-import BottomContainer from "../global/BottomContainer";
-import Button from "../global/Button";
+import Button from "../../global/Button";
 import { FaCamera } from "react-icons/fa";
 import Image from "next/image";
 import { FaArrowRightLong } from "react-icons/fa6";
 
-import MyWebcam from "./../MyWebcam";
+import MyWebcam from "../../global/MyWebcam";
 const OpenCameraContainer = () => {
   const [isCameraOpen, setIsCameraOpen] = useState(false);
 
   return (
-    <div>
-      <BottomContainer color="accent" className="flex  flex-col items-center">
-        {isCameraOpen ? (
-          <WebcamComponent />
-        ) : (
-          <WebcamPlaceholder onClick={() => setIsCameraOpen(true)} />
-        )}
-      </BottomContainer>
+    <div className="flex items-center flex-col">
+      {isCameraOpen ? (
+        <WebcamComponent />
+      ) : (
+        <WebcamPlaceholder onClick={() => setIsCameraOpen(true)} />
+      )}
     </div>
   );
 };
@@ -50,7 +47,7 @@ const WebcamComponent = () => {
               Retake?
             </a>
             <Button>
-              Submit <FaArrowRightLong />{" "}
+              Submit <FaArrowRightLong />
             </Button>
           </div>
         </>

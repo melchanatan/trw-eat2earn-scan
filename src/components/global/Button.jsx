@@ -14,6 +14,7 @@ const Button = ({ children, color = "primary", className = "", onClick }) => {
     <button
       className={`primary-button ${avaliableColor[color]} ${className}`}
       onClick={onClick}
+      type="submit"
     >
       <p className="flex flex-row items-center justify-center gap-4 text-xl">
         {children}

@@ -1,13 +1,10 @@
 import React from "react";
 
-import SignInContainer from "./../components/sign_in/SignInContainer";
-import PriceInputContainer from "../components/price_input/PriceInputContainer";
-import OpenCameraContainer from "../components/open_camera/OpenCameraContainer";
-
+import Stepper from "../components/scan_qr/Stepper";
 const App = () => {
   return (
     <div>
-      <OpenCameraContainer />
+      <Stepper />
     </div>
   );
 };

@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import MyWebcam from "../../../components/MyWebcam";
-import SignInOverlay from "../../../components/SignInOverlay";
+import MyWebcam from "../../../components/global/MyWebcam";
+import SignInOverlay from "../../../components/global/SignInOverlay";
 import { signIn, useSession, signOut } from "next-auth/react";
 
 const ScanPage = ({ params }) => {
