@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import Button from "../../global/Button";
 import { FaCamera } from "react-icons/fa";
 import Image from "next/image";
-import { FaArrowRightLong } from "react-icons/fa6";
-
+import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
 import MyWebcam from "../../global/MyWebcam";
+
 const OpenCameraContainer = () => {
   const [isCameraOpen, setIsCameraOpen] = useState(false);
 
@@ -52,7 +52,12 @@ const WebcamComponent = () => {
           </div>
         </>
       ) : (
-        <MyWebcam setImage={setImage} />
+        <div className="pb-10">
+          <MyWebcam setImage={setImage} />
+          <a href="" className="absolute bottom-20 left-10">
+            <FaArrowLeftLong className="w-[24px] h-[24px] fill-background" />
+          </a>
+        </div>
       )}
     </>
   );

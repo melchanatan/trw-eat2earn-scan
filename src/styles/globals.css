@@ -61,7 +61,7 @@ p {
 }
 
 .primary-button {
-  @apply px-8 py-3 font-avant text-white rounded-[14px]  active:scale-90 duration-100 transition-all hover:brightness-90;
+  @apply px-8 py-3 font-avant text-white rounded-[14px] active:scale-90 duration-100 transition-all hover:brightness-90;
 }
 
 .primary-button--primary {

@@ -4,6 +4,7 @@ import SignInContainer from "./sign_in/SignInContainer";
 import BottomContainer from "./BottomContainer";
 import OpenCameraContainer from "./open_camera/OpenCameraContainer";
 import PriceInputContainer from "./price_input/PriceInputContainer";
+import SummaryContainer from "./summary/SummaryContainer";
 import UserAvatar from "./../global/UserAvatar";
 
 const StepContext = createContext(0);
