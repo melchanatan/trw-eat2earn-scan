@@ -1,11 +1,11 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Button from "../../global/Button";
 import { FaCamera } from "react-icons/fa";
 import Image from "next/image";
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
 import MyWebcam from "../../global/MyWebcam";
-
+import { FormContext } from "../utils/FormProvider";
 const OpenCameraContainer = () => {
   const [isCameraOpen, setIsCameraOpen] = useState(false);
 
@@ -23,7 +23,7 @@ const OpenCameraContainer = () => {
 export default OpenCameraContainer;
 
 const WebcamComponent = () => {
-  const [image, setImage] = useState("");
+  const { image, setImage } = useContext(FormContext);
 
   const retake = () => {
     setImage("");

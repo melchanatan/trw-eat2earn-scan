@@ -1,14 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
+import { FormContext } from "../utils/FormProvider";
 
 const PriceInput = () => {
+  const { amount, setAmount } = useContext(FormContext);
+
   return (
     <div className="input !px-6">
       <input
+        value={amount}
         type="number"
         min="1"
         step="any"
         className="bg-transparent text-lg text-black outline-0 font-futura placeholder:text-gray-300 text-center w-full"
         placeholder="0.00"
+        onChange={(e) => setAmount(e.target.value)}
       />
 
       <div className="flex items-center">
