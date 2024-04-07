@@ -12,11 +12,12 @@ const MyWebcam = ({ params, setImage }) => {
     facingMode: "environment",
   };
 
-  const handleCameraCapturing = () => {
+  const handleCameraCapturing = (imageSrc) => {
     setCameraFakeCapturing(true);
 
     setTimeout(() => {
       setCameraFakeCapturing(false);
+      setImage(imageSrc);
     }, 100);
   };
 
@@ -64,8 +65,7 @@ const MyWebcam = ({ params, setImage }) => {
               className="floating-icon-button"
               onClick={() => {
                 const imageSrc = getScreenshot();
-                setImage(imageSrc);
-                handleCameraCapturing();
+                handleCameraCapturing(imageSrc);
               }}
             >
               <FaCamera className="w-[32px] h-[32px] fill-white stroke-white" />

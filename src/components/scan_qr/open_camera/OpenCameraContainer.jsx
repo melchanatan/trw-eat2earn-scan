@@ -6,6 +6,7 @@ import Image from "next/image";
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
 import MyWebcam from "../../global/MyWebcam";
 import { FormContext } from "../utils/FormProvider";
+import { StepContext } from "../Stepper";
 const OpenCameraContainer = () => {
   const [isCameraOpen, setIsCameraOpen] = useState(false);
 
@@ -24,7 +25,7 @@ export default OpenCameraContainer;
 
 const WebcamComponent = () => {
   const { image, setImage } = useContext(FormContext);
-
+  const { goNext } = useContext(StepContext);
   const retake = () => {
     setImage("");
   };
@@ -46,7 +47,7 @@ const WebcamComponent = () => {
             <a onClick={() => retake()} className="link-button">
               Retake?
             </a>
-            <Button>
+            <Button onClick={goNext}>
               Submit <FaArrowRightLong />
             </Button>
           </div>

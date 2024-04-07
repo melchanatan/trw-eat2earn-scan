@@ -9,10 +9,9 @@ const PriceInputContainer = ({ isCompact = false }) => {
   const { goNext } = useContext(StepContext);
 
   const onSubmit = () => {
-    // TODO: add to input amount to form provider
-
     goNext();
   };
+
   return (
     <>
       {!isCompact ? (

@@ -1,6 +1,12 @@
 import React from "react";
 
-const PhoneInput = () => {
+const PhoneInput = ({ value, setValue }) => {
+  const handleChange = (e) => {
+    //TODO: validate phone number and format string for better UX
+    
+    setValue(e.target.value);
+  };
+
   return (
     <div className="mt-2 input">
       <div className="flex gap-2">
@@ -11,6 +17,8 @@ const PhoneInput = () => {
 
       <input
         type="number"
+        value={value}
+        onChange={handleChange}
         className="bg-transparent text-lg text-black outline-0 font-futura placeholder:text-gray-300 text-center "
         placeholder="(000) 000 - 0000"
       />

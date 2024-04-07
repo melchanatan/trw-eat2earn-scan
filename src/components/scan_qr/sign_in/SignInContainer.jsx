@@ -1,14 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import PhoneInput from "../../global/PhoneInput";
 import Button from "../../global/Button";
 import { StepContext } from "../Stepper";
 
 const SignInContainer = () => {
   const { goNext } = useContext(StepContext);
-
+  const [phoneNumber, setPhoneNumber] = useState("");
   const onSubmit = (e) => {
     e.preventDefault();
-    // TODO: add to input amount to form provider
+    // TODO: check phone number with database
 
     goNext();
   };
@@ -19,7 +19,7 @@ const SignInContainer = () => {
         Enter your <br /> phone number
       </h1>
       <form className="flex flex-col gap-2 mb-[40px]" onSubmit={onSubmit}>
-        <PhoneInput></PhoneInput>
+        <PhoneInput value={phoneNumber} setValue={setPhoneNumber} />
         <Button>Sign In</Button>
       </form>
       <a href="" className="text-white font-avant underline ">
