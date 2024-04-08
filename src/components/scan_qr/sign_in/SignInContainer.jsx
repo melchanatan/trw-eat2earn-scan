@@ -2,15 +2,28 @@ import React, { useContext, useState } from "react";
 import PhoneInput from "../../global/PhoneInput";
 import Button from "../../global/Button";
 import { StepContext } from "../Stepper";
+//import { UserInfoContext } from "../../../utils/UserInfoProvider";
 
 const SignInContainer = () => {
   const { goNext } = useContext(StepContext);
   const [phoneNumber, setPhoneNumber] = useState("");
-  const onSubmit = (e) => {
+  //const { setName } = useContext(UserInfoContext)
+
+  const onSubmit = async (e) => {
     e.preventDefault();
     // TODO: check phone number with database
-
-    goNext();
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ "phone": phoneNumber })
+    }
+    const response = await fetch(process.env.NEXT_PUBLIC_SERVER_URI+"/v1/user/register", requestOptions)
+    const data = await response.json()
+    console.log(data)
+    if(response.status == 201){
+      //setName(data.firstName + " " + data.lastName[0] + ".")
+      goNext();
+    }
   };
 
   return (
