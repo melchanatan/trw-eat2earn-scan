@@ -17,11 +17,7 @@ const Stepper = () => {
 
   const step = [
     {
-      top: (
-        <div className="flex items-center justify-center absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] w-full">
-          <SummaryContainer />
-        </div>
-      ),
+      top: <SummaryContainer />,
       bottom: null,
       color: "transparent",
     },
