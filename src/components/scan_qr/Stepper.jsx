@@ -13,10 +13,12 @@ const StepContext = createContext(0);
 
 const Stepper = () => {
   const [currentStep, setCurrentStep] = useState(0);
+  //const {setName} = useContext(FormContext)
 
   const step = [
     {
       top: <SignInContainer.top />,
+      //bottom: <SignInContainer setName={setName} />,
       bottom: <SignInContainer />,
       color: "accent",
     },

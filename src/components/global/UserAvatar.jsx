@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import Image from "next/image";
+import { UserInfoContext } from "../../utils/UserInfoProvider";
 
 const UserAvatar = () => {
+  const { name } = useContext(UserInfoContext)
+
   return (
     <div className="flex font-avant gap-3 p-3 pt-6">
       <Image
@@ -13,7 +16,7 @@ const UserAvatar = () => {
       />
       <div className="flex flex-col">
         <label>Welcome back,</label>
-        <h2>Chanatan S.</h2>
+        <h2>{name}</h2>
       </div>
     </div>
   );

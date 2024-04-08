@@ -2,12 +2,12 @@ import React, { useContext, useState } from "react";
 import PhoneInput from "../../global/PhoneInput";
 import Button from "../../global/Button";
 import { StepContext } from "../Stepper";
-//import { UserInfoContext } from "../../../utils/UserInfoProvider";
+import { UserInfoContext } from "../../../utils/UserInfoProvider";
 
 const SignInContainer = () => {
   const { goNext } = useContext(StepContext);
   const [phoneNumber, setPhoneNumber] = useState("");
-  //const { setName } = useContext(UserInfoContext)
+  const { setName } = useContext(UserInfoContext)
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -21,7 +21,7 @@ const SignInContainer = () => {
     const data = await response.json()
     console.log(data)
     if(response.status == 201){
-      //setName(data.firstName + " " + data.lastName[0] + ".")
+      setName(data.firstName + " " + data.lastName[0] + ".")
       goNext();
     }
   };
