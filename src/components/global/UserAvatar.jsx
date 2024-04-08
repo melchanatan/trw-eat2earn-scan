@@ -1,9 +1,9 @@
 import React from "react";
 import Image from "next/image";
 
-const UserAvatar = () => {
+const UserAvatar = ({ className = "" }) => {
   return (
-    <div className="flex font-avant gap-3 p-3 pt-6">
+    <div className={`flex font-avant gap-3 p-3 pl-0 pt-6 ${className}`}>
       <Image
         src={"/assets/avatar-placeholder.png"}
         width={48}

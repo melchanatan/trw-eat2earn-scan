@@ -11,6 +11,9 @@ module.exports = {
       futura: ["Futura", "sans-serif"],
     },
     extend: {
+      animation: {
+        shake: "shake 1s ease-in-out infinite",
+      },
       colors: {
         primary: "var(--primary-color)",
         secondary: "var(--secondary-color)",

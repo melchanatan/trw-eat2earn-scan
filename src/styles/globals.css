@@ -30,6 +30,18 @@
   src: url("/fonts/Futura-regular.ttf") format('truetype');
 }
 
+@keyframes shake {
+ 0% ,100% {
+  transform: rotate(0deg);
+ }
+ 25% {
+  transform: rotate(10deg);
+ }
+ 75% {
+  transform: rotate(-10deg);
+ }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -82,4 +94,8 @@ p {
 
 .floating-icon-button {
   @apply bg-secondary shadow-md p-6 rounded-full absolute left-[50%] translate-x-[-50%] bottom-[-48px] active:scale-90 transition-all active:brightness-75 duration-100
+}
+
+.grid-box {
+  @apply rounded-[14px] p-4 flex;
 }
