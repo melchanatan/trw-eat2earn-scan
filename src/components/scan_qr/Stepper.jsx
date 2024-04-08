@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, createContext } from "react";
-import Router from "next/navigation";
+import { useRouter } from "next/navigation";
 import SignInContainer from "./sign_in/SignInContainer";
 import BottomContainer from "./BottomContainer";
 import OpenCameraContainer from "./open_camera/OpenCameraContainer";
@@ -13,8 +13,18 @@ const StepContext = createContext(0);
 
 const Stepper = () => {
   const [currentStep, setCurrentStep] = useState(0);
+  const router = useRouter();
 
   const step = [
+    {
+      top: (
+        <div className="flex items-center justify-center absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] w-full">
+          <SummaryContainer />
+        </div>
+      ),
+      bottom: null,
+      color: "transparent",
+    },
     {
       top: <SignInContainer.top />,
       bottom: <SignInContainer />,
@@ -39,11 +49,13 @@ const Stepper = () => {
   const submitForm = () => {
     alert("Form submitted");
   };
+
   const goNext = () => {
-    if (currentStep >= step.length - 1) {
+    if (currentStep >= step.length - 2) {
       submitForm();
-      return;
     }
+
+    if (currentStep >= step.length - 1) return;
 
     setCurrentStep(currentStep + 1);
   };
