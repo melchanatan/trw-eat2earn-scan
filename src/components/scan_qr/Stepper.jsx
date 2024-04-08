@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, createContext } from "react";
-import Router from "next/navigation";
+import { useRouter } from "next/navigation";
 import SignInContainer from "./sign_in/SignInContainer";
 import BottomContainer from "./BottomContainer";
 import OpenCameraContainer from "./open_camera/OpenCameraContainer";
@@ -13,9 +13,15 @@ const StepContext = createContext(0);
 
 const Stepper = () => {
   const [currentStep, setCurrentStep] = useState(0);
+  const router = useRouter();
   //const {setName} = useContext(FormContext)
 
   const step = [
+    {
+      top: <SummaryContainer />,
+      bottom: null,
+      color: "transparent",
+    },
     {
       top: <SignInContainer.top />,
       //bottom: <SignInContainer setName={setName} />,
@@ -41,11 +47,13 @@ const Stepper = () => {
   const submitForm = () => {
     alert("Form submitted");
   };
+
   const goNext = () => {
-    if (currentStep >= step.length - 1) {
+    if (currentStep >= step.length - 2) {
       submitForm();
-      return;
     }
+
+    if (currentStep >= step.length - 1) return;
 
     setCurrentStep(currentStep + 1);
   };

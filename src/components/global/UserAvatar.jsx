@@ -2,11 +2,11 @@ import React, { useContext } from "react";
 import Image from "next/image";
 import { UserInfoContext } from "../../utils/UserInfoProvider";
 
-const UserAvatar = () => {
+const UserAvatar = ({ className = "" }) => {
   const { name } = useContext(UserInfoContext)
 
   return (
-    <div className="flex font-avant gap-3 p-3 pt-6">
+    <div className={`flex font-avant gap-3 p-3 pl-0 pt-6 ${className}`}>
       <Image
         src={"/assets/avatar-placeholder.png"}
         width={48}
