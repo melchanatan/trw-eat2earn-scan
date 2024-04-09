@@ -17,11 +17,7 @@ const Stepper = () => {
   //const {setName} = useContext(FormContext)
 
   const step = [
-    {
-      top: <SummaryContainer />,
-      bottom: null,
-      color: "transparent",
-    },
+   
     {
       top: <SignInContainer.top />,
       //bottom: <SignInContainer setName={setName} />,
@@ -41,6 +37,11 @@ const Stepper = () => {
       ),
       bottom: <OpenCameraContainer />,
       color: "accent",
+    },
+     {
+      top: <SummaryContainer />,
+      bottom: null,
+      color: "transparent",
     },
   ];
 
