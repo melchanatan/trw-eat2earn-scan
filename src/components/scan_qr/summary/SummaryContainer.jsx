@@ -16,7 +16,8 @@ const SummaryContainer = () => {
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  const { image, setImage, amount } = useContext(FormContext);
+  const { image, setImage, amount, restaurantId } = useContext(FormContext);
+
   const { phone, setPoint, point } = useContext(UserInfoContext);
 
   const submitForm = async () => {
@@ -27,14 +28,13 @@ const SummaryContainer = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           phone: phone,
-          resId: "1234",
+          resId: restaurantId,
           image: image,
           amount: Number(amount),
         }),
       }
     );
     const data = await response.json();
-    console.log(data);
     setIsLoading(false);
     if (response.status == 201) {
       setPoint(Number(point) + Number(amount));

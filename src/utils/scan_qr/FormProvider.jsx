@@ -6,9 +6,19 @@ const FormContext = createContext(0);
 const FormProvider = ({ children }) => {
   const [image, setImage] = useState("");
   const [amount, setAmount] = useState(0);
-  
+  const [restaurantId, setRestaurantId] = useState("");
+
   return (
-    <FormContext.Provider value={{ image, setImage, amount, setAmount }}>
+    <FormContext.Provider
+      value={{
+        image,
+        setImage,
+        amount,
+        setAmount,
+        restaurantId,
+        setRestaurantId,
+      }}
+    >
       {children}
     </FormContext.Provider>
   );

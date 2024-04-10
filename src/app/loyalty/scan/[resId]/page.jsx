@@ -1,12 +1,19 @@
-import React from "react";
+"use client";
+import React, { useContext, useEffect } from "react";
 
 import Stepper from "../../../../components/scan_qr/Stepper";
 import SummaryContainer from "../../../../components/scan_qr/summary/SummaryContainer";
 import { isMobile } from "react-device-detect";
 import { CiMobile1 } from "react-icons/ci";
+import { FormContext } from "../../../../utils/scan_qr/FormProvider";
 
 const ScanPage = ({ params }) => {
+  const { setRestaurantId } = useContext(FormContext);
   const restaurantId = params.resId;
+
+  useEffect(() => {
+    setRestaurantId(restaurantId);
+  }, []);
 
   // User can access content only on mobile device
   // or is in development mode
@@ -23,7 +30,7 @@ const ScanPage = ({ params }) => {
 
   return (
     <div className="">
-      <Stepper />
+        <Stepper />
     </div>
   );
 };
