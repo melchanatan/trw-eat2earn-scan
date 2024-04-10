@@ -11,20 +11,20 @@ import { useContext, useEffect, useState } from "react";
 import SignInContainer from "../components/sign_in/SignInContainer";
 
 const RootLayout = ({ children }) => {
-  const [signedIn, setSignedIn] = useState(false);
+  const [signedIn, setSignedIn] = useState(true);
 
   return (
     <html lang="en">
       <body className={inter.className + " relative"}>
         <UserInfoProvider>
-          <SignInProvider>
+          <SignInProvider setSignedIn={setSignedIn}>
             {signedIn ?
               <SessionProvider>{children}</SessionProvider>
             :
             <FormProvider>
               <SignInContainer.top />
               <BottomContainer color="accent">
-                <SignInContainer setSignedIn={setSignedIn}/>
+                <SignInContainer/>
               </BottomContainer>
             </FormProvider>
             }

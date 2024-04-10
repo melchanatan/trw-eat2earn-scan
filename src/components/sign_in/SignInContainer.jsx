@@ -3,15 +3,8 @@ import PhoneInputField from "../global/PhoneInputField";
 import Button from "../global/Button";
 import { SignInContext } from "../../utils/SignInProvider";
 
-const SignInContainer = ({setSignedIn}) => {
-  //const { goNext } = useContext(StepContext);
-  //const { setPhone, setName, setPoint } = useContext(UserInfoContext);
+const SignInContainer = ({}) => {
   const { register, onSubmit, phoneNumber, setPhoneNumber } = useContext(SignInContext);
-  const { signedIn } = useContext(SignInContext);
-
-  useEffect(() => {
-    setSignedIn(signedIn);
-  }, [signedIn])
 
   return (
     <>
