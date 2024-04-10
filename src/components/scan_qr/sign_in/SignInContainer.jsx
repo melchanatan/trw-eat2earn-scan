@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import PhoneInput from "../../global/PhoneInput";
 import Button from "../../global/Button";
 import { StepContext } from "../Stepper";
-import { UserInfoContext } from "../../../utils/UserInfoProvider";
+import { UserInfoContext } from "../../../utils/scan_qr/UserInfoProvider";
 
 const SignInContainer = () => {
   const { goNext } = useContext(StepContext);

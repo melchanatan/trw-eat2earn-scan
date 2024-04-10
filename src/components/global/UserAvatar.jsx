@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import Image from "next/image";
-import { UserInfoContext } from "../../utils/UserInfoProvider";
+import { UserInfoContext } from "../../utils/scan_qr/UserInfoProvider";
 
 const UserAvatar = ({ className = "" }) => {
   const { name } = useContext(UserInfoContext)
