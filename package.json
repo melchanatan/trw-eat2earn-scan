@@ -22,6 +22,7 @@
     "react-icons": "^5.0.1",
     "react-loading-skeleton": "^3.4.0",
     "react-lottie": "^1.2.4",
+    "react-phone-number-input": "^3.3.12",
     "react-spinners": "^0.13.8",
     "react-webcam": "^7.2.0"
   },
