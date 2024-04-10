@@ -43,9 +43,7 @@ const Stepper = () => {
     },
   ];
 
-  const submitForm = () => {
-    alert("Form submitted");
-  };
+  const submitForm = () => {};
 
   const goNext = () => {
     if (currentStep >= step.length - 2) {

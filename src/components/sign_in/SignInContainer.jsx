@@ -4,7 +4,8 @@ import Button from "../global/Button";
 import { SignInContext } from "../../utils/SignInProvider";
 
 const SignInContainer = ({}) => {
-  const { register, onSubmit, phoneNumber, setPhoneNumber } = useContext(SignInContext);
+  const { onSubmit, phoneNumber, setPhoneNumber, errorMessage } =
+    useContext(SignInContext);
 
   return (
     <>
@@ -14,6 +15,7 @@ const SignInContainer = ({}) => {
       <form className="flex flex-col gap-2 mb-[40px]" onSubmit={onSubmit}>
         <PhoneInputField value={phoneNumber} setValue={setPhoneNumber} />
         <Button>Sign In</Button>
+        <p className="text-white/60">{errorMessage}</p>
       </form>
       <a href="" className="text-white font-avant underline ">
         Not a member?
