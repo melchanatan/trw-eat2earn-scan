@@ -1,14 +1,46 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState, useContext } from "react";
 import { TiStarFullOutline } from "react-icons/ti";
 import BackButton from "../../../components/global/BackButton";
+import { UserInfoContext } from "../../../utils/UserInfoProvider";
+import { CookiesProvider, useCookies } from 'react-cookie'
 
 const HistoryPage = () => {
+  const [history, setHistory] = useState([]);
+  const { phone} = useContext(UserInfoContext);
+  const [cookies, setCookie] = useCookies(['user'])
+
+  const fetchHistory = async () => {
+    console.log("phone", cookies.user.phone)
+    const response = await fetch(
+      process.env.NEXT_PUBLIC_SERVER_URI + "/v1/user/pointhistory/" + cookies.user.phone, { method: "GET" }
+    );
+    const data = await response.json();
+    if(response.status == 200){
+      setHistory(data);
+    }
+  }
+  
+  useEffect(() => {
+    console.log("useeffect", history)
+    
+  }, [history])
+  
+  useEffect(() => {
+    fetchHistory();
+  }, [])
+
   return (
     <div className="h-screen flex flex-col justify-end  box-container">
       <BackButton />
       <h2 className="mb-10">Your reward history</h2>
       <div className="h-[80vh] w-full bg-gradient-accent-lighter rounded-t-[14px] p-5 overflow-y-auto">
-        <HistoryListItem />
+        {history.map((item) => (
+          <HistoryListItem 
+            name = {item.name}
+            amount = {item.amount}
+          />
+        ))}
       </div>
     </div>
   );
@@ -16,16 +48,16 @@ const HistoryPage = () => {
 
 export default HistoryPage;
 
-const HistoryListItem = () => {
+const HistoryListItem = ({name, amount}) => {
   return (
-    <div className="w-full border-background border-[1px] rounded-[12px] text-background p-5 flex justify-between ">
+    <div className="w-full border-background border-[1px] rounded-[12px] text-background p-5 flex justify-between mb-4">
       <div>
         <p className="opacity-60 font-thin">restaurant</p>
-        <h3 className="text-xl">mels kitchen</h3>
+        <h3 className="text-xl">{name}</h3>
       </div>
 
       <h3 className="flex flex-row items-center gap-2 text-xl ">
-        +40
+        {Number(amount) > 0 ? "+"+amount : amount}
         <TiStarFullOutline className="w-[32px] h-[32px] text-secondary" />
       </h3>
     </div>

@@ -8,16 +8,24 @@ const SignInContext = createContext(0);
 const SignInProvider = ({ children, setSignedIn }) => {
   //const [signedIn, setSignedIn] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
-  const { setPhone, setName, setPoint } = useContext(UserInfoContext);
+  const { phone, setPhone, setName, setPoint, history, setHistory } = useContext(UserInfoContext);
   const [cookies, setCookie] = useCookies(['user'])
 
-  const checkCookies = () => {
+  const checkCookies = async () => {
     console.log("checking cookies")
     if(cookies.user){
       setName(cookies.user.firstName + " " + cookies.user.lastName[0] + ".");
-      setPoint(Number(cookies.user.point));
       setPhone(cookies.user.phone);
-      console.log(cookies.user)
+      const response = await fetch(
+        process.env.NEXT_PUBLIC_SERVER_URI + "/v1/user/" + cookies.user.phone, { method: "GET", }
+      );
+      const data = await response.json();
+      if(response.status == 200){
+        setName(data.firstName + " " + data.lastName[0] + ".");
+        setPoint(Number(data.point));
+        setCookie("user", data, { path: '/' });
+      }
+      console.log(cookies.user.phone);
     }
     else setSignedIn(false)
   }
