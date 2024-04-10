@@ -2,7 +2,7 @@
 import Image from "next/image";
 import { useQRCode } from "next-qrcode";
 import { useEffect, useState } from "react";
-import Searchbar from "../../components/Searchbar";
+import Searchbar from "../../components/global/Searchbar";
 import ClipLoader from "react-spinners/ClipLoader";
 
 export default function Home() {

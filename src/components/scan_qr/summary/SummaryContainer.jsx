@@ -7,6 +7,7 @@ import * as animationData from "../../../../public/assets/done-lottie.json";
 
 const SummaryContainer = () => {
   const [currentPoint, setCurrentPoint] = useState(451);
+
   const fetchUserData = async () => {
     //TODO: fetch user current Point point and setCurrentPoint
   };
