@@ -5,7 +5,7 @@ import Confetti from "react-confetti";
 import Lottie from "react-lottie";
 import * as doneAnimationData from "../../../../public/assets/done-lottie.json";
 import * as loadingAnimationData from "../../../../public/assets/loading-lottie.json";
-import { UserInfoContext } from "../../../utils/scan_qr/UserInfoProvider";
+import { UserInfoContext } from "../../../utils/UserInfoProvider";
 import { FormContext } from "../../../utils/scan_qr/FormProvider";
 import { StepContext } from "../Stepper";
 import { motion, AnimatePresence } from "framer-motion";
@@ -38,7 +38,6 @@ const SummaryContainer = () => {
     setIsLoading(false);
     if (response.status == 201) {
       setPoint(Number(point) + Number(amount));
-      goNext();
     } else {
       setIsError(true);
     }
@@ -50,8 +49,8 @@ const SummaryContainer = () => {
   };
 
   useEffect(() => {
-    fetchUserData();
     submitForm();
+    fetchUserData();
   }, []);
 
   const doneAnimationOptions = {
