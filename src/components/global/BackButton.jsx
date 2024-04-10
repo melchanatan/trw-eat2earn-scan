@@ -9,10 +9,10 @@ const BackButton = ({ className = "" }) => {
 
   return (
     <button
-      className={`mb-4 active:bg-slate-50/20 rounded-full absolute top-5 ${className}`}
+      className={`mb-4 active:bg-white-500/20 active:translate-x-[-1px] rounded-full absolute top-5 flex flex-row justify-center gap-2 py-2 ${className}`}
       onClick={goBack}
     >
-      <FaArrowLeftLong className="w-[24px] h-[24px]" />
+      <FaArrowLeftLong className="w-[24px] h-[24px]" /> <p className="">back</p>
     </button>
   );
 };

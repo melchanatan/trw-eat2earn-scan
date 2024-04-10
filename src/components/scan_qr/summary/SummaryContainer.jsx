@@ -38,6 +38,7 @@ const SummaryContainer = () => {
         }
       );
       const data = await response.json();
+      console.log(data);
       setIsLoading(false);
       if (response.status == 201) {
         setPoint(Number(point) + Number(amount));
