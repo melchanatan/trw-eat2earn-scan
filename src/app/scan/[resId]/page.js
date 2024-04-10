@@ -39,7 +39,6 @@ const ScanPage = ({ params }) => {
     }
   };
 
-  // console.log(session.user_id);
   return (
     <div className="flex flex-col items-center justify-center p-24 relative">
       {!session && <SignInOverlay />}
