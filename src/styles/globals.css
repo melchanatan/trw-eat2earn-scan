@@ -89,7 +89,7 @@ p {
 }
 
 .input {
-  @apply  px-3 py-4 bg-white rounded-[14px] flex items-center
+  @apply px-3 py-4 bg-white rounded-[14px] flex items-center
 }
 
 .floating-icon-button {
@@ -98,4 +98,8 @@ p {
 
 .grid-box {
   @apply rounded-[14px] p-4 flex;
+}
+
+.info-page--accent {
+  @apply w-screen h-screen flex items-center justify-center bg-gradient-accent flex-col
 }

@@ -12,7 +12,7 @@ const ScanPage = ({ params }) => {
   // or is in development mode
   if (!isMobile && process.env.NEXT_PUBLIC_MODE !== "development") {
     return (
-      <div className="w-full h-full flex items-center justify-center bg-gradient-accent flex-col">
+      <div className="info-page--accent">
         <h1 className="text-center text-background">
           Sorry, <br /> This app is mobile devices only.
         </h1>
