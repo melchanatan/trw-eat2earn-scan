@@ -13,7 +13,7 @@ const OpenCameraContainer = () => {
   return (
     <div className="flex items-center flex-col">
       {isCameraOpen ? (
-        <WebcamComponent />
+        <WebcamComponent setIsCameraOpen={setIsCameraOpen} />
       ) : (
         <WebcamPlaceholder onClick={() => setIsCameraOpen(true)} />
       )}
@@ -23,7 +23,7 @@ const OpenCameraContainer = () => {
 
 export default OpenCameraContainer;
 
-const WebcamComponent = () => {
+const WebcamComponent = ({ setIsCameraOpen }) => {
   const { image, setImage } = useContext(FormContext);
   const { goNext } = useContext(StepContext);
   const retake = () => {
@@ -55,7 +55,13 @@ const WebcamComponent = () => {
       ) : (
         <div className="pb-10">
           <MyWebcam setImage={setImage} />
-          <a href="" className="absolute bottom-20 left-10">
+          <a
+            onClick={(e) => {
+              e.preventDefault();
+              setIsCameraOpen(false);
+            }}
+            className="absolute bottom-20 left-10"
+          >
             <FaArrowLeftLong className="w-[24px] h-[24px] fill-background" />
           </a>
         </div>
