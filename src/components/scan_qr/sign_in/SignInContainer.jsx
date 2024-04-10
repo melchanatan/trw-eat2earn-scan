@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import PhoneInput from "../../global/PhoneInput";
+import PhoneInputField from "../../global/PhoneInputField";
 import Button from "../../global/Button";
 import { StepContext } from "../Stepper";
 import { UserInfoContext } from "../../../utils/scan_qr/UserInfoProvider";
@@ -66,7 +66,7 @@ const SignInContainer = () => {
         Enter your <br /> phone number
       </h1>
       <form className="flex flex-col gap-2 mb-[40px]" onSubmit={onSubmit}>
-        <PhoneInput value={phoneNumber} setValue={setPhoneNumber} />
+        <PhoneInputField value={phoneNumber} setValue={setPhoneNumber} />
         <Button>Sign In</Button>
       </form>
       <a href="" className="text-white font-avant underline ">

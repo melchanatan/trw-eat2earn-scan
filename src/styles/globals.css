@@ -100,6 +100,21 @@ p {
   @apply rounded-[14px] p-4 flex;
 }
 
+.PhoneInput .PhoneInputInput {
+  outline: none;
+  font-size: 1.125rem;
+  line-height: 1.125rem;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+  font-family: Futura, sans-serif;
+  text-align: center;
+  background-color: transparent;
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  border-color: #e5e7eb;
+}
+
+
 .info-page--accent {
   @apply w-screen h-screen flex items-center justify-center bg-gradient-accent flex-col
 }
