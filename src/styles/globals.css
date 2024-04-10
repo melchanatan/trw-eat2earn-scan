@@ -114,7 +114,6 @@ p {
   border-color: #e5e7eb;
 }
 
-
 .info-page--accent {
   @apply w-screen h-screen flex items-center justify-center bg-gradient-accent flex-col
 }
