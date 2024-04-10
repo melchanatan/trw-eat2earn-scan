@@ -5,10 +5,11 @@ import SummaryContainer from "../../../../components/scan_qr/summary/SummaryCont
 import { isMobile } from "react-device-detect";
 import { CiMobile1 } from "react-icons/ci";
 
-const App = () => {
-  console.log(isMobile, "isMobile", isMobile);
+const ScanPage = ({ params }) => {
+  const restaurantId = params.resId;
 
-  // User can access content only on mobile device or is in development mode
+  // User can access content only on mobile device
+  // or is in development mode
   if (!isMobile && process.env.NEXT_PUBLIC_MODE !== "development") {
     return (
       <div className="w-full h-full flex items-center justify-center bg-gradient-accent flex-col">
@@ -27,4 +28,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default ScanPage;
