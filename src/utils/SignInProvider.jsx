@@ -2,6 +2,7 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { UserInfoContext } from "./UserInfoProvider";
 import { CookiesProvider, useCookies } from "react-cookie";
+import PhoneInput, { isPossiblePhoneNumber } from "react-phone-number-input";
 
 const SignInContext = createContext(0);
 
@@ -13,7 +14,6 @@ const SignInProvider = ({ children, setSignedIn }) => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const checkCookies = () => {
-    console.log("checking cookies");
     if (cookies.user) {
       setName(cookies.user.firstName + " " + cookies.user.lastName[0] + ".");
       setPoint(Number(cookies.user.point));
@@ -51,6 +51,13 @@ const SignInProvider = ({ children, setSignedIn }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+
+    // check is phone number valid
+    if (!isPossiblePhoneNumber(phoneNumber)) {
+      setErrorMessage("Phone number is not valid");
+
+      return;
+    }
 
     // check user in Our DB
     const response = await fetch(
