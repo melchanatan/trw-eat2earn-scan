@@ -35,7 +35,7 @@ const SignInContainer = () => {
 
     // Bypass for development mode
     if (process.env.NEXT_PUBLIC_MODE == "development") {
-      setUserInfo({ name: "John Doe" });
+      setName("John Doe");
       goNext();
       return;
     }

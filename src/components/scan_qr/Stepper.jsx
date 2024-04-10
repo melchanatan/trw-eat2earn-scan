@@ -8,6 +8,7 @@ import PriceInputContainer from "./price_input/PriceInputContainer";
 import SummaryContainer from "./summary/SummaryContainer";
 import UserAvatar from "./../global/UserAvatar";
 import FormProvider from "../../utils/scan_qr/FormProvider";
+import { motion, AnimatePresence } from "framer-motion";
 
 const StepContext = createContext(0);
 
@@ -23,7 +24,7 @@ const Stepper = () => {
       color: "accent",
     },
     {
-      top: <UserAvatar />,
+      top: <UserAvatar className="box-container" />,
       bottom: <PriceInputContainer />,
       color: "primary",
     },
@@ -66,7 +67,6 @@ const Stepper = () => {
     <StepContext.Provider value={{ currentStep, goNext, goBack }}>
       <FormProvider>
         {currentContainer.top}
-
         <BottomContainer color={currentContainer.color}>
           {currentContainer.bottom}
         </BottomContainer>
