@@ -7,6 +7,8 @@ import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
 import MyWebcam from "../../global/MyWebcam";
 import { FormContext } from "../../../utils/scan_qr/FormProvider";
 import { StepContext } from "../Stepper";
+import { UserInfoContext } from "../../../utils/scan_qr/UserInfoProvider";
+
 const OpenCameraContainer = () => {
   const [isCameraOpen, setIsCameraOpen] = useState(false);
 
@@ -24,8 +26,33 @@ const OpenCameraContainer = () => {
 export default OpenCameraContainer;
 
 const WebcamComponent = () => {
-  const { image, setImage } = useContext(FormContext);
+  const { image, setImage, amount } = useContext(FormContext);
+  const { phone, setPoint, point } = useContext(UserInfoContext);
   const { goNext } = useContext(StepContext);
+
+  const onSubmit = async () => {
+    const response = await fetch(
+      process.env.NEXT_PUBLIC_SERVER_URI + "/v1/user/point/add",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ 
+          phone: phone,
+          resId: "1234",
+          image: image,
+          amount: Number(amount),
+        }),
+      }
+    );
+    const data = await response.json();
+    console.log(data);
+
+    if (response.status == 201) {
+      setPoint(Number(point) + Number(amount))
+      goNext();
+    }
+  }
+
   const retake = () => {
     setImage("");
   };
@@ -47,7 +74,7 @@ const WebcamComponent = () => {
             <a onClick={() => retake()} className="link-button">
               Retake?
             </a>
-            <Button onClick={goNext}>
+            <Button onClick={onSubmit}>
               Submit <FaArrowRightLong />
             </Button>
           </div>

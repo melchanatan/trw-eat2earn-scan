@@ -19,7 +19,6 @@ const Stepper = () => {
   const step = [
     {
       top: <SignInContainer.top />,
-      //bottom: <SignInContainer setName={setName} />,
       bottom: <SignInContainer />,
       color: "accent",
     },

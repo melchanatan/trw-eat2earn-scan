@@ -1,15 +1,20 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import ProgressGridBox from "../../global/ProgressGridBox";
 import Confetti from "react-confetti";
 import Lottie from "react-lottie";
 import * as animationData from "../../../../public/assets/done-lottie.json";
+import { UserInfoContext } from "../../../utils/scan_qr/UserInfoProvider";
+import { FormContext } from "../../../utils/scan_qr/FormProvider";
 
 const SummaryContainer = () => {
-  const [currentPoint, setCurrentPoint] = useState(451);
+  const [currentPoint, setCurrentPoint] = useState(-1);
+  const { point, setPoint } = useContext(UserInfoContext);
+  const { amount } = useContext(FormContext);
 
   const fetchUserData = async () => {
     //TODO: fetch user current Point point and setCurrentPoint
+    setCurrentPoint(point)
   };
 
   useEffect(() => {
@@ -43,7 +48,7 @@ const SummaryContainer = () => {
       <div className="box-container rounded-[14px] bg-gradient-primary p-[32px]">
         <h1 className="text-background pb-5">
           Yay, <br />
-          you have receive 14 points
+          you have receive {amount} points
         </h1>
         <Lottie options={defaultOptions} height={140} width={140} />
       </div>

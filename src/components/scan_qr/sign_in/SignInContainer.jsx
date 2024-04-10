@@ -7,7 +7,28 @@ import { UserInfoContext } from "../../../utils/scan_qr/UserInfoProvider";
 const SignInContainer = () => {
   const { goNext } = useContext(StepContext);
   const [phoneNumber, setPhoneNumber] = useState("");
-  const { setUserInfo } = useContext(UserInfoContext);
+  const { setPhone, setName, setPoint } = useContext(UserInfoContext);
+
+  const register = async () => {
+    console.log("Register User");
+    const response = await fetch(
+      process.env.NEXT_PUBLIC_SERVER_URI + "/v1/user/register",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ phone: phoneNumber }),
+      }
+    );
+    const data = await response.json();
+    console.log(data);
+
+    if (response.status == 201) {
+      setName(data.firstName + " " + data.lastName[0] + ".");
+      setPoint(0)
+      setPhone(phoneNumber)
+      goNext();
+    }
+  }
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -20,21 +41,21 @@ const SignInContainer = () => {
     }
 
     // TODO: check phone number with database
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ phone: phoneNumber }),
-    };
-
     const response = await fetch(
-      process.env.NEXT_PUBLIC_SERVER_URI + "/v1/user/register",
-      requestOptions
+      process.env.NEXT_PUBLIC_SERVER_URI + "/v1/user/" + phoneNumber,
+      {
+        method: "GET",
+      }
     );
     const data = await response.json();
     console.log(data);
-
-    if (response.status == 201) {
+    if(response.status == 404){
+      register();
+    }
+    if(response.status == 200){
       setName(data.firstName + " " + data.lastName[0] + ".");
+      setPoint(Number(data.point));
+      setPhone(phoneNumber)
       goNext();
     }
   };
