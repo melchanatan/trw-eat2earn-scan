@@ -2,12 +2,12 @@
 import React from "react";
 import ProgressGridBox from "../../components/global/ProgressGridBox";
 import { RiCoupon3Fill } from "react-icons/ri";
-import { TiStarFullOutline } from "react-icons/ti";
 import { RiQrScanLine } from "react-icons/ri";
 import UserAvatar from "./../../components/global/UserAvatar";
-import { FaArrowRightLong } from "react-icons/fa6";
 import { useRouter } from "next/navigation";
 import { MdHistory } from "react-icons/md";
+import HistoryGridBox from "../../components/loyalty/HistoryGridBox";
+import PointGridBox from "../../components/loyalty/PointGridBox";
 
 const LoyaltyPage = () => {
   const router = useRouter();
@@ -30,13 +30,7 @@ const LoyaltyPage = () => {
           <MdHistory className="w-[36px] h-[36px]" />
         </a>
       </div>
-      <div className="bg-gradient-primary grid-box justify-center items-center flex-col text-background">
-        <span className="p-1 bg-white/20 inline-block rounded-full mb-3">
-          <TiStarFullOutline className="fill-secondary w-[32px] h-[32px] " />
-        </span>
-        <h2 className="font-medium">12,000</h2>
-        <p className="">points</p>
-      </div>
+      <HistoryGridBox />
       <ProgressGridBox className="col-span-2" point={23} maxPoint={100} />
 
       <button
@@ -47,22 +41,7 @@ const LoyaltyPage = () => {
         <RiQrScanLine className="w-[24px] h-[24px]" />
       </button>
 
-      <div className="col-span-full bg-gradient-primary-lighter grid-box grid grid-cols-2 !p-6 !pb-0">
-        <div className="flex flex-col items-start justify-between translate-x-[10px]">
-          <h2>
-            {" "}
-            You got <br /> 3000 points this week
-          </h2>
-          <button
-            href=""
-            className="flex gap-2 items-center justify-center bg-gradient-primary text-white rounded-full px-5 py-1 mb-5 group"
-            onClick={pushToScan}
-          >
-            Check <FaArrowRightLong className="group-hover:animate-slide" />
-          </button>
-        </div>
-        <img src="/assets/tickets.svg" alt="tickets image" className="" />
-      </div>
+      <PointGridBox onClick={pushToHistory} />
       <img
         src="/assets/coming-soon-gridbox.png"
         alt="tickets image"
