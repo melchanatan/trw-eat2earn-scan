@@ -1,9 +1,11 @@
 import React from "react";
 import { TiStarFullOutline } from "react-icons/ti";
+import BackButton from "../../../components/global/BackButton";
 
 const HistoryPage = () => {
   return (
     <div className="h-screen flex flex-col justify-end  box-container">
+      <BackButton />
       <h2 className="mb-10">Your reward history</h2>
       <div className="h-[80vh] w-full bg-gradient-accent-lighter rounded-t-[14px] p-5 overflow-y-auto">
         <HistoryListItem />
