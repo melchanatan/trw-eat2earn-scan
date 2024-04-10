@@ -33,6 +33,7 @@ const SummaryContainer = () => {
           body: JSON.stringify({
             phone: phone,
             resId: restaurantId,
+            resName: "Mel's restaurant",
             image: image,
             amount: awardedPoint,
           }),
