@@ -34,7 +34,8 @@ const LoyaltyPage = () => {
           <MdHistory className="w-[36px] h-[36px]" />
         </a>
       </div>
-      <HistoryGridBox point={point} />
+      <PointGridBox point={point} />
+
       <ProgressGridBox className="col-span-2" point={point} maxPoint={100} />
 
       <button
@@ -45,7 +46,7 @@ const LoyaltyPage = () => {
         <RiQrScanLine className="w-[24px] h-[24px]" />
       </button>
 
-      <PointGridBox onClick={pushToHistory} />
+      <HistoryGridBox onClick={pushToHistory} />
       <img
         src="/assets/coming-soon-gridbox.png"
         alt="tickets image"

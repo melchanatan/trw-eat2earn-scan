@@ -127,3 +127,7 @@ p {
 .info-page--accent {
   @apply w-screen h-screen flex items-center justify-center bg-gradient-accent flex-col
 }
+
+.loading {
+  @apply animate-pulse bg-gray-500/20 rounded-[14px]
+}

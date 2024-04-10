@@ -16,7 +16,7 @@ const UserAvatar = ({ className = "" }) => {
       />
       <div className="flex flex-col">
         <label>Welcome back,</label>
-        <h2>{name}</h2>
+        <h2>{!name ? <div className="w-[10ch] h-6 loading"></div> : name}</h2>
       </div>
     </div>
   );

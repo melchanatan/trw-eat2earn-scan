@@ -1,14 +1,23 @@
 import React from "react";
-import { TiStarFullOutline } from "react-icons/ti";
+import { FaArrowRightLong } from "react-icons/fa6";
 
-const HistoryGridBox = ({point}) => {
+const HistoryGridBox = ({ onClick }) => {
   return (
-    <div className="bg-gradient-primary grid-box justify-center items-center flex-col text-background">
-      <span className="p-1 bg-white/20 inline-block rounded-full mb-3">
-        <TiStarFullOutline className="fill-secondary w-[32px] h-[32px] " />
-      </span>
-      <h2 className="font-medium">{point}</h2>
-      <p className="">points</p>
+    <div className="col-span-full bg-gradient-primary-lighter grid-box grid grid-cols-2 !p-6 !pb-0">
+      <div className="flex flex-col items-start justify-between translate-x-[10px]">
+        <h2>
+          {" "}
+          You got <br /> 3000 points this week
+        </h2>
+        <button
+          href=""
+          className="flex gap-2 items-center justify-center bg-gradient-primary text-white rounded-full px-5 py-1 mb-5 group"
+          onClick={onClick}
+        >
+          Check <FaArrowRightLong className="group-hover:animate-slide" />
+        </button>
+      </div>
+      <img src="/assets/tickets.svg" alt="tickets image" className="" />
     </div>
   );
 };
