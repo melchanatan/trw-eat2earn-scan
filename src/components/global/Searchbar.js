@@ -26,6 +26,8 @@ const Searchbar = ({
     }
   };
 
+  const handleFocus = (event) => event.target.select();
+
   const handleSearch = (e) => {
     setSearchTerm(e.target.value);
     const searchTerm = e.target.value.toLowerCase();
@@ -41,6 +43,7 @@ const Searchbar = ({
         <IoSearch className="fill-gray-500" />
         <input
           onClick={() => setShowingOption(true)}
+          onFocus={handleFocus}
           tabIndex={0}
           type="text"
           onChange={handleSearch}

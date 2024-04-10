@@ -56,7 +56,7 @@ export default function Home() {
           setFilteredItems={setFilteredItems}
           setSelectedItem={setSelectedRestaurant}
           allItems={restaurantsData.map((restaurant) => {
-            return { name: restaurant.name, id: restaurant.id };
+            return { name: restaurant.title, id: restaurant.id };
           })}
           onSelect={handleQrLoading}
         />
