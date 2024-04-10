@@ -19,8 +19,9 @@ const SummaryContainer = () => {
   const router = useRouter();
 
   const { image, setImage, amount, restaurantId } = useContext(FormContext);
-
   const { phone, setPoint, point } = useContext(UserInfoContext);
+
+  const awardedPoint = Math.round(Number(amount));
 
   const submitForm = async () => {
     try {
@@ -33,15 +34,16 @@ const SummaryContainer = () => {
             phone: phone,
             resId: restaurantId,
             image: image,
-            amount: Number(amount),
+            amount: awardedPoint,
           }),
         }
       );
+
       const data = await response.json();
-      console.log(data);
+
       setIsLoading(false);
       if (response.status == 201) {
-        setPoint(Number(point) + Number(amount));
+        setPoint(Number(point) + awardedPoint);
       } else {
         setIsError(true);
       }
@@ -103,7 +105,7 @@ const SummaryContainer = () => {
         <div className="box-container rounded-[14px] bg-gradient-primary p-[32px]">
           <h1 className="text-background pb-5">
             Yay, <br />
-            you have receive {Math.round(Number(amount))} points
+            you have receive {awardedPoint} points
           </h1>
           <Lottie options={doneAnimationOptions} height={140} width={140} />
         </div>

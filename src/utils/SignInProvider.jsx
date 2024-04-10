@@ -1,13 +1,15 @@
 "use client";
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { UserInfoContext } from "./UserInfoProvider";
-import { CookiesProvider, useCookies } from 'react-cookie'
+import { CookiesProvider, useCookies } from "react-cookie";
+import PhoneInput, { isPossiblePhoneNumber } from "react-phone-number-input";
 
 const SignInContext = createContext(0);
 
 const SignInProvider = ({ children, setSignedIn }) => {
   //const [signedIn, setSignedIn] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const { phone, setPhone, setName, setPoint, history, setHistory } = useContext(UserInfoContext);
   const [cookies, setCookie] = useCookies(['user'])
 
@@ -30,11 +32,11 @@ const SignInProvider = ({ children, setSignedIn }) => {
     else setSignedIn(false)
   }
   useEffect(() => {
-    checkCookies()
-  }, [])
+    checkCookies();
+  }, []);
 
-  const register = async () => {
-    console.log("Register User");
+  const migrateUserToDB = async () => {
+    // check Shopify database and migrate into our database
     const response = await fetch(
       process.env.NEXT_PUBLIC_SERVER_URI + "/v1/user/register",
       {
@@ -43,20 +45,31 @@ const SignInProvider = ({ children, setSignedIn }) => {
         body: JSON.stringify({ phone: phoneNumber }),
       }
     );
+
     const data = await response.json();
-    console.log(data);
 
     if (response.status == 201) {
       setName(data.firstName + " " + data.lastName[0] + ".");
-      setPoint(0)
-      setPhone(phoneNumber)
+      setPoint(0);
+      setPhone(phoneNumber);
       setSignedIn(true);
+    } else {
+      setErrorMessage("Phone number is not registered");
+      setSignedIn(false);
     }
-  }
+  };
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    
+
+    // check is phone number valid
+    if (!isPossiblePhoneNumber(phoneNumber)) {
+      setErrorMessage("Phone number is not valid");
+
+      return;
+    }
+
+    // check user in Our DB
     const response = await fetch(
       process.env.NEXT_PUBLIC_SERVER_URI + "/v1/user/" + phoneNumber,
       {
@@ -64,21 +77,33 @@ const SignInProvider = ({ children, setSignedIn }) => {
       }
     );
     const data = await response.json();
-    console.log(data);
-    if(response.status == 404){
-      register();
+
+    // if user is not in Our DB, add
+    if (response.status == 404) {
+      migrateUserToDB();
     }
-    if(response.status == 200){
+
+    if (response.status == 200) {
       setName(data.firstName + " " + data.lastName[0] + ".");
       setPoint(Number(data.point));
       setPhone(phoneNumber);
-      setCookie("user", data, { path: '/' });
+      setCookie("user", data, { path: "/" });
       setSignedIn(true);
     }
   };
 
   return (
-    <SignInContext.Provider value={{ register, onSubmit, phoneNumber, setPhoneNumber, checkCookies }}>
+    <SignInContext.Provider
+      value={{
+        migrateUserToDB,
+        onSubmit,
+        phoneNumber,
+        setPhoneNumber,
+        checkCookies,
+        errorMessage,
+        setErrorMessage,
+      }}
+    >
       {children}
     </SignInContext.Provider>
   );
