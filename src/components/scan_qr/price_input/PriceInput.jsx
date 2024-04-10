@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { FormContext } from "../utils/FormProvider";
+import { FormContext } from "../../../utils/scan_qr/FormProvider";
 
 const PriceInput = () => {
   const { amount, setAmount } = useContext(FormContext);

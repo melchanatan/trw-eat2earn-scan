@@ -7,7 +7,7 @@ import OpenCameraContainer from "./open_camera/OpenCameraContainer";
 import PriceInputContainer from "./price_input/PriceInputContainer";
 import SummaryContainer from "./summary/SummaryContainer";
 import UserAvatar from "./../global/UserAvatar";
-import FormProvider from "./utils/FormProvider";
+import FormProvider from "../../utils/scan_qr/FormProvider";
 
 const StepContext = createContext(0);
 
@@ -17,7 +17,6 @@ const Stepper = () => {
   //const {setName} = useContext(FormContext)
 
   const step = [
-   
     {
       top: <SignInContainer.top />,
       //bottom: <SignInContainer setName={setName} />,
@@ -38,7 +37,7 @@ const Stepper = () => {
       bottom: <OpenCameraContainer />,
       color: "accent",
     },
-     {
+    {
       top: <SummaryContainer />,
       bottom: null,
       color: "transparent",
