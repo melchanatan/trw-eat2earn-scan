@@ -7,14 +7,14 @@ import { UserInfoContext } from "../../../utils/scan_qr/UserInfoProvider";
 const SignInContainer = () => {
   const { goNext } = useContext(StepContext);
   const [phoneNumber, setPhoneNumber] = useState("");
-  const { setUserInfo } = useContext(UserInfoContext);
+  const { setName } = useContext(UserInfoContext);
 
   const onSubmit = async (e) => {
     e.preventDefault();
 
     // Bypass for development mode
     if (process.env.NEXT_PUBLIC_MODE == "development") {
-      setUserInfo({ name: "John Doe" });
+      setName("John Doe");
       goNext();
       return;
     }
