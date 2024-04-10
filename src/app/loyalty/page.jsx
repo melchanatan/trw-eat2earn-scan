@@ -8,8 +8,12 @@ import { useRouter } from "next/navigation";
 import { MdHistory } from "react-icons/md";
 import HistoryGridBox from "../../components/loyalty/HistoryGridBox";
 import PointGridBox from "../../components/loyalty/PointGridBox";
+import { UserInfoContext } from "../../utils/UserInfoProvider";
+import { useContext } from "react";
 
 const LoyaltyPage = () => {
+  const { point } = useContext(UserInfoContext);
+
   const router = useRouter();
   const pushToScan = () => {
     router.push("/loyalty/camera");
@@ -30,8 +34,8 @@ const LoyaltyPage = () => {
           <MdHistory className="w-[36px] h-[36px]" />
         </a>
       </div>
-      <HistoryGridBox />
-      <ProgressGridBox className="col-span-2" point={23} maxPoint={100} />
+      <HistoryGridBox point={point} />
+      <ProgressGridBox className="col-span-2" point={point} maxPoint={100} />
 
       <button
         onClick={pushToScan}

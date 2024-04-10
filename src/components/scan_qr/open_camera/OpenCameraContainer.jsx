@@ -7,7 +7,7 @@ import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
 import MyWebcam from "../../global/MyWebcam";
 import { FormContext } from "../../../utils/scan_qr/FormProvider";
 import { StepContext } from "../Stepper";
-import { UserInfoContext } from "../../../utils/scan_qr/UserInfoProvider";
+import { UserInfoContext } from "../../../utils/UserInfoProvider";
 
 const OpenCameraContainer = () => {
   const [isCameraOpen, setIsCameraOpen] = useState(false);

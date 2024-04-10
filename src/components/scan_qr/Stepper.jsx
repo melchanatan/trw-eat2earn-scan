@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, createContext } from "react";
 import { useRouter } from "next/navigation";
-import SignInContainer from "./sign_in/SignInContainer";
+import SignInContainer from "../sign_in/SignInContainer";
 import BottomContainer from "./BottomContainer";
 import OpenCameraContainer from "./open_camera/OpenCameraContainer";
 import PriceInputContainer from "./price_input/PriceInputContainer";
@@ -17,11 +17,11 @@ const Stepper = () => {
   //const {setName} = useContext(FormContext)
 
   const step = [
-    {
-      top: <SignInContainer.top />,
-      bottom: <SignInContainer />,
-      color: "accent",
-    },
+    // {
+    //   top: <SignInContainer.top />,
+    //   bottom: <SignInContainer />,
+    //   color: "accent",
+    // },
     {
       top: <UserAvatar className="box-container" />,
       bottom: <PriceInputContainer />,
