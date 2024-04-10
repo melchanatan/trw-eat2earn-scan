@@ -24,7 +24,7 @@ const LoyaltyPage = () => {
   };
 
   return (
-    <div className="grid grid-cols-3 gap-2 box-container">
+    <div className="grid grid-cols-3 gap-2 box-container mt-6">
       <div className="col-span-full flex justify-between items-end mb-3">
         <UserAvatar />
         <a

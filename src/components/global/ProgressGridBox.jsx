@@ -4,7 +4,7 @@ import { RiCoupon3Fill } from "react-icons/ri";
 import { FaGift } from "react-icons/fa6";
 
 const ProgressGridBox = ({ point, maxPoint, className = "" }) => {
-  const percent = (point / maxPoint) * 100;
+  const percent = Math.min((point / maxPoint) * 100, 100);
   return (
     <div
       className={`grid-box bg-gradient-secondary box-container flex-col w-full items-start text-background ${className}`}

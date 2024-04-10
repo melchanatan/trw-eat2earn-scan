@@ -10,35 +10,42 @@ import { FormContext } from "../../../utils/scan_qr/FormProvider";
 import { StepContext } from "../Stepper";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
+import { useRouter } from "next/navigation";
 
 const SummaryContainer = () => {
   const [currentPoint, setCurrentPoint] = useState(-1);
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const router = useRouter();
 
   const { image, setImage, amount, restaurantId } = useContext(FormContext);
 
   const { phone, setPoint, point } = useContext(UserInfoContext);
 
   const submitForm = async () => {
-    const response = await fetch(
-      process.env.NEXT_PUBLIC_SERVER_URI + "/v1/user/point/add",
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          phone: phone,
-          resId: restaurantId,
-          image: image,
-          amount: Number(amount),
-        }),
+    try {
+      const response = await fetch(
+        process.env.NEXT_PUBLIC_SERVER_URI + "/v1/user/point/add",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            phone: phone,
+            resId: restaurantId,
+            image: image,
+            amount: Number(amount),
+          }),
+        }
+      );
+      const data = await response.json();
+      setIsLoading(false);
+      if (response.status == 201) {
+        setPoint(Number(point) + Number(amount));
+      } else {
+        setIsError(true);
       }
-    );
-    const data = await response.json();
-    setIsLoading(false);
-    if (response.status == 201) {
-      setPoint(Number(point) + Number(amount));
-    } else {
+    } catch (error) {
+      setIsLoading(false);
       setIsError(true);
     }
   };
@@ -63,7 +70,7 @@ const SummaryContainer = () => {
   };
 
   const redirect = () => {
-    //TODO: redirect back to home page
+    router.push("/loyalty");
   };
 
   // send loading page to user while fetching data.
@@ -79,7 +86,10 @@ const SummaryContainer = () => {
   // finally, send the summary page to user, if everything is fine.
   return (
     <AnimatePresence>
-      <div className="flex flex-col items-center justify-center absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] w-full h-full gap-3">
+      <div
+        className="flex flex-col items-center justify-center absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] w-full h-full gap-3"
+        onClick={redirect}
+      >
         <Confetti
           width={window.innerWidth}
           height={window.innerHeight}
@@ -92,7 +102,7 @@ const SummaryContainer = () => {
         <div className="box-container rounded-[14px] bg-gradient-primary p-[32px]">
           <h1 className="text-background pb-5">
             Yay, <br />
-            you have receive {amount} points
+            you have receive {Math.round(Number(amount))} points
           </h1>
           <Lottie options={doneAnimationOptions} height={140} width={140} />
         </div>

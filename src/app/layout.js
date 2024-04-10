@@ -20,7 +20,7 @@ const RootLayout = ({ children }) => {
           <FormProvider>
             <SignInProvider setSignedIn={setSignedIn}>
               {signedIn ? (
-                <SessionProvider>{children}</SessionProvider>
+                <>{children}</>
               ) : (
                 <>
                   <SignInContainer.top />

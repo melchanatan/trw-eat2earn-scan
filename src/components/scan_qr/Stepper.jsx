@@ -23,7 +23,7 @@ const Stepper = () => {
     //   color: "accent",
     // },
     {
-      top: <UserAvatar className="box-container" />,
+      top: <UserAvatar className="box-container pt-10" />,
       bottom: <PriceInputContainer />,
       color: "primary",
     },
@@ -64,10 +64,10 @@ const Stepper = () => {
   const currentContainer = step[currentStep];
   return (
     <StepContext.Provider value={{ currentStep, goNext, goBack }}>
-        {currentContainer.top}
-        <BottomContainer color={currentContainer.color}>
-          {currentContainer.bottom}
-        </BottomContainer>
+      {currentContainer.top}
+      <BottomContainer color={currentContainer.color}>
+        {currentContainer.bottom}
+      </BottomContainer>
     </StepContext.Provider>
   );
 };
