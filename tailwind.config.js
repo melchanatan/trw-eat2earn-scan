@@ -13,6 +13,7 @@ module.exports = {
     extend: {
       animation: {
         shake: "shake 1s ease-in-out infinite",
+        slide: "slide 1s ease-in-out infinite",
       },
       colors: {
         primary: "var(--primary-color)",

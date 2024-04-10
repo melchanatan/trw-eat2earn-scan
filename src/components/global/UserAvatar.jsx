@@ -3,10 +3,10 @@ import Image from "next/image";
 import { UserInfoContext } from "../../utils/UserInfoProvider";
 
 const UserAvatar = ({ className = "" }) => {
-  const { name } = useContext(UserInfoContext)
+  const { name } = useContext(UserInfoContext);
 
   return (
-    <div className={`flex font-avant gap-3 p-3 pl-0 pt-6 ${className}`}>
+    <div className={`flex font-avant gap-3 pl-0 ${className}`}>
       <Image
         src={"/assets/avatar-placeholder.png"}
         width={48}
