@@ -42,6 +42,16 @@
  }
 }
 
+@keyframes slide {
+  0% ,100% {
+   transform: translateX(0px);
+  }
+  50% {
+   transform: translateX(5px);
+  }
+ 
+ }
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
