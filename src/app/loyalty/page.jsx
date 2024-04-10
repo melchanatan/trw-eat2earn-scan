@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import ProgressGridBox from "../../components/global/ProgressGridBox";
 import { RiCoupon3Fill } from "react-icons/ri";
@@ -5,8 +6,13 @@ import { TiStarFullOutline } from "react-icons/ti";
 import { RiQrScanLine } from "react-icons/ri";
 import UserAvatar from "./../../components/global/UserAvatar";
 import { FaArrowRightLong } from "react-icons/fa6";
-
+import { useRouter } from "next/navigation";
 const LoyaltyPage = () => {
+  const router = useRouter();
+  const pushToScan = () => {
+    router.push("/loyalty/camera");
+  };
+
   return (
     <div className="grid grid-cols-3 gap-2 box-container">
       <UserAvatar className="col-span-full" />
@@ -19,9 +25,12 @@ const LoyaltyPage = () => {
       </div>
       <ProgressGridBox className="col-span-2" point={23} maxPoint={100} />
 
-      <button className=" col-span-full border-[2px] rounded-[14px] border-black py-5 flex justify-center items-center gap-2">
-        <h4 className="text-dark">Scan QR Code</h4>{" "}
-        <RiQrScanLine className="w-[24px] h-[24px] fill-dark" />
+      <button
+        onClick={pushToScan}
+        className="col-span-full border-[2px] rounded-[14px] border-dark py-5 flex justify-center items-center gap-2 hover:bg-dark hover:text-white transition-all duration-300 hover:fill-background "
+      >
+        <h4 className="">Scan QR Code</h4>{" "}
+        <RiQrScanLine className="w-[24px] h-[24px] " />
       </button>
 
       <div className="col-span-full bg-gradient-primary-lighter grid-box grid grid-cols-2 !p-6 !pb-0">
