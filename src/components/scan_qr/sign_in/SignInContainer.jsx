@@ -7,21 +7,34 @@ import { UserInfoContext } from "../../../utils/UserInfoProvider";
 const SignInContainer = () => {
   const { goNext } = useContext(StepContext);
   const [phoneNumber, setPhoneNumber] = useState("");
-  const { setName } = useContext(UserInfoContext)
+  const { setUserInfo } = useContext(UserInfoContext);
 
   const onSubmit = async (e) => {
     e.preventDefault();
+
+    // Bypass for development mode
+    if (process.env.NEXT_PUBLIC_MODE == "development") {
+      setUserInfo({ name: "John Doe" });
+      goNext();
+      return;
+    }
+
     // TODO: check phone number with database
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ "phone": phoneNumber })
-    }
-    const response = await fetch(process.env.NEXT_PUBLIC_SERVER_URI+"/v1/user/register", requestOptions)
-    const data = await response.json()
-    console.log(data)
-    if(response.status == 201){
-      setName(data.firstName + " " + data.lastName[0] + ".")
+      body: JSON.stringify({ phone: phoneNumber }),
+    };
+
+    const response = await fetch(
+      process.env.NEXT_PUBLIC_SERVER_URI + "/v1/user/register",
+      requestOptions
+    );
+    const data = await response.json();
+    console.log(data);
+
+    if (response.status == 201) {
+      setName(data.firstName + " " + data.lastName[0] + ".");
       goNext();
     }
   };
