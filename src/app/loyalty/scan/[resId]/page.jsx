@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 
 import Stepper from "../../../../components/scan_qr/Stepper";
 import SummaryContainer from "../../../../components/scan_qr/summary/SummaryContainer";
@@ -8,15 +8,31 @@ import { CiMobile1 } from "react-icons/ci";
 import { FormContext } from "../../../../utils/scan_qr/FormProvider";
 
 const ScanPage = ({ params }) => {
-  const { setRestaurantId } = useContext(FormContext);
-  const restaurantId = params.resId;
+  const { setRestaurantId, setRestaurantName } = useContext(FormContext);
+  const [currentRestaurantId, setCurrentRestaurantId] = useState(params.resId);
 
   const checkRestaurantId = async () => {
     // TODO: check is restaurantId in DB
+    try {
+      let found = false;
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URI}/v1/rest`
+      );
+      const data = await response.json();
+      data.map((restaurant) => {
+        if(restaurant.id == currentRestaurantId){
+          found = true;
+          setRestaurantName(restaurant.title);
+        }
+      })
+      if(!found) setCurrentRestaurantId("invalid")
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   useEffect(() => {
-    setRestaurantId(restaurantId);
+    setRestaurantId(currentRestaurantId);
   }, []);
 
   // User can access content only on mobile device
@@ -32,7 +48,7 @@ const ScanPage = ({ params }) => {
     );
   }
 
-  if (restaurantId == "invalid") {
+  if (currentRestaurantId == "invalid") {
     return (
       <div className="info-page--accent">
         <h1 className="text-center text-background">

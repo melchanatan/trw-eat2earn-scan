@@ -18,7 +18,7 @@ const SummaryContainer = () => {
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
 
-  const { image, setImage, amount, restaurantId } = useContext(FormContext);
+  const { image, setImage, amount, restaurantId, restaurantName } = useContext(FormContext);
   const { phone, setPoint, point } = useContext(UserInfoContext);
 
   const awardedPoint = Math.round(Number(amount));
@@ -34,7 +34,7 @@ const SummaryContainer = () => {
           body: JSON.stringify({
             phone: phone,
             resId: restaurantId,
-            resName: "Mel's restaurant",
+            resName: restaurantName,
             image: image,
             amount: awardedPoint,
           }),
