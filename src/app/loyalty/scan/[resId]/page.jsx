@@ -11,6 +11,10 @@ const ScanPage = ({ params }) => {
   const { setRestaurantId } = useContext(FormContext);
   const restaurantId = params.resId;
 
+  const checkRestaurantId = async () => {
+    // TODO: check is restaurantId in DB
+  };
+
   useEffect(() => {
     setRestaurantId(restaurantId);
   }, []);
@@ -28,9 +32,20 @@ const ScanPage = ({ params }) => {
     );
   }
 
+  if (restaurantId == "invalid") {
+    return (
+      <div className="info-page--accent">
+        <h1 className="text-center text-background">
+          Sorry, <br /> 404 restuarant <br />
+          not found.
+        </h1>
+      </div>
+    );
+  }
+
   return (
     <div className="">
-        <Stepper />
+      <Stepper />
     </div>
   );
 };
