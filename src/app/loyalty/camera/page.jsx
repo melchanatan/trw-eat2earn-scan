@@ -7,6 +7,11 @@ import BackButton from "../../../components/global/BackButton";
 const CameraPage = () => {
   const router = useRouter();
 
+  let Audio;
+  if (typeof window !== "undefined") {
+    Audio = window.Audio;
+  }
+
   const handleResult = (text, result) => {
     // TODO: link validation
     router.push(text);
@@ -15,10 +20,15 @@ const CameraPage = () => {
   return (
     <div className="info-page--accent relative">
       <BackButton className="left-4" />
-      <Scanner
-        onResult={handleResult}
-        onError={(error) => console.log(error?.message)}
-      />
+      {Audio && (
+        <Scanner
+          onResult={handleResult}
+          onError={(error) => console.log(error?.message)}
+          components={{
+            audio: false,
+          }}
+        />
+      )}
     </div>
   );
 };
