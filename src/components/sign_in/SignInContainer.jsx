@@ -17,7 +17,10 @@ const SignInContainer = ({}) => {
         <Button>Sign In</Button>
         <p className="text-white/60">{errorMessage}</p>
       </form>
-      <a href="" className="text-white font-avant underline ">
+      <a
+        href={process.env.NEXT_PUBLIC_SIGN_UP_URL}
+        className="text-white font-avant underline "
+      >
         Not a member?
       </a>
     </>
