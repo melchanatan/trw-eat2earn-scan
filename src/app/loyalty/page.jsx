@@ -12,11 +12,29 @@ import { UserInfoContext } from "../../utils/UserInfoProvider";
 
 const LoyaltyPage = () => {
   const [currentPoint, setCurrentPoint] = useState(0)
-  const { point } = useContext(UserInfoContext);
+  const { point, phone } = useContext(UserInfoContext);
+  const [ historySum , setHistorySum] = useState(0);
 
   useEffect(() => {
     setCurrentPoint(point);
   }, [point])
+
+
+  const fetchHistorySum = async () => {
+    let date = new Date(Date.now());
+    date.setDate(date.getDate() - 7);
+    const response = await fetch(
+      process.env.NEXT_PUBLIC_SERVER_URI + "/v1/user/pointhistory/" + phone + "/" + date.getTime(), { method: "GET" }
+    );
+    const data = await response.json();
+    if(response.status == 200){
+      setHistorySum(data.sum);
+    }
+  }
+  
+  useEffect(() => {
+    if(phone) fetchHistorySum();
+  }, [phone])
 
   const router = useRouter();
   const pushToScan = () => {
@@ -50,7 +68,7 @@ const LoyaltyPage = () => {
         <RiQrScanLine className="w-[24px] h-[24px]" />
       </button>
 
-      <HistoryGridBox onClick={pushToHistory} />
+      <HistoryGridBox onClick={pushToHistory} historySum={historySum} />
       <img
         src="/assets/coming-soon-gridbox.png"
         alt="tickets image"
