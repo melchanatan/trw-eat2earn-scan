@@ -7,7 +7,6 @@ import OpenCameraContainer from "./open_camera/OpenCameraContainer";
 import PriceInputContainer from "./price_input/PriceInputContainer";
 import SummaryContainer from "./summary/SummaryContainer";
 import UserAvatar from "./../global/UserAvatar";
-import { motion, AnimatePresence } from "framer-motion";
 
 const StepContext = createContext(0);
 
