@@ -16,6 +16,7 @@ const SignInProvider = ({ children, setSignedIn }) => {
   const checkCookies = async () => {
     console.log("checking cookies")
     if(cookies.user){
+      console.log("user founded")
       setName(cookies.user.firstName + " " + cookies.user.lastName[0] + ".");
       setPhone(cookies.user.phone);
       const response = await fetch(
@@ -27,10 +28,14 @@ const SignInProvider = ({ children, setSignedIn }) => {
         setPoint(Number(data.point));
         setCookie("user", data, { path: '/' });
       }
+      if(response.status == 404){
+        setSignedIn(false)
+      }
       console.log(cookies.user.phone);
     }
     else setSignedIn(false)
   }
+
   useEffect(() => {
     checkCookies();
   }, []);
@@ -65,7 +70,6 @@ const SignInProvider = ({ children, setSignedIn }) => {
     // check is phone number valid
     if (!isPossiblePhoneNumber(phoneNumber)) {
       setErrorMessage("Phone number is not valid");
-
       return;
     }
 

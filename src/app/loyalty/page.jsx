@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
 import ProgressGridBox from "../../components/global/ProgressGridBox";
 import { RiCoupon3Fill } from "react-icons/ri";
 import { RiQrScanLine } from "react-icons/ri";
@@ -9,10 +9,14 @@ import { MdHistory } from "react-icons/md";
 import HistoryGridBox from "../../components/loyalty/HistoryGridBox";
 import PointGridBox from "../../components/loyalty/PointGridBox";
 import { UserInfoContext } from "../../utils/UserInfoProvider";
-import { useContext } from "react";
 
 const LoyaltyPage = () => {
+  const [currentPoint, setCurrentPoint] = useState(0)
   const { point } = useContext(UserInfoContext);
+
+  useEffect(() => {
+    setCurrentPoint(point);
+  }, [point])
 
   const router = useRouter();
   const pushToScan = () => {
@@ -34,9 +38,9 @@ const LoyaltyPage = () => {
           <MdHistory className="w-[36px] h-[36px]" />
         </a>
       </div>
-      <PointGridBox point={point} />
+      <PointGridBox point={currentPoint} />
 
-      <ProgressGridBox className="col-span-2" point={point} maxPoint={100} />
+      <ProgressGridBox className="col-span-2" point={currentPoint} maxPoint={100} />
 
       <button
         onClick={pushToScan}

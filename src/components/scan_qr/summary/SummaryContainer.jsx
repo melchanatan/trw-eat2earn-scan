@@ -25,6 +25,7 @@ const SummaryContainer = () => {
 
   const submitForm = async () => {
     try {
+      console.log("Submitting form")
       const response = await fetch(
         process.env.NEXT_PUBLIC_SERVER_URI + "/v1/user/point/add",
         {
@@ -39,29 +40,25 @@ const SummaryContainer = () => {
           }),
         }
       );
-
       const data = await response.json();
-
+      console.log(data);
       setIsLoading(false);
       if (response.status == 201) {
-        setPoint(Number(point) + awardedPoint);
+        const newPoint = Number(point) + awardedPoint;
+        setPoint(newPoint);
+        setCurrentPoint(newPoint);
       } else {
         setIsError(true);
       }
     } catch (error) {
+      console.log(error)
       setIsLoading(false);
       setIsError(true);
     }
   };
 
-  const fetchUserData = async () => {
-    //TODO: fetch user current Point point and setCurrentPoint
-    setCurrentPoint(point);
-  };
-
   useEffect(() => {
     submitForm();
-    fetchUserData();
   }, []);
 
   const doneAnimationOptions = {
