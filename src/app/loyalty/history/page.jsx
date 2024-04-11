@@ -3,32 +3,26 @@ import React, { useEffect, useState, useContext } from "react";
 import { TiStarFullOutline } from "react-icons/ti";
 import BackButton from "../../../components/global/BackButton";
 import { UserInfoContext } from "../../../utils/UserInfoProvider";
-import { CookiesProvider, useCookies } from 'react-cookie'
+import SortByTimestamp from "../../../utils/sortByTimestamp"
 
 const HistoryPage = () => {
   const [history, setHistory] = useState([]);
-  const { phone} = useContext(UserInfoContext);
-  const [cookies, setCookie] = useCookies(['user'])
+  const { phone } = useContext(UserInfoContext);
 
   const fetchHistory = async () => {
-    console.log("phone", cookies.user.phone)
     const response = await fetch(
-      process.env.NEXT_PUBLIC_SERVER_URI + "/v1/user/pointhistory/" + cookies.user.phone, { method: "GET" }
+      process.env.NEXT_PUBLIC_SERVER_URI + "/v1/user/pointhistory/" + phone, { method: "GET" }
     );
     const data = await response.json();
     if(response.status == 200){
-      setHistory(data);
+      const sorted = SortByTimestamp(data)
+      setHistory(sorted);
     }
   }
   
   useEffect(() => {
-    console.log("useeffect", history)
-    
-  }, [history])
-  
-  useEffect(() => {
-    fetchHistory();
-  }, [])
+    if(phone) fetchHistory();
+  }, [phone])
 
   return (
     <div className="h-screen flex flex-col justify-end  box-container">
@@ -37,6 +31,7 @@ const HistoryPage = () => {
       <div className="h-[80vh] w-full bg-gradient-accent-lighter rounded-t-[14px] p-5 overflow-y-auto">
         {history.map((item) => (
           <HistoryListItem 
+            key = {item.dateTime}
             name = {item.name}
             amount = {item.amount}
           />
