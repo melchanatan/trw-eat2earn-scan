@@ -3,7 +3,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { TiStarFullOutline } from "react-icons/ti";
 import BackButton from "../../../components/global/BackButton";
 import { UserInfoContext } from "../../../utils/UserInfoProvider";
-import SortByTimestamp from "../../../utils/sortByTimestamp"
+import SortByTimestamp from "../../../utils/SortByTimestamp";
 
 const HistoryPage = () => {
   const [history, setHistory] = useState([]);
@@ -11,18 +11,19 @@ const HistoryPage = () => {
 
   const fetchHistory = async () => {
     const response = await fetch(
-      process.env.NEXT_PUBLIC_SERVER_URI + "/v1/user/pointhistory/" + phone, { method: "GET" }
+      process.env.NEXT_PUBLIC_SERVER_URI + "/v1/user/pointhistory/" + phone,
+      { method: "GET" }
     );
     const data = await response.json();
-    if(response.status == 200){
-      const sorted = SortByTimestamp(data)
+    if (response.status == 200) {
+      const sorted = SortByTimestamp(data);
       setHistory(sorted);
     }
-  }
-  
+  };
+
   useEffect(() => {
-    if(phone) fetchHistory();
-  }, [phone])
+    if (phone) fetchHistory();
+  }, [phone]);
 
   return (
     <div className="h-screen flex flex-col justify-end  box-container">
@@ -30,10 +31,10 @@ const HistoryPage = () => {
       <h2 className="mb-10">Your reward history</h2>
       <div className="h-[80vh] w-full bg-gradient-accent-lighter rounded-t-[14px] p-5 overflow-y-auto">
         {history.map((item) => (
-          <HistoryListItem 
-            key = {item.dateTime}
-            name = {item.name}
-            amount = {item.amount}
+          <HistoryListItem
+            key={item.dateTime}
+            name={item.name}
+            amount={item.amount}
           />
         ))}
       </div>
@@ -43,7 +44,7 @@ const HistoryPage = () => {
 
 export default HistoryPage;
 
-const HistoryListItem = ({name, amount}) => {
+const HistoryListItem = ({ name, amount }) => {
   return (
     <div className="w-full border-background border-[1px] rounded-[12px] text-background p-5 flex justify-between mb-4">
       <div>
@@ -52,7 +53,7 @@ const HistoryListItem = ({name, amount}) => {
       </div>
 
       <h3 className="flex flex-row items-center gap-2 text-xl ">
-        {Number(amount) > 0 ? "+"+amount : amount}
+        {Number(amount) > 0 ? "+" + amount : amount}
         <TiStarFullOutline className="w-[32px] h-[32px] text-secondary" />
       </h3>
     </div>
