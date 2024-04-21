@@ -30,6 +30,8 @@ module.exports = {
           "linear-gradient(98deg, #FF5348 0.47%, #BD3A28 100%)",
         "gradient-secondary":
           "linear-gradient(136deg, #EFC625 0%, #E2BC26 98.11%)",
+        "gradient-secondary-lighter":
+          "linear-gradient(136deg, rgba(239, 198, 37, .5) 0%, rgba(226, 188, 38, .5) 98.11%)",
         "gradient-primary":
           "linear-gradient(136deg, #F68C23 0%, #C57526 98.11%)",
         "gradient-primary-lighter":

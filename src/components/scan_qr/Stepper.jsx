@@ -8,6 +8,8 @@ import PriceInputContainer from "./price_input/PriceInputContainer";
 import SummaryContainer from "./summary/SummaryContainer";
 import UserAvatar from "./../global/UserAvatar";
 import TutorialContainer from "./tutorial/TutorialContainer";
+import ConfirmationContainer from './confirmation/ConfirmationContainer';
+import OpenScanContainer from './open_scan/OpenScanContainer';
 
 const StepContext = createContext(0);
 
@@ -32,12 +34,17 @@ const Stepper = () => {
       color: "primary",
     },
     {
+      top: <ConfirmationContainer />,
+      bottom: null,
+      color: "transparent",
+    },
+    {
       top: (
         <BottomContainer className="top-[6rem] !max-w-[350px] pt-5">
           <PriceInputContainer isCompact={true} />
         </BottomContainer>
       ),
-      bottom: <OpenCameraContainer />,
+      bottom: <OpenScanContainer />,
       color: "accent",
     },
     {

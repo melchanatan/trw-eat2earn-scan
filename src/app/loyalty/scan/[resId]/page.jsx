@@ -20,12 +20,12 @@ const ScanPage = ({ params }) => {
       );
       const data = await response.json();
       data.map((restaurant) => {
-        if(restaurant.id == currentRestaurantId){
+        if (restaurant.id == currentRestaurantId) {
           found = true;
           setRestaurantName(restaurant.title);
         }
       })
-      if(!found) setCurrentRestaurantId("invalid")
+      if (!found) setCurrentRestaurantId("invalid")
     } catch (error) {
       console.log(error);
     }

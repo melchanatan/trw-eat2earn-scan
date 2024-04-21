@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import Image from "next/image";
 import { UserInfoContext } from "../../utils/UserInfoProvider";
 
-const UserAvatar = ({ className = "" }) => {
+const UserAvatar = ({ className = "", label = "Welcome back," }) => {
   const { name } = useContext(UserInfoContext);
 
   return (
@@ -14,8 +14,8 @@ const UserAvatar = ({ className = "" }) => {
         alt={"usa-flag-avatar"}
         className="rounded-[14px]"
       />
-      <div className="flex flex-col">
-        <label>Welcome back,</label>
+      <div className="flex flex-col justify-center items-start">
+        <label>{label}</label>
         <h2>{!name ? <div className="w-[10ch] h-6 loading"></div> : name}</h2>
       </div>
     </div>
