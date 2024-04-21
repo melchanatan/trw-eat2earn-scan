@@ -13,7 +13,7 @@ import { UserInfoContext } from "../../utils/UserInfoProvider";
 const LoyaltyPage = () => {
   const [currentPoint, setCurrentPoint] = useState(0)
   const { point, phone } = useContext(UserInfoContext);
-  const [ historySum , setHistorySum] = useState(0);
+  const [historySum, setHistorySum] = useState(0);
 
   useEffect(() => {
     setCurrentPoint(point);
@@ -27,18 +27,18 @@ const LoyaltyPage = () => {
       process.env.NEXT_PUBLIC_SERVER_URI + "/v1/user/pointhistory/" + phone + "/" + date.getTime(), { method: "GET" }
     );
     const data = await response.json();
-    if(response.status == 200){
+    if (response.status == 200) {
       setHistorySum(data.sum);
     }
   }
-  
+
   useEffect(() => {
-    if(phone) fetchHistorySum();
+    if (phone) fetchHistorySum();
   }, [phone])
 
   const router = useRouter();
   const pushToScan = () => {
-    router.push("/loyalty/camera");
+    router.push("/loyalty/scan");
   };
 
   const pushToHistory = () => {

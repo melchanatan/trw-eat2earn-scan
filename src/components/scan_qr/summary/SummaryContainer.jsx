@@ -10,7 +10,7 @@ import { FormContext } from "../../../utils/scan_qr/FormProvider";
 import { StepContext } from "../Stepper";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 
 const SummaryContainer = () => {
   const [currentPoint, setCurrentPoint] = useState(-1);
@@ -23,9 +23,36 @@ const SummaryContainer = () => {
 
   const awardedPoint = Math.round(Number(amount));
 
-  const submitForm = async () => {
+  const checkRestaurantId = async () => {
     try {
-      console.log("Submitting form")
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_SERVER_URI}/v1/rest`
+      );
+      const data = await response.json();
+      console.log(data)
+
+      data.map((restaurant) => {
+        if (restaurant.id == restaurantId) {
+          return true
+        }
+      })
+    } catch (error) {
+      console.log(error);
+    }
+    return false
+  };
+
+  const submitForm = async () => {
+
+    // Check is resturant is registered or not.
+    const isResturantInDb = await checkRestaurantId()
+    if (!isResturantInDb) {
+      setIsLoading(false);
+      setIsError(true);
+      return;
+    }
+
+    try {
       const response = await fetch(
         process.env.NEXT_PUBLIC_SERVER_URI + "/v1/user/point/add",
         {
@@ -126,7 +153,7 @@ const ErrorPage = () => {
         ease: "easeInOut",
       }}
       className="info-page--accent text-white"
-      onClick={() => window.location.reload()}
+      onClick={redirect}
     >
       <div className="w-[80%] flex justify-center flex-col">
         <h1 className="mb-10">
