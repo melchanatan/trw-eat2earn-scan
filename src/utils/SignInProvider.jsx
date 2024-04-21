@@ -12,26 +12,28 @@ const SignInProvider = ({ children, setSignedIn }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const { phone, setPhone, setName, setPoint, history, setHistory } = useContext(UserInfoContext);
   const [cookies, setCookie] = useCookies(['user'])
+  const [isLoading, setIsLoading] = useState(false);
 
   const checkCookies = async () => {
-    console.log("checking cookies")
-    if(cookies.user){
-      console.log("user founded")
+    if (cookies.user) {
       setName(cookies.user.firstName + " " + cookies.user.lastName[0] + ".");
       setPhone(cookies.user.phone);
       const response = await fetch(
         process.env.NEXT_PUBLIC_SERVER_URI + "/v1/user/" + cookies.user.phone, { method: "GET", }
       );
+
       const data = await response.json();
-      if(response.status == 200){
+
+      if (response.status == 200) {
         setName(data.firstName + " " + data.lastName[0] + ".");
         setPoint(Number(data.point));
         setCookie("user", data, { path: '/' });
       }
-      if(response.status == 404){
+
+      if (response.status == 404) {
         setSignedIn(false)
       }
-      console.log(cookies.user.phone);
+
     }
     else setSignedIn(false)
   }
@@ -66,6 +68,7 @@ const SignInProvider = ({ children, setSignedIn }) => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     // check is phone number valid
     if (!isPossiblePhoneNumber(phoneNumber)) {
@@ -94,6 +97,7 @@ const SignInProvider = ({ children, setSignedIn }) => {
       setCookie("user", data, { path: "/" });
       setSignedIn(true);
     }
+    setIsLoading(false);
   };
 
   return (
@@ -106,6 +110,7 @@ const SignInProvider = ({ children, setSignedIn }) => {
         checkCookies,
         errorMessage,
         setErrorMessage,
+        isLoading
       }}
     >
       {children}

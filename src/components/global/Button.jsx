@@ -1,6 +1,6 @@
 import React from "react";
 
-const Button = ({ children, color = "primary", className = "", onClick }) => {
+const Button = ({ children, color = "primary", className = "", onClick, isDisabled = false }) => {
   const avaliableColor = {
     accent: "primary-button--accent",
     primary: "primary-button--primary",
@@ -15,6 +15,7 @@ const Button = ({ children, color = "primary", className = "", onClick }) => {
       className={`primary-button ${avaliableColor[color]} ${className}`}
       onClick={onClick}
       type="submit"
+      disabled={isDisabled}
     >
       <p className="flex flex-row items-center justify-center gap-4 text-xl">
         {children}

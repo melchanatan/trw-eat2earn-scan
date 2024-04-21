@@ -3,8 +3,8 @@ import PhoneInputField from "../global/PhoneInputField";
 import Button from "../global/Button";
 import { SignInContext } from "../../utils/SignInProvider";
 
-const SignInContainer = ({}) => {
-  const { onSubmit, phoneNumber, setPhoneNumber, errorMessage } =
+const SignInContainer = ({ }) => {
+  const { onSubmit, phoneNumber, setPhoneNumber, errorMessage, isLoading } =
     useContext(SignInContext);
 
   return (
@@ -14,7 +14,7 @@ const SignInContainer = ({}) => {
       </h1>
       <form className="flex flex-col gap-2 mb-[40px]" onSubmit={onSubmit}>
         <PhoneInputField value={phoneNumber} setValue={setPhoneNumber} />
-        <Button>Sign In</Button>
+        <Button isDisabled={isLoading}>{isLoading ? "Signing in..." : "Sign In"}</Button>
         <p className="text-white/60">{errorMessage}</p>
       </form>
       <a
