@@ -16,6 +16,7 @@ const SummaryContainer = () => {
   const [currentPoint, setCurrentPoint] = useState(-1);
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("something went wrong!");
   const router = useRouter();
 
   const { image, setImage, amount, restaurantId, restaurantName } = useContext(FormContext);
@@ -47,6 +48,7 @@ const SummaryContainer = () => {
     // Check is resturant is registered or not.
     const isResturantInDb = await checkRestaurantId()
     if (!isResturantInDb) {
+      setErrorMessage("Restaurant is not registered with us.");
       setIsLoading(false);
       setIsError(true);
       return;
@@ -108,7 +110,7 @@ const SummaryContainer = () => {
 
   // send error page to user if there is an error fetching data.
   if (isError) {
-    return <ErrorPage />;
+    return <ErrorPage errorMessage={errorMessage} redirect={redirect} />;
   }
 
   // finally, send the summary page to user, if everything is fine.
@@ -142,7 +144,7 @@ const SummaryContainer = () => {
 
 export default SummaryContainer;
 
-const ErrorPage = () => {
+const ErrorPage = ({ errorMessage, redirect }) => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -157,7 +159,7 @@ const ErrorPage = () => {
     >
       <div className="w-[80%] flex justify-center flex-col">
         <h1 className="mb-10">
-          Sorry, 🥲 <br /> something went wrong!
+          Sorry, 🥲 <br /> {errorMessage}
         </h1>
         <p className="flex flex-row gap-2 items-center animate-bounce opacity-90">
           click anywhere to go back <FaArrowRightLong />
