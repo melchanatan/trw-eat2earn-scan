@@ -7,6 +7,7 @@ import OpenCameraContainer from "./open_camera/OpenCameraContainer";
 import PriceInputContainer from "./price_input/PriceInputContainer";
 import SummaryContainer from "./summary/SummaryContainer";
 import UserAvatar from "./../global/UserAvatar";
+import TutorialContainer from "./tutorial/TutorialContainer";
 
 const StepContext = createContext(0);
 
@@ -21,6 +22,10 @@ const Stepper = () => {
     //   bottom: <SignInContainer />,
     //   color: "accent",
     // },
+    {
+      bottom: <TutorialContainer />,
+      color: "accent"
+    },
     {
       top: <UserAvatar className="box-container pt-10" />,
       bottom: <PriceInputContainer />,
@@ -42,7 +47,7 @@ const Stepper = () => {
     },
   ];
 
-  const submitForm = () => {};
+  const submitForm = () => { };
 
   const goNext = () => {
     if (currentStep >= step.length - 2) {
