@@ -2,6 +2,9 @@ import React, { useContext } from "react";
 import { FormContext } from "../../../utils/scan_qr/FormProvider";
 
 const PriceInput = () => {
+
+  //TODO: lock input
+
   const { amount, setAmount } = useContext(FormContext);
 
   const handleChange = (e) => {

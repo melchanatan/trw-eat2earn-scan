@@ -67,7 +67,7 @@ export default function Home() {
         <p className="text-gray-600">Generating...</p>
       ) : (
         <Canvas
-          text={`${process.env.NEXT_PUBLIC_URI}/loyalty/scan/${selectedRestaurant.id}`}
+          text={`${selectedRestaurant.id}`}
           options={{
             errorCorrectionLevel: "M",
             margin: 3,

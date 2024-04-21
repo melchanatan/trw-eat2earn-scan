@@ -19,28 +19,30 @@ const SummaryContainer = () => {
   const [errorMessage, setErrorMessage] = useState("something went wrong!");
   const router = useRouter();
 
-  const { image, setImage, amount, restaurantId, restaurantName } = useContext(FormContext);
+  const { image, setImage, amount, restaurantId, restaurantName, resetForm } = useContext(FormContext);
   const { phone, setPoint, point } = useContext(UserInfoContext);
 
   const awardedPoint = Math.round(Number(amount));
 
   const checkRestaurantId = async () => {
+    var flag = false
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_SERVER_URI}/v1/rest`
       );
       const data = await response.json();
-      console.log(data)
 
       data.map((restaurant) => {
         if (restaurant.id == restaurantId) {
-          return true
+          flag = true
         }
       })
     } catch (error) {
       console.log(error);
     }
-    return false
+
+    if (flag) return true
+    else return false
   };
 
   const submitForm = async () => {
@@ -69,6 +71,7 @@ const SummaryContainer = () => {
           }),
         }
       );
+
       const data = await response.json();
       console.log(data);
       setIsLoading(false);
@@ -100,6 +103,7 @@ const SummaryContainer = () => {
   };
 
   const redirect = () => {
+    resetForm();
     router.push("/loyalty");
   };
 

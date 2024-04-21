@@ -9,6 +9,13 @@ const FormProvider = ({ children }) => {
   const [restaurantId, setRestaurantId] = useState("N/A");
   const [restaurantName, setRestaurantName] = useState("N/A");
 
+  const resetForm = () => {
+    setImage("N/A");
+    setAmount(0);
+    setRestaurantId("N/A");
+    setRestaurantName("N/A");
+  };
+
   return (
     <FormContext.Provider
       value={{
@@ -19,7 +26,8 @@ const FormProvider = ({ children }) => {
         restaurantId,
         setRestaurantId,
         restaurantName,
-        setRestaurantName
+        setRestaurantName,
+        resetForm
       }}
     >
       {children}
