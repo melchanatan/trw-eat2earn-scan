@@ -127,15 +127,23 @@ p {
 .info-page--accent {
   @apply w-screen h-screen flex items-center justify-center bg-gradient-accent flex-col
 }
-
+2
 .loading {
   @apply animate-pulse bg-gray-500/20 rounded-[14px]
 }
 
 .redeem-nav__link {
-  @apply font-avant flex gap-2 items-center justify-center py-3
+  @apply font-avant flex gap-2 items-center justify-center py-3 relative
 }
 
 .redeem-nav__link--active {
   @apply text-white bg-accent w-full h-full rounded-t-[14px]
+}
+
+.redeem-nav__corner--right {
+  @apply absolute bottom-0 scale-[-1] rotate-90 left-[-18px]
+}
+
+.redeem-nav__corner--left {
+  @apply absolute bottom-0 right-[-18px]
 }
