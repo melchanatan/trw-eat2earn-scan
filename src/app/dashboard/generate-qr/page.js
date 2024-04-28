@@ -2,8 +2,9 @@
 import Image from "next/image";
 import { useQRCode } from "next-qrcode";
 import { useEffect, useState } from "react";
-import Searchbar from "../../components/global/Searchbar";
+import Searchbar from "../../../components/global/Searchbar";
 import ClipLoader from "react-spinners/ClipLoader";
+import BackButton from "../../../components/global/BackButton";
 
 export default function Home() {
   const defaultItems = ["hello world", "hi", "its me"];
@@ -42,6 +43,7 @@ export default function Home() {
 
   return (
     <main className="flex flex-col items-center justify-center p-24">
+      <BackButton />
       <h1 className="text-2xl font-bold mb-10">QR code generator</h1>
       <label htmlFor="" className="mb-2">
         Please enter the restaurant name:
