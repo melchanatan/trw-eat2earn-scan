@@ -131,3 +131,11 @@ p {
 .loading {
   @apply animate-pulse bg-gray-500/20 rounded-[14px]
 }
+
+.redeem-nav__link {
+  @apply font-avant flex gap-2 items-center justify-center py-3
+}
+
+.redeem-nav__link--active {
+  @apply text-white bg-accent w-full h-full rounded-t-[14px]
+}

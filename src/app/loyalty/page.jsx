@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useContext, useEffect } from "react";
 import ProgressGridBox from "../../components/global/ProgressGridBox";
-import { RiCoupon3Fill } from "react-icons/ri";
 import { RiQrScanLine } from "react-icons/ri";
 import UserAvatar from "./../../components/global/UserAvatar";
 import { useRouter } from "next/navigation";
@@ -9,7 +8,7 @@ import { MdHistory } from "react-icons/md";
 import HistoryGridBox from "../../components/loyalty/HistoryGridBox";
 import PointGridBox from "../../components/loyalty/PointGridBox";
 import { UserInfoContext } from "../../utils/UserInfoProvider";
-
+import RedeemGridBox from "../../components/loyalty/reward/RedeemGridBox";
 const LoyaltyPage = () => {
   const [currentPoint, setCurrentPoint] = useState(0)
   const { point, phone } = useContext(UserInfoContext);
@@ -74,6 +73,8 @@ const LoyaltyPage = () => {
         alt="tickets image"
         className="col-span-full"
       />
+
+      <RedeemGridBox />
     </div>
   );
 };

@@ -24,7 +24,9 @@ module.exports = {
         grey: "var(--grey-color)",
       },
       backgroundImage: {
-        "gradient-accent-lighter":
+        "gradient-accent-darker":
+          "linear-gradient(180deg, #FF5348 0%, #BD3A28 100%)",
+        "gradient-accent-top":
           "linear-gradient(180deg, #FF5348 -2.68%, #FF7D75 99.94%)",
         "gradient-accent":
           "linear-gradient(98deg, #FF5348 0.47%, #BD3A28 100%)",
