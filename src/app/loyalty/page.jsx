@@ -70,12 +70,6 @@ const LoyaltyPage = () => {
       </button>
 
       <HistoryGridBox onClick={pushToHistory} historySum={historySum} />
-      <img
-        src="/assets/coming-soon-gridbox.png"
-        alt="tickets image"
-        className="col-span-full"
-      />
-
       <RedeemGridBox />
     </div>
   );

@@ -4,53 +4,85 @@ import { FaBox } from "react-icons/fa";
 import { MdDiscount } from "react-icons/md";
 import UnredeemCouponListView from './UnredeemCouponListView';
 import RedeemedCouponListView from './RedeemedCouponListView';
+import { FaLock } from "react-icons/fa6";
+import Button from '../../global/Button';
+import ConfirmationPopup from '../../global/ConfirmationPopup';
 
 const RedeemGridBox = () => {
     const [modeToggle, setModeToggle] = useState(true);
-
+    const [isLocked, setIsLocked] = useState(true);
+    const [isPopupShowing, setIsPopupShowing] = useState(false);
 
     return (
-        <div className='bg-gradient-primary-lighter box-container col-span-full w-full rounded-[14px] '>
-            <div className='grid grid-cols-2 '>
-                <button
-                    href=""
-                    className={
-                        `redeem-nav__link
-                        ${modeToggle ? 'redeem-nav__link--active' : ''}`
-                    }
-                    onClick={() => setModeToggle(true)}
+        <>
+            {
+                isPopupShowing &&
+                <ConfirmationPopup
+                    onCancel={() => setIsPopupShowing(false)}
+                    noConfirm={true}
                 >
-                    <img src="/assets/inverted-corner.svg" alt="ds" className="redeem-nav__corner--left" />
-                    <FaShoppingBasket className='w-5 h-5' /> Shop
-                </button>
-
-                <button
-                    href=""
-                    className={
-                        `redeem-nav__link
-                        ${!modeToggle ? 'redeem-nav__link--active' : ''}`
-                    }
-                    onClick={() => setModeToggle(false)}
-                >
-                    <img src="/assets/inverted-corner.svg" alt="ds" className="redeem-nav__corner--right" />
-                    <MdDiscount className='w-5 h-5' /> Redeem
-                </button>
-            </div>
-            <div
-                className='p-4 bg-gradient-accent-top flex gap-2 flex-col '
-                style={{
-                    borderRadius: `${!modeToggle ? '14px 0' : '0 14px'} 14px 14px`
-                }}
-            >
+                    <div className="text-center text-white font-avant">
+                        <h3 className='mb-6 text-xl'>Good news</h3>
+                        <p className='w-[32ch] opacity-80 mb-6'>
+                        something about eat2earn membership is free for the first 3 months, but you still need to earn 200 points.
+                        </p>
+                    </div>
+                </ConfirmationPopup>
+            }
+            <div className={`bg-gradient-primary-lighter box-container col-span-full w-full rounded-t-[14px] ${isLocked ? 'relative' : ''}`}>
                 {
-                    modeToggle ?
-
-                        <UnredeemCouponListView /> :
-                        <RedeemedCouponListView />
-
+                    isLocked &&
+                    <div className='font-avant text-white text-center flex-col gap-3 absolute top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50 z-40 rounded-t-[14px] backdrop-blur-sm'>
+                        <FaLock className='w-10 h-10 ' />
+                        <h3 className='text-white text-2xl '>Reward & discount</h3>
+                        <p className='opacity-50 '>
+                            To unlock this feature <br />
+                            you need at least 200 points <br />
+                            and <br />
+                            Eat2Earn membership <br />
+                        </p>
+                        <Button color='outline' className='!py-2 !px-14' onClick={() => setIsPopupShowing(true)}>Learn more</Button>
+                    </div>
                 }
-            </div>
-        </div >
+
+                <div className='grid grid-cols-2 '>
+                    <button
+                        href=""
+                        className={
+                            `redeem-nav__link
+                            ${modeToggle ? 'redeem-nav__link--active' : ''}`
+                        }
+                        onClick={() => setModeToggle(true)}
+                    >
+                        <img src="/assets/inverted-corner.svg" alt="ds" className="redeem-nav__corner--left" />
+                        <FaShoppingBasket className='w-5 h-5' /> Shop
+                    </button>
+                    <button
+                        href=""
+                        className={
+                            `redeem-nav__link
+                            ${!modeToggle ? 'redeem-nav__link--active' : ''}`
+                        }
+                        onClick={() => setModeToggle(false)}
+                    >
+                        <img src="/assets/inverted-corner.svg" alt="ds" className="redeem-nav__corner--right" />
+                        <MdDiscount className='w-5 h-5' /> Redeem
+                    </button>
+                </div>
+                <div
+                    className='p-4 bg-gradient-accent-top flex gap-2 flex-col '
+                    style={{
+                        borderRadius: `${!modeToggle ? '14px 0' : '0 14px'} 0px 0px`
+                    }}
+                >
+                    {
+                        modeToggle ?
+                            <UnredeemCouponListView /> :
+                            <RedeemedCouponListView />
+                    }
+                </div>
+            </div >
+        </>
     )
 }
 

@@ -2,7 +2,7 @@
 import React, {  useEffect, useState } from 'react'
 import Button from './Button'
 
-const ConfirmationPopup = ({ children, onConfirm, onCancel, confirmText="Confirm", cancelText="Cancel" }) => {
+const ConfirmationPopup = ({ children, onConfirm, onCancel, confirmText="Confirm", cancelText="Cancel", noConfirm = false }) => {
 
     useEffect(() => {
         document.body.style.overflow = "hidden"
@@ -20,7 +20,7 @@ const ConfirmationPopup = ({ children, onConfirm, onCancel, confirmText="Confirm
             </div>
             <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-accent p-[6vw] rounded-lg z-50 flex flex-col gap-2'>
                 { children }
-                <Button onClick={onConfirm}>{confirmText}</Button>
+                {!noConfirm && <Button onClick={onConfirm}>{confirmText}</Button>}
                 <Button onClick={onCancel} color="outline">{cancelText}</Button>
             </div>
             
