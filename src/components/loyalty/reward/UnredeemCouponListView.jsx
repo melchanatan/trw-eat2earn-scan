@@ -18,22 +18,25 @@ const UnredeemCouponListItem = () => {
     const [isVisible, setIsVisible] = useState(false)
     const redeemCoupon = () => {
         //TODO: redeem coupon
-        
+
         setIsVisible(false)
     }
 
     return (
         <>
             {isVisible &&
-                <ConfirmationPopup 
-                    onCancel={() => setIsVisible(false)} 
+                <ConfirmationPopup
+                    onCancel={() => setIsVisible(false)}
                     onConfirm={redeemCoupon}
-                    cancelText='Close' 
+                    cancelText='Close'
                     confirmText='Redeem now!'
                 >
                     <div className="text-center text-white font-avant">
                         <h3 className='mb-6 text-xl'>Are you sure?</h3>
-                        <p className='w-[36ch] opacity-80 mb-6'>You are about to redeem this coupon</p>
+                        <p className='w-[36ch] opacity-80 mb-6'>
+                            you will receive {/*TODO: coupon name*/},
+                            and be subtracted 200 points
+                        </p>
                     </div>
                 </ConfirmationPopup>
             }

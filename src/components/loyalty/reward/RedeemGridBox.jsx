@@ -3,7 +3,7 @@ import { FaShoppingBasket } from "react-icons/fa";
 import { FaBox } from "react-icons/fa";
 import { MdDiscount } from "react-icons/md";
 import UnredeemCouponListView from './UnredeemCouponListView';
-import RedeemCouponListView from './RedeemCouponListView';
+import RedeemedCouponListView from './RedeemedCouponListView';
 
 const RedeemGridBox = () => {
     const [modeToggle, setModeToggle] = useState(true);
@@ -46,7 +46,7 @@ const RedeemGridBox = () => {
                     modeToggle ?
 
                         <UnredeemCouponListView /> :
-                        <RedeemCouponListView />
+                        <RedeemedCouponListView />
 
                 }
             </div>
