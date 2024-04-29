@@ -12,9 +12,15 @@ import { UserInfoContext } from '../../../utils/UserInfoProvider';
 const RedeemGridBox = () => {
     const [modeToggle, setModeToggle] = useState(true);
     const [isLocked, setIsLocked] = useState(process.env.NEXT_PUBLIC_MODE == "development" ? false : true);
-    const [isPopupShowing, setIsPopupShowing] = useState(false);    const { phone } = useContext(UserInfoContext);
+    const [isPopupShowing, setIsPopupShowing] = useState(false);    
+    const { phone, point } = useContext(UserInfoContext);
     const [coupon, setCoupon] = useState([]);
     const [userCoupon, setUserCoupon] = useState([]);
+
+    useEffect(() => {
+        if(point >= 200) setIsLocked(false)
+        else setIsLocked(true)
+    }, [point])
 
     const fetchCoupon = async () => {
         const response = await fetch(
