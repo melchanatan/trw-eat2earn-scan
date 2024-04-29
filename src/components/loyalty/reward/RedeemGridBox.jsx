@@ -24,7 +24,7 @@ const RedeemGridBox = () => {
                     <div className="text-center text-white font-avant">
                         <h3 className='mb-6 text-xl'>Good news</h3>
                         <p className='w-[32ch] opacity-80 mb-6'>
-                        something about eat2earn membership is free for the first 3 months, but you still need to earn 200 points.
+                            something about eat2earn membership is free for the first 3 months, but you still need to earn 200 points.
                         </p>
                     </div>
                 </ConfirmationPopup>

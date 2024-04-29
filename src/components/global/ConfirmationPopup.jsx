@@ -16,7 +16,7 @@ const ConfirmationPopup = ({ children, onConfirm, onCancel, confirmText="Confirm
 
     return (
         <>
-            <div className='absolute top-0 left-0 w-screen h-screen bg-black opacity-50 backdrop-blur-2xl z-40'>
+            <div className='absolute top-0 left-0 w-screen h-screen bg-black opacity-50 backdrop-blur-2xl z-50'>
             </div>
             <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-accent p-[6vw] rounded-lg z-50 flex flex-col gap-2'>
                 { children }
