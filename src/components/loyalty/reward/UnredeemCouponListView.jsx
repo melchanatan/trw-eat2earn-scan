@@ -39,6 +39,7 @@ const UnredeemCouponListItem = ({coupon, fetchCoupon}) => {
             console.log(data);
             setPoint(point - selectedCoupon.point);
             fetchCoupon();
+
         } catch (error) {
             console.log(error);
         }
