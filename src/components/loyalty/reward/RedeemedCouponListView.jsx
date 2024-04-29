@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { BiSolidDiscount } from "react-icons/bi";
 import { TiStarFullOutline } from "react-icons/ti";
 import { HiOutlineExternalLink } from "react-icons/hi";
 import Button from '../../global/Button';
 import { Scanner } from "@yudiel/react-qr-scanner";
+import { UserInfoContext } from '../../../utils/UserInfoProvider';
 
-const RedeemedCouponListView = () => {
+const RedeemedCouponListView = ({userCoupon, fetchUserCoupon}) => {
     return (
         <div className="max-h-[500px] min-h-[300px] overflow-y-auto">
-            <RedeemedCouponListItem />
+            <RedeemedCouponListItem userCoupon={userCoupon} fetchUserCoupon={fetchUserCoupon}/>
         </div>
     )
 }
@@ -16,9 +17,11 @@ const RedeemedCouponListView = () => {
 export default RedeemedCouponListView
 
 
-const RedeemedCouponListItem = () => {
+const RedeemedCouponListItem = ({userCoupon, fetchUserCoupon}) => {
+    const { phone } = useContext(UserInfoContext);
     const [openScanner, setOpenScanner] = useState(false);
     const [isVisible, setIsVisible] = useState(false)
+    const [selectedUserCoupon, setSelectedUserCoupon] = useState();
 
     let Audio;
 
@@ -26,9 +29,35 @@ const RedeemedCouponListItem = () => {
         Audio = window.Audio;
     }
 
-    const handleResult = (result) => {
+    const handleResult = async (restId) => {
         // TODO: handle redeem coupon
-        console.log(result);
+        console.log(restId);
+        if(restId != selectedUserCoupon.restId){
+            console.log("The restId does not match")
+        }
+        else{
+            try{
+                const response = await fetch(
+                    process.env.NEXT_PUBLIC_SERVER_URI + "/v1/coupon/use",
+                    {
+                    method: "DELETE",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        phone: phone,
+                        userCouponId: selectedUserCoupon.userCouponId,
+                        restId: restId,
+                    }),
+                    }
+                );
+            
+                const data = await response.json();
+                console.log(data);
+                fetchUserCoupon();
+                setIsVisible(false);
+            } catch (error) {
+                console.log(error);
+            }
+        }
     }
 
     return (
@@ -43,8 +72,8 @@ const RedeemedCouponListItem = () => {
             >
                 <div className="flex flex-col text-white font-avant">
                     <div className="flex flex-col gap-2 border-b-2 border-white border-dashed mb-5">
-                        <span className='text-sm opacity-50'>E-book</span>
-                        <h3 className='text-lg mb-3'>Thai chef cookk </h3>
+                        <span className='text-sm opacity-50'>{selectedUserCoupon.type}</span>
+                        <h3 className='text-lg mb-3'>{selectedUserCoupon.name}</h3>
                     </div>
                     <div>
                         {
@@ -62,30 +91,39 @@ const RedeemedCouponListItem = () => {
                                 )
                                 :
                                 <p className='opacity-80'>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi.
+                                    {selectedUserCoupon.detail}
                                 </p>
                         }
                     </div>
                 </div>
             </CouponInfoPopup >
             }
-            <div
-                className='px-5 py-2 text-white font-avant rounded-[14px] border-[1px] border-white flex flex-col justify-between'
-            >
-                <div className='flex justify-between items-center'>
-                    <div>
-                        <span className='text-sm opacity-50'>E-book</span>
-                        <h3 className='text-lg mb-3'>Thai chef cookk </h3>
-                        <p className='text-sm opacity-50'>use by 20.3.25</p>
-                    </div>
-                    <a
-                        onClick={() => setIsVisible(true)}
-                        className="p-3 bg-white rounded-full"
+            {userCoupon.map((item) => {
+                if (item.expDate > new Date().now || true){
+                    const exp = new Date(Number(item.expDate)).toLocaleDateString('en-EN', {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })
+                    return (
+                    <div
+                        className='mb-4 px-5 py-2 text-white font-avant rounded-[14px] border-[1px] border-white flex flex-col justify-between'
                     >
-                        <HiOutlineExternalLink className='w-8 h-8 shrink-0 text-accent' />
-                    </a>
-                </div>
-            </div>
+                        <div className='flex justify-between items-center'>
+                            <div>
+                                <span className='text-sm opacity-50'>{item.type}</span>
+                                <h3 className='text-lg mb-3'>{item.name}</h3>
+                                <p className='text-sm opacity-50'>use by {exp}</p>
+                            </div>
+                            <a
+                                onClick={() => {setIsVisible(true); setSelectedUserCoupon(item);}}
+                                className="p-3 bg-white rounded-full"
+                            >
+                                <HiOutlineExternalLink className='w-8 h-8 shrink-0 text-accent' />
+                            </a>
+                        </div>
+                    </div>
+            )}})}
         </>
     )
 
