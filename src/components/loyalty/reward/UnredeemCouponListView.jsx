@@ -51,11 +51,11 @@ const UnredeemCouponListItem = () => {
                     </div>
                     <BiSolidDiscount className='w-8 h-8 shrink-0' />
                 </div>
-                <div className="border-t-[1px] border-white/30 mt-2 pt-2" >
+                <div className="border-t-[1px] border-white/30 mt-2 pt-2 flex justify-between items-center" >
+                    <p className='tracking-wider opacity-50 text-sm'>50/50 left</p>
                     <h3 className='flex gap-2 items-center text-2xl justify-end text-secondary '> <TiStarFullOutline />2500</h3>
                 </div>
             </div>
         </>
     )
-
 }

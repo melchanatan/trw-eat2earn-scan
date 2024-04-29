@@ -10,7 +10,7 @@ import ConfirmationPopup from '../../global/ConfirmationPopup';
 
 const RedeemGridBox = () => {
     const [modeToggle, setModeToggle] = useState(true);
-    const [isLocked, setIsLocked] = useState(true);
+    const [isLocked, setIsLocked] = useState(process.env.NEXT_PUBLIC_MODE == "development" ? false : true);
     const [isPopupShowing, setIsPopupShowing] = useState(false);
 
     return (
