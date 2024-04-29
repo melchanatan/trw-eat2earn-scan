@@ -63,7 +63,7 @@
 }
 
 body {
-  @apply bg-gradient-background text-dark h-screen w-screen;
+  @apply bg-gradient-background text-dark;
 }
 
 h1 {
