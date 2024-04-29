@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "module": "CommonJS",
-    
+    "checkJs": true,
     "baseUrl": ".",
     "paths": {
       "@/layouts/*": ["src/layouts/*"],
