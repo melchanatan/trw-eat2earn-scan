@@ -18,7 +18,8 @@ export default RedeemedCouponListView
 
 const RedeemedCouponListItem = () => {
     const [openScanner, setOpenScanner] = useState(false);
-    
+    const [isVisible, setIsVisible] = useState(false)
+
     let Audio;
 
     if (typeof window !== "undefined") {
@@ -32,9 +33,12 @@ const RedeemedCouponListItem = () => {
 
     return (
         <>
-            <CouponInfoPopup
+            {isVisible && <CouponInfoPopup
                 onConfirm={() => setOpenScanner(true)}
-                onCancel={() => setOpenScanner(false)}
+                onCancel={() => {
+                    setIsVisible(false);
+                    setOpenScanner(false);
+                }}
                 noConfirm={openScanner}
             >
                 <div className="flex flex-col text-white font-avant">
@@ -43,35 +47,41 @@ const RedeemedCouponListItem = () => {
                         <h3 className='text-lg mb-3'>Thai chef cookk </h3>
                     </div>
                     <div>
-                    {
-                        openScanner ?
-                        Audio && (
-                            <div className="mb-2">
-                                <Scanner
-                                    onResult={handleResult}
-                                    onError={(error) => console.log(error?.message)}
-                                    components={{
-                                        audio: false,
-                                    }}
-                                />
-                            </div>
-                        )
-                        :
-                        <p className='opacity-80'>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi.
-                        </p>
-                    }
+                        {
+                            openScanner ?
+                                Audio && (
+                                    <div className="mb-2">
+                                        <Scanner
+                                            onResult={handleResult}
+                                            onError={(error) => console.log(error?.message)}
+                                            components={{
+                                                audio: false,
+                                            }}
+                                        />
+                                    </div>
+                                )
+                                :
+                                <p className='opacity-80'>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut et massa mi.
+                                </p>
+                        }
                     </div>
                 </div>
             </CouponInfoPopup >
-            <div className='px-5 py-2 text-white font-avant rounded-[14px] border-[1px] border-white flex flex-col justify-between '>
+            }
+            <div
+                className='px-5 py-2 text-white font-avant rounded-[14px] border-[1px] border-white flex flex-col justify-between'
+            >
                 <div className='flex justify-between items-center'>
                     <div>
                         <span className='text-sm opacity-50'>E-book</span>
                         <h3 className='text-lg mb-3'>Thai chef cookk </h3>
                         <p className='text-sm opacity-50'>use by 20.3.25</p>
                     </div>
-                    <a href="" className="p-3 bg-white rounded-full">
+                    <a
+                        onClick={() => setIsVisible(true)}
+                        className="p-3 bg-white rounded-full"
+                    >
                         <HiOutlineExternalLink className='w-8 h-8 shrink-0 text-accent' />
                     </a>
                 </div>
@@ -81,7 +91,7 @@ const RedeemedCouponListItem = () => {
 
 }
 
-const CouponInfoPopup = ({ children, onConfirm, onCancel, confirmText = "Confirm", cancelText = "Cancel", noConfirm=false }) => {
+const CouponInfoPopup = ({ children, onConfirm, onCancel, confirmText = "Confirm", cancelText = "Cancel", noConfirm = false }) => {
 
     useEffect(() => {
         document.body.style.overflow = "hidden"
