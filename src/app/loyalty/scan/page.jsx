@@ -22,7 +22,7 @@ const ScanPage = () => {
   }
 
   return (
-    <div className="">
+    <div className="h-screen w-screen">
       <Stepper />
     </div>
   );
