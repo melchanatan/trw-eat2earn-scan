@@ -80,7 +80,7 @@ const RedeemedCouponListItem = () => {
                     </div>
                     <a
                         onClick={() => setIsVisible(true)}
-                        className="p-3 bg-white rounded-full"
+                        className="p-3 bg-white rounded-full "
                     >
                         <HiOutlineExternalLink className='w-8 h-8 shrink-0 text-accent' />
                     </a>
