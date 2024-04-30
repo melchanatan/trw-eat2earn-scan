@@ -118,7 +118,7 @@ const RedeemGridBox = () => {
                 >
                     {
                         modeToggle ?
-                            <UnredeemCouponListView coupon={coupon} fetchCoupon={fetchCoupon}/> :
+                            <UnredeemCouponListView coupon={coupon} fetchCoupon={fetchCoupon} fetchUserCoupon={fetchUserCoupon}/> :
                             <RedeemedCouponListView userCoupon={userCoupon} fetchUserCoupon={fetchUserCoupon}/>
                     }
                 </div>

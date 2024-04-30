@@ -4,10 +4,10 @@ import { TiStarFullOutline } from "react-icons/ti";
 import ConfirmationPopup from '../../global/ConfirmationPopup';
 import { UserInfoContext } from '../../../utils/UserInfoProvider';
 
-const UnredeemCouponListView = ({coupon, fetchCoupon}) => {
+const UnredeemCouponListView = ({coupon, fetchCoupon, fetchUserCoupon}) => {
     return (
         <div className="max-h-[500px] min-h-[300px] overflow-y-auto">
-            <UnredeemCouponListItem coupon={coupon} fetchCoupon={fetchCoupon}/>
+            <UnredeemCouponListItem coupon={coupon} fetchCoupon={fetchCoupon} fetchUserCoupon={fetchUserCoupon}/>
         </div>
     )
 }
@@ -15,7 +15,7 @@ const UnredeemCouponListView = ({coupon, fetchCoupon}) => {
 export default UnredeemCouponListView
 
 
-const UnredeemCouponListItem = ({coupon, fetchCoupon}) => {
+const UnredeemCouponListItem = ({coupon, fetchCoupon, fetchUserCoupon}) => {
     const [isVisible, setIsVisible] = useState(false);
     const { setPoint, point, phone } = useContext(UserInfoContext);
     const [selectedCoupon, setSelectedCoupon] = useState();
@@ -39,7 +39,7 @@ const UnredeemCouponListItem = ({coupon, fetchCoupon}) => {
             console.log(data);
             setPoint(point - selectedCoupon.point);
             fetchCoupon();
-
+            fetchUserCoupon();
         } catch (error) {
             console.log(error);
         }
