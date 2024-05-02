@@ -5,6 +5,7 @@ import ConfirmationPopup from '../../global/ConfirmationPopup';
 import { UserInfoContext } from '../../../utils/UserInfoProvider';
 import { FaDropbox } from "react-icons/fa6";
 import toastStyles from '../../../utils/style/toastStyles';
+import { toast } from "react-toastify"
 
 const UnredeemCouponListView = ({coupon, fetchCoupon, fetchUserCoupon}) => {
     return (
@@ -41,8 +42,8 @@ const UnredeemCouponListItem = ({coupon, fetchCoupon, fetchUserCoupon}) => {
             console.log(data);
             setPoint(point - selectedCoupon.point);
             fetchCoupon();
+            fetchUserCoupon();
             toast.success(selectedCoupon.name + 'redeemed!', toastStyles);
-
         } catch (error) {
             console.log(error);
             // TODO: handle error
