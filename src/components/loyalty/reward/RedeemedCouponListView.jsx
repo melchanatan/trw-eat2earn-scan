@@ -13,7 +13,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const RedeemedCouponListView = ({ userCoupon, fetchUserCoupon }) => {
     return (
-        <div className="max-h-[500px] min-h-[300px] overflow-y-auto">
+        <div className="">
             <RedeemedCouponListItem userCoupon={userCoupon} fetchUserCoupon={fetchUserCoupon} />
         </div>
     )

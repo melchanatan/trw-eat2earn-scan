@@ -150,3 +150,7 @@ p {
 .redeem-nav__corner--left {
   @apply absolute bottom-0 right-[-18px]
 }
+
+.loading-text {
+  @apply w-full h-full flex justify-center items-center font-avant text-4xl font-bold text-background animate-pulse;
+}
