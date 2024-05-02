@@ -8,13 +8,18 @@ import SortByTimestamp from "../../../utils/SortByTimestamp";
 const HistoryPage = () => {
   const [history, setHistory] = useState([]);
   const { phone } = useContext(UserInfoContext);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isError, setIsError] = useState(false);
 
   const fetchHistory = async () => {
     const response = await fetch(
       process.env.NEXT_PUBLIC_SERVER_URI + "/v1/user/pointhistory/" + phone,
       { method: "GET" }
     );
+
     const data = await response.json();
+    setIsLoading(false)
+
     if (response.status == 200) {
       const sorted = SortByTimestamp(data);
       setHistory(sorted);
@@ -30,6 +35,11 @@ const HistoryPage = () => {
       <BackButton />
       <h2 className="mb-10">Your reward history</h2>
       <div className="h-[80vh] w-full bg-gradient-accent-lighter rounded-t-[14px] p-5 overflow-y-auto">
+        {isLoading && (
+          <div className="w-full h-full flex justify-center items-center font-avant text-4xl font-bold text-background animate-pulse">
+            Loading...
+          </div>
+        )}
         {history.map((item) => (
           <HistoryListItem
             key={item.dateTime}
