@@ -31,8 +31,13 @@ const RedeemGridBox = () => {
         );
         const data = await response.json();
         if (response.status == 200) {
-            //const sorted = SortByTimestamp(data);
-            setCoupon(data);
+            const sorted = data.sort(
+                (a, b) => a.expDate - b.expDate
+            );
+            const filtered = sorted.filter(
+                (a) => a.quantity > 0
+            );
+            setCoupon(filtered);
         }
     };
 
@@ -43,8 +48,13 @@ const RedeemGridBox = () => {
         );
         const data = await response.json();
         if (response.status == 200) {
-            //const sorted = SortByTimestamp(data);
-            setUserCoupon(data);
+            const sorted = data.sort(
+                (a, b) => a.expDate - b.expDate
+            );
+            const filtered = sorted.filter(
+                (a) => Number(a.expDate) >= Number(Date.now())
+            );
+            setUserCoupon(filtered);
             setIsLoading(false);
         }
     };
