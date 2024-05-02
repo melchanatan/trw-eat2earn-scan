@@ -36,7 +36,7 @@ const HistoryPage = () => {
       <h2 className="mb-10">Your reward history</h2>
       <div className="h-[80vh] w-full bg-gradient-accent-lighter rounded-t-[14px] p-5 overflow-y-auto">
         {isLoading && (
-          <div className="w-full h-full flex justify-center items-center font-avant text-4xl font-bold text-background animate-pulse">
+          <div className="loading-text">
             Loading...
           </div>
         )}

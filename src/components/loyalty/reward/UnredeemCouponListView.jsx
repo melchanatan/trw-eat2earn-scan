@@ -9,7 +9,7 @@ import { toast } from "react-toastify"
 
 const UnredeemCouponListView = ({coupon, fetchCoupon, fetchUserCoupon}) => {
     return (
-        <div className="max-h-[500px] min-h-[300px] overflow-y-auto">
+        <div className="">
             <UnredeemCouponListItem coupon={coupon} fetchCoupon={fetchCoupon} fetchUserCoupon={fetchUserCoupon}/>
         </div>
     )
