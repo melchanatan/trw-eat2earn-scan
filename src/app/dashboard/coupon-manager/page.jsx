@@ -19,6 +19,7 @@ export default function Dashboard() {
   const [point, setPoint] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [expDate, setExpDate] = useState();
+  const [useWithInDays, setUseWithInDays] = useState();
   const [coupon, setCoupon] = useState([]);
 
   const createCoupon = async () => {
@@ -35,7 +36,8 @@ export default function Dashboard() {
             detail: detail,
             point: point,
             quantity: quantity,
-            expDate:  new Date(expDate).getTime()
+            expDate:  new Date(expDate).getTime(),
+            useWithInDays: useWithInDays
           }),
         }
       );
@@ -102,22 +104,25 @@ export default function Dashboard() {
       )}
       </p>
       <p className="mb-1 text-gray-600">
-        Name: <input type="text" onChange={e => setName(e.target.value)}></input>
+        Name: <input type="text" placeholder="Coupon Name" onChange={e => setName(e.target.value)}></input>
       </p>
       <p className="mb-1 text-gray-600">
-        Type: <input type="text" onChange={e => setType(e.target.value)}></input>
+        Type: <input type="text" placeholder="Coupon Type" onChange={e => setType(e.target.value)}></input>
       </p>
       <p className="mb-1 text-gray-600">
-        Detail: <input type="text" onChange={e => setDetail(e.target.value)}></input>
+        Detail: <input type="text" placeholder="Coupon Detail" onChange={e => setDetail(e.target.value)}></input>
       </p>
       <p className="mb-1 text-gray-600">
-        Point: <input type="number" onChange={e => setPoint(e.target.value)}></input>
+        Point: <input type="number" placeholder="0" onChange={e => setPoint(e.target.value)}></input>
       </p>
       <p className="mb-1 text-gray-600">
-        Quantity: <input type="number" onChange={e => setQuantity(e.target.value)}></input>
+        Quantity: <input type="number" placeholder="1" onChange={e => setQuantity(e.target.value)}></input>
       </p>
       <p className="mb-1 text-gray-600">
         Expire Date: <input type="date" onChange={e => setExpDate(e.target.value)}></input>
+      </p>
+      <p className="mb-1 text-gray-600">
+        Use within days: <input type="number" placeholder="7" onChange={e => setUseWithInDays(e.target.value)}></input>
       </p>
       <button onClick={createCoupon} className="underline cursor-pointer">
         Create
