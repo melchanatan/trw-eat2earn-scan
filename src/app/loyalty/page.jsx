@@ -9,6 +9,8 @@ import HistoryGridBox from "../../components/loyalty/HistoryGridBox";
 import PointGridBox from "../../components/loyalty/PointGridBox";
 import { UserInfoContext } from "../../utils/UserInfoProvider";
 import RedeemGridBox from "../../components/loyalty/reward/RedeemGridBox";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const LoyaltyPage = () => {
   const [currentPoint, setCurrentPoint] = useState(0)
@@ -47,7 +49,7 @@ const LoyaltyPage = () => {
 
   return (
     <div className="grid grid-cols-3 gap-2 box-container">
-
+      <ToastContainer />
       <div className="col-span-full flex justify-between items-end mb-3">
         <UserAvatar />
         <a

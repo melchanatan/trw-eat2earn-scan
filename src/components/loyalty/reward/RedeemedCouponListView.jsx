@@ -1,15 +1,18 @@
 import React, { useEffect, useState, useContext } from 'react'
-import { BiSolidDiscount } from "react-icons/bi";
-import { TiStarFullOutline } from "react-icons/ti";
 import { HiOutlineExternalLink } from "react-icons/hi";
 import Button from '../../global/Button';
 import { Scanner } from "@yudiel/react-qr-scanner";
 import { UserInfoContext } from '../../../utils/UserInfoProvider';
+import { FaDropbox } from "react-icons/fa6";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const RedeemedCouponListView = ({userCoupon, fetchUserCoupon}) => {
+
+
+const RedeemedCouponListView = ({ userCoupon, fetchUserCoupon }) => {
     return (
         <div className="max-h-[500px] min-h-[300px] overflow-y-auto">
-            <RedeemedCouponListItem userCoupon={userCoupon} fetchUserCoupon={fetchUserCoupon}/>
+            <RedeemedCouponListItem userCoupon={userCoupon} fetchUserCoupon={fetchUserCoupon} />
         </div>
     )
 }
@@ -17,7 +20,7 @@ const RedeemedCouponListView = ({userCoupon, fetchUserCoupon}) => {
 export default RedeemedCouponListView
 
 
-const RedeemedCouponListItem = ({userCoupon, fetchUserCoupon}) => {
+const RedeemedCouponListItem = ({ userCoupon, fetchUserCoupon }) => {
     const { phone } = useContext(UserInfoContext);
     const [openScanner, setOpenScanner] = useState(false);
     const [isVisible, setIsVisible] = useState(false)
@@ -32,24 +35,24 @@ const RedeemedCouponListItem = ({userCoupon, fetchUserCoupon}) => {
     const handleResult = async (restId) => {
         // TODO: handle redeem coupon
         console.log(restId);
-        if(restId != selectedUserCoupon.restId){
+        if (restId != selectedUserCoupon.restId) {
             console.log("The restId does not match")
         }
-        else{
-            try{
+        else {
+            try {
                 const response = await fetch(
                     process.env.NEXT_PUBLIC_SERVER_URI + "/v1/coupon/use",
                     {
-                    method: "DELETE",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        phone: phone,
-                        userCouponId: selectedUserCoupon.userCouponId,
-                        restId: restId,
-                    }),
+                        method: "DELETE",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            phone: phone,
+                            userCouponId: selectedUserCoupon.userCouponId,
+                            restId: restId,
+                        }),
                     }
                 );
-            
+
                 const data = await response.json();
                 console.log(data);
                 fetchUserCoupon();
@@ -98,32 +101,42 @@ const RedeemedCouponListItem = ({userCoupon, fetchUserCoupon}) => {
                 </div>
             </CouponInfoPopup >
             }
-            {userCoupon.map((item) => {
-                if (item.expDate > new Date().now || true){
-                    const exp = new Date(Number(item.expDate)).toLocaleDateString('en-EN', {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                      })
-                    return (
-                    <div
-                        className='mb-4 px-5 py-2 text-white font-avant rounded-[14px] border-[1px] border-white flex flex-col justify-between'
-                    >
-                        <div className='flex justify-between items-center'>
-                            <div>
-                                <span className='text-sm opacity-50'>{item.type}</span>
-                                <h3 className='text-lg mb-3'>{item.name}</h3>
-                                <p className='text-sm opacity-50'>use by {exp}</p>
-                            </div>
-                            <a
-                                onClick={() => {setIsVisible(true); setSelectedUserCoupon(item);}}
-                                className="p-3 bg-white rounded-full"
-                            >
-                                <HiOutlineExternalLink className='w-8 h-8 shrink-0 text-accent' />
-                            </a>
-                        </div>
+            {
+                userCoupon > 0 ? (
+                    <div className='text-center flex justify-center items-center mt-10 flex-col gap-4 text-white/30'>
+                        <FaDropbox className='w-20 h-20 shrink-0' />
+                        <h3 className='font-avant w-[25ch] text-xl'>coupon box empty, start collecting now!</h3>
                     </div>
-            )}})}
+                ) :
+                    userCoupon.map((item) => {
+                        if (item.expDate > new Date().now || true) {
+                            const exp = new Date(Number(item.expDate)).toLocaleDateString('en-EN', {
+                                year: "numeric",
+                                month: "long",
+                                day: "numeric",
+                            })
+                            return (
+                                <div
+                                    className='mb-4 px-5 py-2 text-white font-avant rounded-[14px] border-[1px] border-white flex flex-col justify-between'
+                                >
+                                    <div className='flex justify-between items-center'>
+                                        <div>
+                                            <span className='text-sm opacity-50'>{item.type}</span>
+                                            <h3 className='text-lg mb-3'>{item.name}</h3>
+                                            <p className='text-sm opacity-50'>use by {exp}</p>
+                                        </div>
+                                        <a
+                                            onClick={() => { setIsVisible(true); setSelectedUserCoupon(item); }}
+                                            className="p-3 bg-white rounded-full"
+                                        >
+                                            <HiOutlineExternalLink className='w-8 h-8 shrink-0 text-accent' />
+                                        </a>
+                                    </div>
+                                </div>
+                            )
+                        }
+                    })
+            }
         </>
     )
 
@@ -134,10 +147,11 @@ const CouponInfoPopup = ({ children, onConfirm, onCancel, confirmText = "Confirm
     useEffect(() => {
         document.body.style.overflow = "hidden"
         window.scrollTo(0, document.body.scrollHeight);
-
         return () => {
             document.body.style.overflow = "auto"
         }
+
+        
     })
 
     return (

@@ -3,6 +3,7 @@ import { BiSolidDiscount } from "react-icons/bi";
 import { TiStarFullOutline } from "react-icons/ti";
 import ConfirmationPopup from '../../global/ConfirmationPopup';
 import { UserInfoContext } from '../../../utils/UserInfoProvider';
+import { FaDropbox } from "react-icons/fa6";
 
 const UnredeemCouponListView = ({coupon, fetchCoupon}) => {
     return (
@@ -39,6 +40,16 @@ const UnredeemCouponListItem = ({coupon, fetchCoupon}) => {
             console.log(data);
             setPoint(point - selectedCoupon.point);
             fetchCoupon();
+            toast.warn(selectedCoupon.name + 'redeemed!', {
+                position: "bottom-center",
+                autoClose: 300,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
 
         } catch (error) {
             console.log(error);
@@ -84,6 +95,14 @@ const UnredeemCouponListItem = ({coupon, fetchCoupon}) => {
                             </div>
                         </div>
                     )
+                else {
+                    return (
+                        <div className='text-center flex justify-center items-center mt-10 flex-col gap-4 text-white/30'>
+                            <FaDropbox className='w-20 h-20 shrink-0' />
+                            <h3 className='font-avant w-[25ch] text-xl'>sorry, <br/> no coupon available available at the moment</h3>
+                        </div>
+                    )
+                }
             })}
         </>
     )
