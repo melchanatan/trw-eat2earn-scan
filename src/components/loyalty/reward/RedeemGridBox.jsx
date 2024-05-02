@@ -10,7 +10,7 @@ import ConfirmationPopup from '../../global/ConfirmationPopup';
 import { UserInfoContext } from '../../../utils/UserInfoProvider';
 
 const RedeemGridBox = () => {
-    const [modeToggle, setModeToggle] = useState(true);
+    const [modeToggle, setModeToggle] = useState(false);
     const [isLocked, setIsLocked] = useState(process.env.NEXT_PUBLIC_MODE == "development" ? false : true);
     const [isPopupShowing, setIsPopupShowing] = useState(false);    
     const { phone, point } = useContext(UserInfoContext);
@@ -70,7 +70,7 @@ const RedeemGridBox = () => {
                     </div>
                 </ConfirmationPopup>
             }
-            <div className={`bg-gradient-primary-lighter box-container col-span-full w-full rounded-t-[14px] ${isLocked ? 'relative' : ''}`}>
+            <div id="redeem" className={`bg-gradient-primary-lighter box-container col-span-full w-full rounded-t-[14px] ${isLocked ? 'relative' : ''}`}>
                 {
                     isLocked &&
                     <div className='font-avant text-white text-center flex-col gap-3 absolute top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50 z-40 rounded-t-[14px] backdrop-blur-sm'>

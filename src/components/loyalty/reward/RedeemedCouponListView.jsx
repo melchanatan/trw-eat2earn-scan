@@ -6,6 +6,8 @@ import { UserInfoContext } from '../../../utils/UserInfoProvider';
 import { FaDropbox } from "react-icons/fa6";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useRouter } from 'next/navigation'
+import toastStyles from '../../../utils/style/toastStyles';
 
 
 
@@ -25,6 +27,8 @@ const RedeemedCouponListItem = ({ userCoupon, fetchUserCoupon }) => {
     const [openScanner, setOpenScanner] = useState(false);
     const [isVisible, setIsVisible] = useState(false)
     const [selectedUserCoupon, setSelectedUserCoupon] = useState();
+    
+    const router = useRouter();
 
     let Audio;
 
@@ -33,34 +37,12 @@ const RedeemedCouponListItem = ({ userCoupon, fetchUserCoupon }) => {
     }
 
     const handleResult = async (restId) => {
-        // TODO: handle redeem coupon
-        console.log(restId);
         if (restId != selectedUserCoupon.restId) {
-            console.log("The restId does not match")
+            toast.error("Invalid QR Code", toastStyles);
+            return;
         }
-        else {
-            try {
-                const response = await fetch(
-                    process.env.NEXT_PUBLIC_SERVER_URI + "/v1/coupon/use",
-                    {
-                        method: "DELETE",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({
-                            phone: phone,
-                            userCouponId: selectedUserCoupon.userCouponId,
-                            restId: restId,
-                        }),
-                    }
-                );
 
-                const data = await response.json();
-                console.log(data);
-                fetchUserCoupon();
-                setIsVisible(false);
-            } catch (error) {
-                console.log(error);
-            }
-        }
+        router.push(`/loyalty/redeem/${selectedUserCoupon.userCouponId}`);
     }
 
     return (
@@ -150,8 +132,6 @@ const CouponInfoPopup = ({ children, onConfirm, onCancel, confirmText = "Confirm
         return () => {
             document.body.style.overflow = "auto"
         }
-
-        
     })
 
     return (
