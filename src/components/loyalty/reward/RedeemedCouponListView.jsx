@@ -84,7 +84,7 @@ const RedeemedCouponListItem = ({ userCoupon, fetchUserCoupon }) => {
             </CouponInfoPopup >
             }
             {
-                userCoupon > 0 ? (
+                userCoupon <= 0 ? (
                     <div className='text-center flex justify-center items-center mt-10 flex-col gap-4 text-white/30'>
                         <FaDropbox className='w-20 h-20 shrink-0' />
                         <h3 className='font-avant w-[25ch] text-xl'>coupon box empty, start collecting now!</h3>
