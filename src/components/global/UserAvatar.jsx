@@ -3,8 +3,11 @@ import React, { useContext, useState } from "react";
 import Image from "next/image";
 import { UserInfoContext } from "../../utils/UserInfoProvider";
 import { LuLogOut } from "react-icons/lu";
+import { SignInContext } from "../../utils/SignInProvider";
+import { signOut } from "next-auth/react";
 
 const UserAvatar = ({ className = "", label = "Welcome back," }) => {
+  const { signOut } = useContext(SignInContext);
   const { name } = useContext(UserInfoContext);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -25,7 +28,7 @@ const UserAvatar = ({ className = "", label = "Welcome back," }) => {
       </button>
        {
         isOpen && ( 
-          <Overlay />
+          <Overlay signOut={signOut}/>
          )
       } 
       <div className="flex flex-col justify-center items-start">
@@ -36,13 +39,13 @@ const UserAvatar = ({ className = "", label = "Welcome back," }) => {
   );
 };
 
-const Overlay = () => {
+const Overlay = ({signOut}) => {
   return (
       <>
           <div
               className="absolute bottom-[-42px] left-0 bg-white rounded-md py-2 px-6 divide-y shadow-md"
           >
-             <button onClick={() => {}} className="font-bold flex gap-2 items-center"> <LuLogOut /> Logout</button>
+             <button onClick={signOut()} className="font-bold flex gap-2 items-center"> <LuLogOut /> Logout</button>
           </div >
       </>
   )

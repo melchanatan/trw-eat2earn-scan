@@ -11,7 +11,7 @@ const SignInProvider = ({ children, setSignedIn }) => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const { phone, setPhone, setName, setPoint, history, setHistory } = useContext(UserInfoContext);
-  const [cookies, setCookie] = useCookies(['user'])
+  const [cookies, setCookie, removeCookie] = useCookies(['user'])
   const [isLoading, setIsLoading] = useState(false);
 
   const checkCookies = async () => {
@@ -36,6 +36,12 @@ const SignInProvider = ({ children, setSignedIn }) => {
 
     }
     else setSignedIn(false)
+  }
+
+  const signOut = () => {
+    console.log("signing out")
+    removeCookie("user", { path: '/' });
+    setSignedIn(false);
   }
 
   useEffect(() => {
@@ -108,6 +114,7 @@ const SignInProvider = ({ children, setSignedIn }) => {
         phoneNumber,
         setPhoneNumber,
         checkCookies,
+        signOut,
         errorMessage,
         setErrorMessage,
         isLoading
