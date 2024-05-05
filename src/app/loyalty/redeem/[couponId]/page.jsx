@@ -97,7 +97,12 @@ const RedeemSummaryPage = ({ params }) => {
               <span className='text-sm opacity-50'>{selectedUserCoupon.type}</span>
               <h3 className='text-lg mb-3'>{selectedUserCoupon.name}</h3>
             </div>
-            <p>redeemed: {selectedUserCoupon.redeemedDate}</p>
+            <p>redeemed: {new Date(Number(selectedUserCoupon.redeemDate)).toLocaleDateString('en-EN', {
+                                year: "numeric",
+                                month: "long",
+                                day: "numeric",
+                          })}
+            </p>
           </div>
         </CouponInfoPopup >
       </div>
