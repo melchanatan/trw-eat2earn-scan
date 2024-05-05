@@ -15,19 +15,19 @@ const RootLayout = ({ children }) => {
 
   return (
     <html lang="en">
-      <body className={inter.className + " relative h-screen"}>
+      <body className={inter.className + " relative"}>
         <UserInfoProvider>
           <FormProvider>
             <SignInProvider setSignedIn={setSignedIn}>
               {signedIn ? (
                 <>{children}</>
               ) : (
-                <>
+                <div className="h-screen">
                   <SignInContainer.top />
                   <BottomContainer color="accent">
                     <SignInContainer />
                   </BottomContainer>
-                </>
+                </div>
               )}
             </SignInProvider>
           </FormProvider>

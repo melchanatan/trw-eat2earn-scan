@@ -28,7 +28,7 @@ const RedeemSummaryPage = ({ params }) => {
   };
 
   const redirect = () => {
-    // router.push("/loyalty#redeem");
+    router.push("/loyalty#redeem");
   };
 
   // send loading page to user while fetching data.
@@ -60,7 +60,6 @@ const RedeemSummaryPage = ({ params }) => {
 
       const data = await response.json();
       setSelectedUserCoupon(data)
-      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -81,7 +80,6 @@ const RedeemSummaryPage = ({ params }) => {
           height={window.innerHeight}
           gravity={0.3}
           recycle={false}
-          onConfettiComplete={redirect}
           initialVelocityY={10}
         />
         <div className="box-container mt-10">
