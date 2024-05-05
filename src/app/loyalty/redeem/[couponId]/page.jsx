@@ -14,6 +14,7 @@ const RedeemSummaryPage = ({ params }) => {
   const { phone, restId } = useContext(UserInfoContext);
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedUserCoupon, setSelectedUserCoupon] = useState({});
   const [errorMessage, setErrorMessage] = useState("something went wrong!");
   const router = useRouter();
 
@@ -27,7 +28,7 @@ const RedeemSummaryPage = ({ params }) => {
   };
 
   const redirect = () => {
-    router.push("/loyalty#redeem");
+    // router.push("/loyalty#redeem");
   };
 
   // send loading page to user while fetching data.
@@ -40,9 +41,9 @@ const RedeemSummaryPage = ({ params }) => {
     return <ErrorPage errorMessage={errorMessage} redirect={redirect} />;
   }
 
-  const redeemCoupon = async() => {
+  const redeemCoupon = async () => {
     // TODO: handle redeem coupon
-    
+
     try {
       const response = await fetch(
         process.env.NEXT_PUBLIC_SERVER_URI + "/v1/coupon/use",
@@ -58,6 +59,7 @@ const RedeemSummaryPage = ({ params }) => {
       );
 
       const data = await response.json();
+      setSelectedUserCoupon(data)
       console.log(data);
     } catch (error) {
       console.log(error);
@@ -65,13 +67,13 @@ const RedeemSummaryPage = ({ params }) => {
   }
 
   useEffect(() => {
-    if(phone && restId) redeemCoupon();
+    if (phone && restId) redeemCoupon();
   }, [phone, restId]);
 
   return (
     <AnimatePresence>
       <div
-        className="h-screen flex flex-col justify-center items-center"
+        className="h-screen flex flex-col "
         onClick={redirect}
       >
         <Confetti
@@ -82,14 +84,22 @@ const RedeemSummaryPage = ({ params }) => {
           onConfettiComplete={redirect}
           initialVelocityY={10}
         />
-        <div className="box-container rounded-[14px] bg-gradient-primary p-[32px] ">
-          <h1 className="text-background pb-5 flex flex-col gap-5">
+        <div className="box-container mt-10">
+          <h1 className="text-dark pb-5 flex flex-col gap-5">
             Succeeded! <br />
-            Check reward in your wallet here.
-            <Button onClick={redirect} color="outline">Check Wallet</Button>
+            Show this to a staff member.
+            <Button onClick={redirect} color="outline" className='!border-dark !text-dark'>Go Back</Button>
           </h1>
         </div>
-        <div className="h-10"></div>
+        <CouponInfoPopup>
+          <div className="flex flex-col text-white font-avant">
+            <div className="flex flex-col gap-2 border-b-2 border-white border-dashed mb-5">
+              <span className='text-sm opacity-50'>{selectedUserCoupon.type}</span>
+              <h3 className='text-lg mb-3'>{selectedUserCoupon.name}</h3>
+            </div>
+            <p>redeemed: {selectedUserCoupon.redeemedDate}</p>
+          </div>
+        </CouponInfoPopup >
       </div>
     </AnimatePresence>
   );
@@ -149,3 +159,30 @@ const LoadingPage = () => {
     </motion.div>
   );
 };
+
+const CouponInfoPopup = ({ children }) => {
+
+  useEffect(() => {
+    document.body.style.overflow = "hidden"
+    window.scrollTo(0, document.body.scrollHeight);
+    return () => {
+      document.body.style.overflow = "auto"
+    }
+  })
+
+  return (
+    <motion.div
+      className='absolute bottom-0 left-1/2 -translate-x-1/2 min-h-[550px] w-[350px] rounded-lg z-50 flex flex-col gap-2 bg-[url(/assets/big-coupon.svg)] bg-cover bg-no-repeat pt-20 px-5 justify-between pb-[60px]'
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{
+        duration: 0.5,
+        type: "spring",
+        ease: "easeInOut",
+      }}
+    >
+      {children}
+    </motion.div>
+  )
+}
