@@ -139,6 +139,7 @@ export default function Dashboard() {
             <p className="text-xs">Point: {item.point}</p>
             <p className="text-xs">Quantity: {item.quantity}</p>
             <p className="text-xs">ExpDate: {item.expDate}</p>
+            <p className="text-xs">UseWithInDays: {item.useWithInDays}</p>
           </div>
         ))}
       </div>
