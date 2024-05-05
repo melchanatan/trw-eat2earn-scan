@@ -93,9 +93,15 @@ const RedeemSummaryPage = ({ params }) => {
           <div className="flex flex-col text-white font-avant">
             <div className="flex flex-col gap-2 border-b-2 border-white border-dashed mb-5">
               <span className='text-sm opacity-50'>{selectedUserCoupon.type}</span>
-              <h3 className='text-lg mb-3'>{selectedUserCoupon.name}</h3>
+              <h3 className='text-lg'>{selectedUserCoupon.name}</h3>
+              <p className='mt-auto mb-3'>redeemed: {new Date(Number(selectedUserCoupon.redeemDate)).toLocaleDateString('en-EN', {
+                                  year: "numeric",
+                                  month: "long",
+                                  day: "numeric",
+                            })}
+              </p>
             </div>
-            <p>redeemed: {selectedUserCoupon.redeemedDate}</p>
+            <p className='h-full'>{selectedUserCoupon.detail}</p>
           </div>
         </CouponInfoPopup >
       </div>
