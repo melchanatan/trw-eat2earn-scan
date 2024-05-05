@@ -7,6 +7,7 @@ const UserInfoProvider = ({ children }) => {
   const [name, setName] = useState(undefined);
   const [phone, setPhone] = useState(undefined);
   const [point, setPoint] = useState(undefined);
+  const [restId, setRestId] = useState(undefined);
 
   return (
     <UserInfoContext.Provider
@@ -17,6 +18,8 @@ const UserInfoProvider = ({ children }) => {
         setPhone,
         point,
         setPoint,
+        restId,
+        setRestId
       }}
     >
       {children}

@@ -23,7 +23,7 @@ export default RedeemedCouponListView
 
 
 const RedeemedCouponListItem = ({ userCoupon, fetchUserCoupon }) => {
-    const { phone } = useContext(UserInfoContext);
+    const { setRestId } = useContext(UserInfoContext);
     const [openScanner, setOpenScanner] = useState(false);
     const [isVisible, setIsVisible] = useState(false)
     const [selectedUserCoupon, setSelectedUserCoupon] = useState();
@@ -41,7 +41,7 @@ const RedeemedCouponListItem = ({ userCoupon, fetchUserCoupon }) => {
             toast.error("Invalid QR Code", toastStyles);
             return;
         }
-
+        setRestId(restId);
         router.push(`/loyalty/redeem/${selectedUserCoupon.userCouponId}`);
     }
 

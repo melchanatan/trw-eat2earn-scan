@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useRouter } from 'next/navigation'
 import Lottie from "react-lottie";
 import * as doneAnimationData from "../../../../../public/assets/done-lottie.json";
@@ -8,8 +8,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FaArrowRightLong } from "react-icons/fa";
 import Confetti from "react-confetti";
 import Button from "../../../../components/global/Button";
+import { UserInfoContext } from '../../../../utils/UserInfoProvider';
 
 const RedeemSummaryPage = ({ params }) => {
+  const { phone, restId } = useContext(UserInfoContext);
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("something went wrong!");
@@ -38,9 +40,9 @@ const RedeemSummaryPage = ({ params }) => {
     return <ErrorPage errorMessage={errorMessage} redirect={redirect} />;
   }
 
-  const redeemCoupon = async () => {
+  const redeemCoupon = async() => {
     // TODO: handle redeem coupon
-
+    
     try {
       const response = await fetch(
         process.env.NEXT_PUBLIC_SERVER_URI + "/v1/coupon/use",
@@ -56,16 +58,15 @@ const RedeemSummaryPage = ({ params }) => {
       );
 
       const data = await response.json();
-      fetchUserCoupon();
-      setIsVisible(false);
+      console.log(data);
     } catch (error) {
       console.log(error);
     }
   }
 
   useEffect(() => {
-    redeemCoupon();
-  }, []);
+    if(phone && restId) redeemCoupon();
+  }, [phone, restId]);
 
   return (
     <AnimatePresence>
