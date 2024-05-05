@@ -45,7 +45,7 @@ const Overlay = ({signOut}) => {
           <div
               className="absolute bottom-[-42px] left-0 bg-white rounded-md py-2 px-6 divide-y shadow-md"
           >
-             <button onClick={signOut()} className="font-bold flex gap-2 items-center"> <LuLogOut /> Logout</button>
+             <button onClick={signOut} className="font-bold flex gap-2 items-center"> <LuLogOut /> Logout</button>
           </div >
       </>
   )
