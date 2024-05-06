@@ -74,6 +74,7 @@ const UnredeemCouponListItem = ({coupon, fetchCoupon, fetchUserCoupon}) => {
                 if (item.quantity > 0)
                     return (
                         <div
+                            key={item.couponId}
                             className='on-click-animation mb-4 px-5 py-2 text-white font-avant rounded-[14px] border-[1px] border-white min-h-[140px] flex flex-col justify-between'
                             onClick={() => {setIsVisible(true); setSelectedCoupon(item);}}
                         >

@@ -99,6 +99,7 @@ const RedeemedCouponListItem = ({ userCoupon, fetchUserCoupon }) => {
                             })
                             return (
                                 <div
+                                    key={item.userCouponId}
                                     className='mb-4 px-5 py-2 text-white font-avant rounded-[14px] border-[1px] border-white flex flex-col justify-between'
                                 >
                                     <div className='flex justify-between items-center'>
