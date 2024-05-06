@@ -12,6 +12,7 @@ export default function Dashboard() {
   const [filteredItems, setFilteredItems] = useState([]);
   const [searchTerm, setSearchTerm] = useState([]);
   const [selectedRestaurant, setSelectedRestaurant] = useState("");
+  const [restaurantsDict, setRestaurantsDict] = useState({});
   
   const [name, setName] = useState();
   const [type, setType] = useState();
@@ -44,6 +45,10 @@ export default function Dashboard() {
       const data = await response.json();
       console.log(data);
       fetchCoupon();
+      var elements = document.getElementsByTagName("input");
+      for (var i=0; i < elements.length; i++) {
+        elements[i].value = "";
+      }
     } catch (error) {
       console.log(error)
     }
@@ -56,7 +61,10 @@ export default function Dashboard() {
     );
     const data = await response.json();
     if (response.status == 200) {
-      setCoupon(data);
+      const sorted = data.sort(
+        (a, b) => b.createDate - a.createDate
+      );
+      setCoupon(sorted);
     }
   }
 
@@ -67,6 +75,11 @@ export default function Dashboard() {
       );
       const data = await response.json();
       setRestaurantsData(data);
+      const dict = {};
+      data.map((item) => {
+        dict[item.id] = item.title;
+      });
+      setRestaurantsDict(dict);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -131,15 +144,17 @@ export default function Dashboard() {
       <div className="bg-gradient-accent-lighter overflow-y-auto">
         {coupon.map((item) => (
           <div className="mb-4 bg-gray-200 p-2 rounded-xl" key={item.couponId}>
+            {Number(item.expDate) < new Date().toString() && (<p>Expired</p>)}
             <p className="text-xs">CouponId: {item.couponId}</p>
-            <p className="text-xs">RestId: {item.restId}</p>
+            <p className="text-xs">RestId: {item.restId} ({restaurantsDict[item.restId]})</p>
             <p className="text-xs">Name: {item.name}</p>
             <p className="text-xs">Detail: {item.detail}</p>
             <p className="text-xs">Type: {item.type}</p>
             <p className="text-xs">Point: {item.point}</p>
             <p className="text-xs">Quantity: {item.quantity}</p>
-            <p className="text-xs">ExpDate: {item.expDate}</p>
+            <p className="text-xs">Exp Date: {new Date(Number(item.expDate)).toDateString()}</p>
             <p className="text-xs">UseWithInDays: {item.useWithInDays}</p>
+            <p className="text-xs">Created Date: {new Date(Number(item.createDate)).toDateString()}</p>
           </div>
         ))}
       </div>
