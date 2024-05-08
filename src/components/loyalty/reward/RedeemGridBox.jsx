@@ -108,7 +108,10 @@ const RedeemGridBox = () => {
                         }
                         onClick={() => setModeToggle(true)}
                     >
-                        <img src="/assets/inverted-corner.svg" alt="ds" className="redeem-nav__corner--left" />
+                        {
+                            modeToggle && <img src="/assets/inverted-corner.svg" alt="ds" className="redeem-nav__corner--left" />
+                        }
+
                         <FaShoppingBasket className='w-5 h-5' /> Shop
                     </button>
                     <button
@@ -119,7 +122,9 @@ const RedeemGridBox = () => {
                         }
                         onClick={() => setModeToggle(false)}
                     >
-                        <img src="/assets/inverted-corner.svg" alt="ds" className="redeem-nav__corner--right" />
+                        {
+                            !modeToggle && <img src="/assets/inverted-corner.svg" alt="ds" className="redeem-nav__corner--right" />
+                        }
                         <MdDiscount className='w-5 h-5' /> Redeem
                     </button>
                 </div>
@@ -131,10 +136,10 @@ const RedeemGridBox = () => {
                 >
                     {
                         isLoading ?
-                        <div className='loading-text my-auto'>Loading...</div>:
-                        modeToggle ?
-                            <UnredeemCouponListView coupon={coupon} fetchCoupon={fetchCoupon} fetchUserCoupon={fetchUserCoupon} /> :
-                            <RedeemedCouponListView userCoupon={userCoupon} fetchUserCoupon={fetchUserCoupon} />
+                            <div className='loading-text my-auto'>Loading...</div> :
+                            modeToggle ?
+                                <UnredeemCouponListView coupon={coupon} fetchCoupon={fetchCoupon} fetchUserCoupon={fetchUserCoupon} /> :
+                                <RedeemedCouponListView userCoupon={userCoupon} fetchUserCoupon={fetchUserCoupon} />
                     }
                 </div>
             </div >
