@@ -13,7 +13,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const LoyaltyPage = () => {
-  const [currentPoint, setCurrentPoint] = useState(0)
+  const [currentPoint, setCurrentPoint] = useState(-1)
   const { point, phone } = useContext(UserInfoContext);
   const [historySum, setHistorySum] = useState(0);
 

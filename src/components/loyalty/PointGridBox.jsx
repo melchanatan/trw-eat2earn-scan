@@ -8,7 +8,7 @@ const PointGridBox = ({ point, isLoading }) => {
         <TiStarFullOutline className="fill-secondary w-[32px] h-[32px] " />
       </span>
       <h2 className="font-medium">
-        {!point ? (
+        {point < 0 ? (
           <div className="w-[7ch] h-6 loading !bg-white/50"></div>
         ) : (
             point   
