@@ -9,6 +9,7 @@ import SignInProvider from "../utils/SignInProvider";
 import React, { useState } from "react";
 import SignInContainer from "../components/sign_in/SignInContainer";
 import BottomContainer from "../components/scan_qr/BottomContainer";
+import SignInError from "../components/sign_in/SignInError"
 
 const RootLayout = ({ children }) => {
   const [signedIn, setSignedIn] = useState(true);
@@ -22,12 +23,7 @@ const RootLayout = ({ children }) => {
               {signedIn ? (
                 <>{children}</>
               ) : (
-                <div className="h-screen">
-                  <SignInContainer.top />
-                  <BottomContainer color="accent">
-                    <SignInContainer />
-                  </BottomContainer>
-                </div>
+                <SignInError />
               )}
             </SignInProvider>
           </FormProvider>
