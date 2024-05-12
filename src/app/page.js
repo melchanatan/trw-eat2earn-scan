@@ -5,7 +5,8 @@ import SummaryContainer from "../components/scan_qr/summary/SummaryContainer";
 const App = () => {
   return (
     <div className="">
-      <Stepper />
+      Nothing to see here
+      {/* <Stepper /> */}
     </div>
   );
 };
