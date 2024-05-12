@@ -10,24 +10,32 @@ import React, { useState } from "react";
 import SignInContainer from "../components/sign_in/SignInContainer";
 import BottomContainer from "../components/scan_qr/BottomContainer";
 import SignInError from "../components/sign_in/SignInError"
+import { Suspense } from 'react'
 
+function SearchBarFallback() {
+  return <>placeholder</>
+}
 const RootLayout = ({ children }) => {
   const [signedIn, setSignedIn] = useState(true);
 
   return (
     <html lang="en">
       <body className={inter.className + " relative"}>
-        <UserInfoProvider>
-          <FormProvider>
-            <SignInProvider setSignedIn={setSignedIn}>
-              {signedIn ? (
-                <>{children}</>
-              ) : (
-                <SignInError />
-              )}
-            </SignInProvider>
-          </FormProvider>
-        </UserInfoProvider>
+        <Suspense fallback={<SearchBarFallback />}>
+
+          <UserInfoProvider>
+            <FormProvider>
+              <SignInProvider setSignedIn={setSignedIn}>
+                {signedIn ? (
+                  <>{children}</>
+                ) : (
+                  <SignInError />
+                )}
+              </SignInProvider>
+            </FormProvider>
+          </UserInfoProvider>
+
+        </Suspense>
       </body>
     </html>
   );
