@@ -28,7 +28,7 @@ const UserAvatar = ({ className = "", label = "Welcome back," }) => {
       </button>
        {
         isOpen && ( 
-          <Overlay signOut={signOut}/>
+          <Overlay />
          )
       } 
       <div className="flex flex-col justify-center items-start">
@@ -39,13 +39,17 @@ const UserAvatar = ({ className = "", label = "Welcome back," }) => {
   );
 };
 
-const Overlay = ({signOut}) => {
+const Overlay = () => {
+  const goBack = () => {
+    document.location.href = 'https://f012bd-c0.myshopify.com/';
+  }
+
   return (
       <>
           <div
               className="absolute bottom-[-42px] left-0 bg-white rounded-md py-2 px-6 divide-y shadow-md"
           >
-             <button onClick={signOut} className="font-bold flex gap-2 items-center"> <LuLogOut /> Logout</button>
+             <button onClick={goBack} className="font-bold flex gap-2 items-center"> <LuLogOut /> Back</button>
           </div >
       </>
   )
