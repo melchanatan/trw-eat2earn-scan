@@ -66,8 +66,7 @@ const SignInProvider = ({ children, setSignedIn }) => {
       }
 
       if (response.status == 404) {
-        setSignedIn(false);
-        migrateUserToDB();
+        migrateUserToDB({uid});
       }
       setIsLoading(false);
     }
@@ -78,14 +77,14 @@ const SignInProvider = ({ children, setSignedIn }) => {
     getUser();
   }, []);
 
-  const migrateUserToDB = async () => {
+  const migrateUserToDB = async ({uid}) => {
     // check Shopify database and migrate into our database
     const response = await fetch(
       process.env.NEXT_PUBLIC_SERVER_URI + "/v1/user/register",
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id: id }),
+        body: JSON.stringify({ id: uid }),
       }
     );
 
@@ -97,7 +96,7 @@ const SignInProvider = ({ children, setSignedIn }) => {
       setPhone(phoneNumber);
       setSignedIn(true);
     } else {
-      setErrorMessage("Phone number is not registered");
+      console.log(data)
       setSignedIn(false);
     }
   };
