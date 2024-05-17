@@ -84,7 +84,7 @@ const RedeemSummaryPage = ({ params }) => {
         />
         <div className="box-container mt-10">
           <h1 className="text-dark pb-5 flex flex-col gap-5">
-            Succeeded! <br />
+            Success! <br />
             Show this to a staff member.
             <Button onClick={redirect} color="outline" className='!border-dark !text-dark'>Go Back</Button>
           </h1>

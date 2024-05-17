@@ -43,7 +43,7 @@ const UnredeemCouponListItem = ({coupon, fetchCoupon, fetchUserCoupon}) => {
             setPoint(point - selectedCoupon.point);
             fetchCoupon();
             fetchUserCoupon();
-            toast.success(selectedCoupon.name + 'redeemed!', toastStyles);
+            toast.success(selectedCoupon.name + ' redeemed!', toastStyles);
         } catch (error) {
             console.log(error);
             // TODO: handle error
