@@ -38,16 +38,21 @@ const Stepper = () => {
       color: "primary",
     },
     {
-      top: <ConfirmationContainer />,
-      bottom: null,
-      color: "transparent",
-    },
-    {
       top: (
         <BottomContainer className="top-[6rem] !max-w-[350px] pt-5">
           <PriceInputContainer isCompact={true} />
         </BottomContainer>
       ),
+      bottom: <OpenCameraContainer />,
+      color: "accent",
+    },
+    {
+      top: <ConfirmationContainer />,
+      bottom: null,
+      color: "transparent",
+    },
+    {
+      top: null,
       bottom: <OpenScanContainer />,
       color: "accent",
     },
