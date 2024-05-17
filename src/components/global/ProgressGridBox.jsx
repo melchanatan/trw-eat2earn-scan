@@ -16,7 +16,7 @@ const ProgressGridBox = ({ point, maxPoint, isLoading, className = "" }) => {
         <div>
           <p>E-book</p>
 
-          {!point ? (
+          {point < 0 ? (
             <div className="w-[12ch] h-6 loading !bg-white/50"></div>
           ) : (
             <p>{point} points to go!</p>

@@ -12,6 +12,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FaArrowRightLong, FaArrowLeftLong } from "react-icons/fa6";
 import { redirect, useRouter } from "next/navigation";
 
+
 const SummaryContainer = () => {
   const [currentPoint, setCurrentPoint] = useState(-1);
   const [isError, setIsError] = useState(false);
@@ -23,6 +24,7 @@ const SummaryContainer = () => {
   const { phone, setPoint, point } = useContext(UserInfoContext);
 
   const awardedPoint = Math.round(Number(amount));
+
 
   const checkRestaurantId = async () => {
     var flag = false
@@ -124,14 +126,17 @@ const SummaryContainer = () => {
         className="flex flex-col items-center justify-center absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] w-full h-full gap-3"
         onClick={redirect}
       >
-        <Confetti
-          width={window.innerWidth}
-          height={window.innerHeight}
-          gravity={0.3}
-          recycle={false}
-          onConfettiComplete={redirect}
-          initialVelocityY={10}
-        />
+        {
+          typeof window !== "undefined" &&
+          <Confetti
+            width={window.innerWidth}
+            height={window.innerHeight}
+            gravity={0.3}
+            recycle={false}
+            onConfettiComplete={redirect}
+            initialVelocityY={10}
+          />
+        }
         <ProgressGridBox point={currentPoint} maxPoint={500} />
         <div className="box-container rounded-[14px] bg-gradient-primary p-[32px]">
           <h1 className="text-background pb-5">

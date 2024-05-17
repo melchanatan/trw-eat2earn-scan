@@ -84,7 +84,7 @@ const RedeemGridBox = () => {
                 </ConfirmationPopup>
             }
             <div id="redeem" className={`bg-gradient-primary-lighter box-container col-span-full w-full rounded-t-[14px] ${isLocked ? 'relative' : ''}`}>
-                {
+                {/* {
                     !isLoading && isLocked &&
                     <div className='font-avant text-white text-center flex-col gap-3 absolute top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50 z-40 rounded-t-[14px] backdrop-blur-sm'>
                         <FaLock className='w-10 h-10 ' />
@@ -97,7 +97,7 @@ const RedeemGridBox = () => {
                         </p>
                         <Button color='outline' className='!py-2 !px-14' onClick={() => setIsPopupShowing(true)}>Learn more</Button>
                     </div>
-                }
+                } */}
 
                 <div className='grid grid-cols-2 '>
                     <button
@@ -108,7 +108,10 @@ const RedeemGridBox = () => {
                         }
                         onClick={() => setModeToggle(true)}
                     >
-                        <img src="/assets/inverted-corner.svg" alt="ds" className="redeem-nav__corner--left" />
+                        {
+                            modeToggle && <img src="/assets/inverted-corner.svg" alt="ds" className="redeem-nav__corner--left" />
+                        }
+
                         <FaShoppingBasket className='w-5 h-5' /> Shop
                     </button>
                     <button
@@ -119,7 +122,9 @@ const RedeemGridBox = () => {
                         }
                         onClick={() => setModeToggle(false)}
                     >
-                        <img src="/assets/inverted-corner.svg" alt="ds" className="redeem-nav__corner--right" />
+                        {
+                            !modeToggle && <img src="/assets/inverted-corner.svg" alt="ds" className="redeem-nav__corner--right" />
+                        }
                         <MdDiscount className='w-5 h-5' /> Redeem
                     </button>
                 </div>
@@ -131,10 +136,10 @@ const RedeemGridBox = () => {
                 >
                     {
                         isLoading ?
-                        <div className='loading-text my-auto'>Loading...</div>:
-                        modeToggle ?
-                            <UnredeemCouponListView coupon={coupon} fetchCoupon={fetchCoupon} fetchUserCoupon={fetchUserCoupon} /> :
-                            <RedeemedCouponListView userCoupon={userCoupon} fetchUserCoupon={fetchUserCoupon} />
+                            <div className='loading-text my-auto'>Loading...</div> :
+                            modeToggle ?
+                                <UnredeemCouponListView coupon={coupon} fetchCoupon={fetchCoupon} fetchUserCoupon={fetchUserCoupon} isLocked={isLocked} /> :
+                                <RedeemedCouponListView userCoupon={userCoupon} fetchUserCoupon={fetchUserCoupon} />
                     }
                 </div>
             </div >

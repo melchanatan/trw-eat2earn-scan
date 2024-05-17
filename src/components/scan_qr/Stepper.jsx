@@ -5,17 +5,21 @@ import SignInContainer from "../sign_in/SignInContainer";
 import BottomContainer from "./BottomContainer";
 import OpenCameraContainer from "./open_camera/OpenCameraContainer";
 import PriceInputContainer from "./price_input/PriceInputContainer";
-import SummaryContainer from "./summary/SummaryContainer";
 import UserAvatar from "./../global/UserAvatar";
 import TutorialContainer from "./tutorial/TutorialContainer";
 import ConfirmationContainer from './confirmation/ConfirmationContainer';
 import OpenScanContainer from './open_scan/OpenScanContainer';
 
+import dynamic from 'next/dynamic'
+
+const SummaryContainer = dynamic(() => import("./summary/SummaryContainer"), {
+  ssr: false
+})
+
 const StepContext = createContext(0);
 
 const Stepper = () => {
   const [currentStep, setCurrentStep] = useState(0);
-  const router = useRouter();
   //const {setName} = useContext(FormContext)
 
   const step = [

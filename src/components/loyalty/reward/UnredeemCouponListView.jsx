@@ -6,11 +6,12 @@ import { UserInfoContext } from '../../../utils/UserInfoProvider';
 import { FaDropbox } from "react-icons/fa6";
 import toastStyles from '../../../utils/style/toastStyles';
 import { toast } from "react-toastify"
+import { FaLock } from 'react-icons/fa';
 
-const UnredeemCouponListView = ({coupon, fetchCoupon, fetchUserCoupon}) => {
+const UnredeemCouponListView = ({coupon, fetchCoupon, fetchUserCoupon, isLocked}) => {
     return (
         <div className="">
-            <UnredeemCouponListItem coupon={coupon} fetchCoupon={fetchCoupon} fetchUserCoupon={fetchUserCoupon}/>
+            <UnredeemCouponListItem coupon={coupon} fetchCoupon={fetchCoupon} fetchUserCoupon={fetchUserCoupon} isLocked={isLocked}/>
         </div>
     )
 }
@@ -18,7 +19,7 @@ const UnredeemCouponListView = ({coupon, fetchCoupon, fetchUserCoupon}) => {
 export default UnredeemCouponListView
 
 
-const UnredeemCouponListItem = ({coupon, fetchCoupon, fetchUserCoupon}) => {
+const UnredeemCouponListItem = ({coupon, fetchCoupon, fetchUserCoupon, isLocked}) => {
     const [isVisible, setIsVisible] = useState(false);
     const { setPoint, point, phone } = useContext(UserInfoContext);
     const [selectedCoupon, setSelectedCoupon] = useState();
@@ -70,10 +71,23 @@ const UnredeemCouponListItem = ({coupon, fetchCoupon, fetchUserCoupon}) => {
                     </div>
                 </ConfirmationPopup>
             }
-            {coupon.map((item) => {
+            {
+                isLocked ? (
+                    <div className='text-center flex justify-center items-center mt-10 flex-col gap-4 text-white/30'>
+                        <FaLock className='w-20 h-20 shrink-0' />
+                        <h3 className='font-avant w-[25ch] text-xl'>
+                            To unlock this feature <br />
+                            you need at least 200 points <br />
+                            and <br />
+                            Eat2Earn membership <br />
+                        </h3>
+                    </div>
+                ) :
+                coupon.map((item) => {
                 if (item.quantity > 0)
                     return (
                         <div
+                            key={item.couponId}
                             className='on-click-animation mb-4 px-5 py-2 text-white font-avant rounded-[14px] border-[1px] border-white min-h-[140px] flex flex-col justify-between'
                             onClick={() => {setIsVisible(true); setSelectedCoupon(item);}}
                         >

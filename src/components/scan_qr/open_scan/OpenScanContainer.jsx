@@ -51,14 +51,29 @@ const WebcamPlaceholder = ({ onClick }) => {
 };
 
 const QrScanner = ({ setIsCameraOpen }) => {
-    const { setRestaurantId } = useContext(FormContext);
+    const { setRestaurantId, setRestaurantName } = useContext(FormContext);
     const { goNext } = useContext(StepContext);
     let Audio;
     if (typeof window !== "undefined") {
         Audio = window.Audio;
     }
 
-    const handleResult = (text, result) => {
+    const fetchRestaurantName = async ({text}) => {
+        try {
+          const response = await fetch(
+            `${process.env.NEXT_PUBLIC_SERVER_URI}/v1/rest`
+          );
+          const data = await response.json();
+          data.map((item) => {
+            if(item.id == text) setRestaurantName(item.title);
+          });
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+    const handleResult = async (text, result) => {
+        await fetchRestaurantName({text})
         setRestaurantId(text)
         goNext()
     };
