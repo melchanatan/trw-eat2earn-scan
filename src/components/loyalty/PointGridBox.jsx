@@ -15,7 +15,7 @@ const PointGridBox = ({ point, isLoading }) => {
         )}
      
       </h2>
-      <p className="">points</p>
+      <p className="text-sm">points</p>
     </div>
   );
 };

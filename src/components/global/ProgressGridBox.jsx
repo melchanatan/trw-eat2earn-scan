@@ -14,12 +14,12 @@ const ProgressGridBox = ({ point, maxPoint, isLoading, className = "" }) => {
       </span>
       <span className="mb-1 flex flex-cols justify-between w-full">
         <div>
-          <p>E-book</p>
+          <p>Coupon</p>
 
           {point < 0 ? (
             <div className="w-[12ch] h-6 loading !bg-white/50"></div>
           ) : (
-            <p>{point} points to go!</p>
+            <p className="text-sm">Just {point} points away</p>
           )}
         </div>
         <span className="w-[48px] h-[48px] bg-gradient-primary rounded-[14px] flex justify-center items-center">

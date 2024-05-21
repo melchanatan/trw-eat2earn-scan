@@ -6,7 +6,7 @@ import { LuLogOut } from "react-icons/lu";
 import { SignInContext } from "../../utils/SignInProvider";
 import { signOut } from "next-auth/react";
 
-const UserAvatar = ({ className = "", label = "Welcome back," }) => {
+const UserAvatar = ({ className = "", label = "Hey there," }) => {
   const { signOut } = useContext(SignInContext);
   const { name } = useContext(UserInfoContext);
   const [isOpen, setIsOpen] = useState(false);
