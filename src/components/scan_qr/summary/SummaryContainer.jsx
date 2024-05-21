@@ -140,8 +140,9 @@ const SummaryContainer = () => {
         <ProgressGridBox point={currentPoint} maxPoint={500} />
         <div className="box-container rounded-[14px] bg-gradient-primary p-[32px]">
           <h1 className="text-background pb-5">
-            Yay, <br />
-            you have receive {awardedPoint} points
+            Whoop!  <br />
+            You've just scored {awardedPoint}  points!
+            <br /> High five
           </h1>
           <Lottie options={doneAnimationOptions} height={140} width={140} />
         </div>

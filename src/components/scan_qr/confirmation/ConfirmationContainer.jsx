@@ -13,7 +13,7 @@ const ConfirmationContainer = () => {
             <UserAvatar label="" />
             <div className='flex flex-col justify-center items-center gap-[8px]'>
                 <h2 className="text-dark">
-                    will be rewarded
+                    Bam! <br/> You're in for a treat with
                 </h2>
                 <h1 className='text-5xl flex items-center gap-4'> {Math.round(Number(amount))}
                     <span className="p-1 bg-white/60 inline-block rounded-full mb-3">
@@ -21,7 +21,7 @@ const ConfirmationContainer = () => {
                     </span>
                 </h1>
             </div>
-            <p className='opacity-70'>Please, show this screen to a restuaraunt staff</p>
+            <p className='opacity-70'> Don't forget to show off to our restaurant staff!</p>
             <Button onClick={goNext} color="accent" className='w-[70%]'>Done!</Button>
         </div>
     )

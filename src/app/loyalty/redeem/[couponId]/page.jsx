@@ -84,8 +84,8 @@ const RedeemSummaryPage = ({ params }) => {
         />
         <div className="box-container mt-10">
           <h1 className="text-dark pb-5 flex flex-col gap-5">
-            Success! <br />
-            Show this to a staff member.
+          Boom! Success!  <br />
+          Flash this to your server and bask in the glory of your reward!
             <Button onClick={redirect} color="outline" className='!border-dark !text-dark'>Go Back</Button>
           </h1>
         </div>

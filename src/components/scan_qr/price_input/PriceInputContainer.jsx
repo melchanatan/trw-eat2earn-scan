@@ -16,7 +16,7 @@ const PriceInputContainer = ({ isCompact = false }) => {
     <>
       {!isCompact ? (
         <h1 className="mb-[40px] text-dark">
-          Enter your <br /> spend amount
+          Pop in the amount you've splurged
         </h1>
       ) : (
         <h1 className="mb-3 text-dark">your spend amount</h1>

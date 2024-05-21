@@ -30,8 +30,8 @@ export default OpenScanContainer;
 const WebcamPlaceholder = ({ onClick }) => {
     return (
         <>
-            <h1 className="mb-[40px] text-center text-background">
-                Scan QR code <br /> <h3 className="text-xl opacity-80">given by the staff</h3>
+            <h1 className="mb-[40px] text-center text-background flex items-center flex-col">
+            Snap QR code <br /> <h3 className="text-xl opacity-80 w-[20ch]">from the staff and let the points roll in!</h3>
             </h1 >
             <Image
                 src={"/assets/scan-qr-graphic.png"}
@@ -40,8 +40,8 @@ const WebcamPlaceholder = ({ onClick }) => {
                 alt="receipt-icon"
                 className="mb-6"
             />
-            <p className="text-white/70 text-center mb-8">
-                Don’t forget to enable camera permission on the popup
+            <p className="text-white/70 text-center mb-8 w-[26ch]">
+                Oh, and don’t forget to enable your camera. 
             </p>
             <Button onClick={onClick}>
                 Open camera <FaCamera className="w-[24px] h-[24px]" />
@@ -81,7 +81,7 @@ const QrScanner = ({ setIsCameraOpen }) => {
     return (
         <div className="w-full h-full flex flex-col justify-center items-center mb-10">
             <h1 className="mb-[20px] text-background">
-                Scan the QR code
+                Snap the QR code
             </h1>
             {Audio && (
                 <Scanner

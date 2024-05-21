@@ -65,8 +65,8 @@ const UnredeemCouponListItem = ({coupon, fetchCoupon, fetchUserCoupon, isLocked}
                     <div className="text-center text-white font-avant">
                         <h3 className='mb-6 text-xl'>Are you sure?</h3>
                         <p className='w-[36ch] opacity-80 mb-6'>
-                            you will receive {selectedCoupon.name},
-                            and be subtracted {selectedCoupon.point} points
+                            You did great on grabbing {selectedCoupon.name}.
+                            It'll cost you {selectedCoupon.point} points, but hey, it's worth it!
                         </p>
                     </div>
                 </ConfirmationPopup>

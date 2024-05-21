@@ -8,10 +8,9 @@ const TutorialContainer = () => {
     const { goNext } = useContext(StepContext)
     const [isLoading, setIsLoading] = useState(true);
 
-
     return (
         <div className="justify-center flex flex-col gap-5">
-            <h1 className='text-background'>Watch our short tutorial</h1>
+            <h1 className='text-background'>Ready for a quick tutorial? Let's dive in!</h1>
             {
                 isLoading ?
                     <div className='w-full h-[500px] animate-pulse bg-red-200 rounded-[14px]'>
