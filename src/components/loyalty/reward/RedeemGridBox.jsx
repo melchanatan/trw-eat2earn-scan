@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { FaShoppingBasket } from "react-icons/fa";
+import { BsFillGiftFill } from "react-icons/bs";
 import { FaBox } from "react-icons/fa";
-import { MdDiscount } from "react-icons/md";
+import { RiCoupon3Fill } from "react-icons/ri";
 import UnredeemCouponListView from './UnredeemCouponListView';
 import RedeemedCouponListView from './RedeemedCouponListView';
 import { FaLock } from "react-icons/fa6";
@@ -113,7 +113,7 @@ const RedeemGridBox = () => {
                             modeToggle && <img src="/assets/inverted-corner.svg" alt="ds" className="redeem-nav__corner--left" />
                         }
 
-                        <FaShoppingBasket className='w-5 h-5' /> Shop
+                        <BsFillGiftFill className='w-5 h-5' /> Shop
                     </button>
                     <button
                         href=""
@@ -126,7 +126,7 @@ const RedeemGridBox = () => {
                         {
                             !modeToggle && <img src="/assets/inverted-corner.svg" alt="ds" className="redeem-nav__corner--right" />
                         }
-                        <MdDiscount className='w-5 h-5' /> Redeem
+                        <RiCoupon3Fill className='w-5 h-5' /> Coupon
                     </button>
                 </div>
                 <div
