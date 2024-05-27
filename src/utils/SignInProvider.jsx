@@ -93,7 +93,7 @@ const SignInProvider = ({ children, setSignedIn }) => {
     if (response.status == 201) {
       setName(data.firstName + " " + data.lastName[0] + ".");
       setPoint(0);
-      setPhone(phoneNumber);
+      setPhone(data.phone);
       setSignedIn(true);
     } else {
       console.log(data)
