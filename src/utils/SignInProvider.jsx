@@ -49,9 +49,15 @@ const SignInProvider = ({ children, setSignedIn }) => {
 
   const getUser = async () => {
     setIsLoading(true);
-    const uid = searchParams.get("id");
+    let uid = searchParams.get("id");
     setId(uid);
-    if(uid) {
+    if(uid){
+      setCookie("user", {uid: uid} , { path: "/" });
+    }
+    else if(cookies.user) {
+      uid = cookies.user.uid;
+    }
+    if(uid){
       const response = await fetch(
         process.env.NEXT_PUBLIC_SERVER_URI + "/v1/user/id/" + uid, { method: "GET", }
       );
