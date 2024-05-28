@@ -4,7 +4,7 @@ const SignInError = ({ }) => {
 
   return (
     <div className="text-md h-svh">
-      <h1 className="justify-center text-center h-2/4">
+      <h1 className="justify-center text-center h-2/4 mt-20">
         Please sign-in first.
       </h1>
       <a
