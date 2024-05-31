@@ -35,7 +35,7 @@ const BottomNav = () => {
   }
 
   return (
-    <nav className='fixed bottom-0 shadow-lg bg-white w-[100vw] h-16 flex items-center justify-around'>
+    <nav className='sticky bottom-0 shadow-lg bg-white w-[100vw] h-16 flex items-center justify-around'>
         <a href='/' className='flex flex-col items-center font-avant'>
         <IoHome className='w-5 h-5' />
         Home
