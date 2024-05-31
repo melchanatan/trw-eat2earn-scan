@@ -11,6 +11,7 @@ import { UserInfoContext } from "../../utils/UserInfoProvider";
 import RedeemGridBox from "../../components/loyalty/reward/RedeemGridBox";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import BottomNav from '../../components/global/BottomNav'
 
 const LoyaltyPage = () => {
   const [currentPoint, setCurrentPoint] = useState(-1)
@@ -48,33 +49,36 @@ const LoyaltyPage = () => {
   };
 
   return (
-    <div className="grid grid-cols-3 gap-2 box-container">
-      <ToastContainer limit={1}/>
-      <div className="col-span-full flex justify-between items-end mb-3">
-        <UserAvatar />
-        <a
-          onClick={pushToHistory}
-          className="mt-6 w-[48px] h-[48px] bg-[#F68C23]/30 rounded-[14px] flex justify-center items-center hover:bg-[#F68C23]/60 transition-all duration-300  text-primary hover:text-background"
+    <>
+      <div className="grid grid-cols-3 gap-2 box-container">
+        <ToastContainer limit={1}/>
+        <div className="col-span-full flex justify-between items-end mb-3">
+          <UserAvatar />
+          <a
+            onClick={pushToHistory}
+            className="mt-6 w-[48px] h-[48px] bg-[#F68C23]/30 rounded-[14px] flex justify-center items-center hover:bg-[#F68C23]/60 transition-all duration-300  text-primary hover:text-background"
+          >
+            <MdHistory className="w-[36px] h-[36px]" />
+          </a>
+        </div>
+        <PointGridBox point={currentPoint} />
+
+        <ProgressGridBox className="col-span-2" point={currentPoint} maxPoint={100} />
+
+        <button
+          onClick={pushToScan}
+          className="col-span-full border-[2px] rounded-[14px] border-dark py-5 flex justify-center items-center gap-2 hover:bg-dark hover:text-white transition-all duration-300 hover:fill-background "
         >
-          <MdHistory className="w-[36px] h-[36px]" />
-        </a>
+          <h4 className="">Scan QR Code</h4>{" "}
+          <RiQrScanLine className="w-[24px] h-[24px]" />
+        </button>
+
+        <HistoryGridBox onClick={pushToHistory} historySum={historySum} />
+
+        <RedeemGridBox />
       </div>
-      <PointGridBox point={currentPoint} />
-
-      <ProgressGridBox className="col-span-2" point={currentPoint} maxPoint={100} />
-
-      <button
-        onClick={pushToScan}
-        className="col-span-full border-[2px] rounded-[14px] border-dark py-5 flex justify-center items-center gap-2 hover:bg-dark hover:text-white transition-all duration-300 hover:fill-background "
-      >
-        <h4 className="">Scan QR Code</h4>{" "}
-        <RiQrScanLine className="w-[24px] h-[24px]" />
-      </button>
-
-      <HistoryGridBox onClick={pushToHistory} historySum={historySum} />
-
-      <RedeemGridBox />
-    </div>
+      <BottomNav />
+    </>
   );
 };
 

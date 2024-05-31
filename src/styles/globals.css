@@ -154,3 +154,11 @@ p {
 .loading-text {
   @apply w-full h-full flex justify-center items-center font-avant text-4xl font-bold text-background animate-pulse;
 }
+
+.nav-expand__link {
+  @apply flex gap-2 items-center font-avant p-4 border-b-[1px] border-gray-300;
+}
+
+.nav-expand {
+  @apply absolute bottom-16 bg-white w-full shadow-sm;
+}

@@ -11,7 +11,6 @@ import SignInContainer from "../components/sign_in/SignInContainer";
 import BottomContainer from "../components/scan_qr/BottomContainer";
 import SignInError from "../components/sign_in/SignInError"
 import { Suspense } from 'react'
-
 function SearchBarFallback() {
   return <>placeholder</>
 }
@@ -34,7 +33,6 @@ const RootLayout = ({ children }) => {
               </SignInProvider>
             </FormProvider>
           </UserInfoProvider>
-
         </Suspense>
       </body>
     </html>
