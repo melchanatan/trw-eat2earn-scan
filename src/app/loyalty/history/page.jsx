@@ -7,13 +7,13 @@ import SortByTimestamp from "../../../utils/SortByTimestamp";
 
 const HistoryPage = () => {
   const [history, setHistory] = useState([]);
-  const { phone } = useContext(UserInfoContext);
+  const { id } = useContext(UserInfoContext);
   const [isLoading, setIsLoading] = useState(true);
   const [isError, setIsError] = useState(false);
 
   const fetchHistory = async () => {
     const response = await fetch(
-      process.env.NEXT_PUBLIC_SERVER_URI + "/v1/user/pointhistory/" + phone,
+      process.env.NEXT_PUBLIC_SERVER_URI + "/v1/user/pointhistory/" + id,
       { method: "GET" }
     );
 
@@ -27,8 +27,8 @@ const HistoryPage = () => {
   };
 
   useEffect(() => {
-    if (phone) fetchHistory();
-  }, [phone]);
+    if (id) fetchHistory();
+  }, [id]);
 
   return (
     <div className="h-screen flex flex-col justify-end box-container">

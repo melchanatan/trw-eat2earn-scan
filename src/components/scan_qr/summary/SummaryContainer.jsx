@@ -21,7 +21,7 @@ const SummaryContainer = () => {
   const router = useRouter();
 
   const { image, setImage, amount, restaurantId, restaurantName, resetForm } = useContext(FormContext);
-  const { phone, setPoint, point } = useContext(UserInfoContext);
+  const { id, setPoint, point } = useContext(UserInfoContext);
 
   const awardedPoint = Math.round(Number(amount));
 
@@ -65,7 +65,7 @@ const SummaryContainer = () => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            phone: phone,
+            id: id,
             resId: restaurantId,
             resName: restaurantName,
             image: image,

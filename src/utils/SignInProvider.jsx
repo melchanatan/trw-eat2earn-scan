@@ -10,9 +10,8 @@ const SignInContext = createContext(0);
 const SignInProvider = ({ children, setSignedIn }) => {
   const searchParams = useSearchParams();
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [id, setId] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const { phone, setPhone, setName, setPoint, history, setHistory } = useContext(UserInfoContext);
+  const { phone, setPhone, setName, setPoint, history, setHistory, setId } = useContext(UserInfoContext);
   const [cookies, setCookie, removeCookie] = useCookies(['user'])
   const [isLoading, setIsLoading] = useState(false);
 
@@ -50,7 +49,6 @@ const SignInProvider = ({ children, setSignedIn }) => {
   const getUser = async () => {
     setIsLoading(true);
     let uid = searchParams.get("id");
-    setId(uid);
     if(uid){
       setCookie("user", {uid: uid} , { path: "/" });
     }
@@ -63,10 +61,12 @@ const SignInProvider = ({ children, setSignedIn }) => {
       );
 
       const data = await response.json();
+      console.log(data)
 
       if (response.status == 200) {
         setName(data.firstName + " " + data.lastName[0] + ".");
-        setPhone(data.phone);
+        //setPhone(data.phone);
+        setId(uid);
         setPoint(Number(data.point));
         setSignedIn(true);
       }
@@ -99,7 +99,8 @@ const SignInProvider = ({ children, setSignedIn }) => {
     if (response.status == 201) {
       setName(data.firstName + " " + data.lastName[0] + ".");
       setPoint(0);
-      setPhone(data.phone);
+      setId(uid);
+      //setPhone(data.phone);
       setSignedIn(true);
     } else {
       console.log(data)

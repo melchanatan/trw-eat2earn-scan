@@ -15,7 +15,7 @@ import BottomNav from '../../components/global/BottomNav'
 
 const LoyaltyPage = () => {
   const [currentPoint, setCurrentPoint] = useState(-1)
-  const { point, phone } = useContext(UserInfoContext);
+  const { point, id } = useContext(UserInfoContext);
   const [historySum, setHistorySum] = useState(0);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const LoyaltyPage = () => {
     let date = new Date(Date.now());
     date.setDate(date.getDate() - 7);
     const response = await fetch(
-      process.env.NEXT_PUBLIC_SERVER_URI + "/v1/user/pointhistory/" + phone + "/" + date.getTime(), { method: "GET" }
+      process.env.NEXT_PUBLIC_SERVER_URI + "/v1/user/pointhistory/" + id + "/" + date.getTime(), { method: "GET" }
     );
     const data = await response.json();
     if (response.status == 200) {
@@ -36,8 +36,8 @@ const LoyaltyPage = () => {
   }
 
   useEffect(() => {
-    if (phone) fetchHistorySum();
-  }, [phone])
+    if (id) fetchHistorySum();
+  }, [id])
 
   const router = useRouter();
   const pushToScan = () => {

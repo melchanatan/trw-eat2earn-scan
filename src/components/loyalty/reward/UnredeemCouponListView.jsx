@@ -21,7 +21,7 @@ export default UnredeemCouponListView
 
 const UnredeemCouponListItem = ({coupon, fetchCoupon, fetchUserCoupon, isLocked}) => {
     const [isVisible, setIsVisible] = useState(false);
-    const { setPoint, point, phone } = useContext(UserInfoContext);
+    const { setPoint, point, id } = useContext(UserInfoContext);
     const [selectedCoupon, setSelectedCoupon] = useState();
 
     const redeemCoupon = async () => {
@@ -33,7 +33,7 @@ const UnredeemCouponListItem = ({coupon, fetchCoupon, fetchUserCoupon, isLocked}
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    phone: phone,
+                    id: id,
                     couponId: selectedCoupon.couponId
                 }),
                 }

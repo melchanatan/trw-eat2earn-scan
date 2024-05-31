@@ -11,7 +11,7 @@ import Button from "../../../../components/global/Button";
 import { UserInfoContext } from '../../../../utils/UserInfoProvider';
 
 const RedeemSummaryPage = ({ params }) => {
-  const { phone, restId } = useContext(UserInfoContext);
+  const { id, restId } = useContext(UserInfoContext);
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedUserCoupon, setSelectedUserCoupon] = useState({});
@@ -51,7 +51,7 @@ const RedeemSummaryPage = ({ params }) => {
           method: "DELETE",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            phone: phone,
+            id: id,
             userCouponId: params.couponId,
             restId: restId,
           }),
@@ -66,8 +66,8 @@ const RedeemSummaryPage = ({ params }) => {
   }
 
   useEffect(() => {
-    if (phone && restId) redeemCoupon();
-  }, [phone, restId]);
+    if (id && restId) redeemCoupon();
+  }, [id, restId]);
 
   return (
     <AnimatePresence>

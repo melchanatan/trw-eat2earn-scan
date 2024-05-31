@@ -14,7 +14,7 @@ const RedeemGridBox = () => {
     //const [isLocked, setIsLocked] = useState(process.env.NEXT_PUBLIC_MODE == "development" ? false : true);
     const isLocked = false;
     const [isPopupShowing, setIsPopupShowing] = useState(false);
-    const { phone, point } = useContext(UserInfoContext);
+    const { id, point } = useContext(UserInfoContext);
     const [coupon, setCoupon] = useState([]);
     const [userCoupon, setUserCoupon] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -44,7 +44,7 @@ const RedeemGridBox = () => {
 
     const fetchUserCoupon = async () => {
         const response = await fetch(
-            process.env.NEXT_PUBLIC_SERVER_URI + "/v1/user/coupon/" + phone,
+            process.env.NEXT_PUBLIC_SERVER_URI + "/v1/user/coupon/" + id,
             { method: "GET" }
         );
         const data = await response.json();
@@ -65,8 +65,8 @@ const RedeemGridBox = () => {
     }, []);
 
     useEffect(() => {
-        if (phone) fetchUserCoupon();
-    }, [phone]);
+        if (id) fetchUserCoupon();
+    }, [id]);
 
     return (
         <>

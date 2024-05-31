@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { UserInfoContext } from "../../utils/UserInfoProvider"
 
 const Setup = () => {
-  const { phone } = useContext(UserInfoContext);
+  const { id } = useContext(UserInfoContext);
   const router = useRouter();
 
   const redirect = () => {
@@ -15,8 +15,8 @@ const Setup = () => {
   };
 
   useEffect(() => {
-    if(phone) redirect();
-  }, [phone]);
+    if(id) redirect();
+  }, [id]);
 
   const loadingAnimationOptions = {
     loop: true,

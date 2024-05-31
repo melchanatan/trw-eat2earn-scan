@@ -4,6 +4,7 @@ import React, { createContext, useState } from "react";
 const UserInfoContext = createContext(0);
 
 const UserInfoProvider = ({ children }) => {
+  const [id, setId] = useState(undefined);
   const [name, setName] = useState(undefined);
   const [phone, setPhone] = useState(undefined);
   const [point, setPoint] = useState(undefined);
@@ -12,6 +13,8 @@ const UserInfoProvider = ({ children }) => {
   return (
     <UserInfoContext.Provider
       value={{
+        id,
+        setId,
         name,
         setName,
         phone,

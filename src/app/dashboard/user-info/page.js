@@ -61,7 +61,7 @@ export default function Dashboard() {
       <BackButton />
       <h1 className="font-bold mt-6 mb-4">User Info</h1>
       <label htmlFor="" className="mb-2">
-        Please enter the user phone number:
+        Please enter the user id:
       </label>
       {loading ? (
         <p className="text-gray-600 h-12">Loading...</p>
@@ -81,7 +81,7 @@ export default function Dashboard() {
       <p className="mb-1 text-gray-600">
         Name: {selectedUser.firstName} {selectedUser.lastName}
       </p>
-      <p className="mb-1 text-gray-600">Phone: {selectedUser.phone}</p>
+      <p className="mb-1 text-gray-600">Id: {selectedUser.id}</p>
       <p className="mb-1 text-gray-600">Email: {selectedUser.email}</p>
       <p className="mb-1 text-gray-600">Point: {selectedUser.point}</p>
       <p className="mb-1 text-gray-600">
