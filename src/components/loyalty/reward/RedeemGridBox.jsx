@@ -36,7 +36,7 @@ const RedeemGridBox = () => {
                 (a, b) => a.expDate - b.expDate
             );
             const filtered = sorted.filter(
-                (a) => a.quantity > 0
+                (a) => a.quantity > 0 && new Date(Number(a.expDate)).setUTCHours(0,0,0,0) >= new Date().setUTCHours(0,0,0,0)
             );
             setCoupon(filtered);
         }
