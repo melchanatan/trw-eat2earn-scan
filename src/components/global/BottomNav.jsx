@@ -13,13 +13,13 @@ const Expanded = ({isOpen}) => {
 
   return (
     <div className='nav-expand'>
-      <a href="" className='nav-expand__link'>
+      <a href="https://www.everythai.net/pages/contact" className='nav-expand__link'>
         <AiFillDollarCircle className='w-6 h-6'/> Pay2Earn
       </a>
-      <a href="" className='nav-expand__link'>
+      <a href="/loyalty" className='nav-expand__link'>
         <BsFillGiftFill className='w-6 h-6'/> Eat2Earn
       </a>
-      <a href="" className='nav-expand__link'>
+      <a href="https://www.everythai.net/cart" className='nav-expand__link'>
         <FaShoppingCart className='w-6 h-6'/> Cart
       </a>
       
@@ -36,14 +36,14 @@ const BottomNav = () => {
 
   return (
     <nav className='sticky bottom-0 shadow-lg bg-white w-[100vw] h-16 flex items-center justify-around'>
-        <a href='/' className='flex flex-col items-center font-avant'>
+        <a href='https://www.everythai.net/' className='flex flex-col items-center font-avant'>
         <IoHome className='w-5 h-5' />
         Home
         </a>
         <a onClick={toggleIsOpen} className='z-10 flex flex-col items-center font-avant bg-red-600 shadow-sm -translate-y-4 rounded-full p-4 text-white'>
           <BsFillGiftFill className='w-7 h-7' />
         </a>
-        <a href='/' className='flex flex-col items-center font-avant'>
+        <a href='https://www.everythai.net/account' className='flex flex-col items-center font-avant'>
         <HiUserCircle className='w-6 h-6' />
         Account
         </a>
