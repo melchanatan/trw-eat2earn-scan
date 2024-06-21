@@ -2,6 +2,7 @@ import React from "react";
 
 const Button = ({ children, color = "primary", className = "", onClick, isDisabled = false }) => {
   const avaliableColor = {
+    purple: "bg-gradient-secondary",
     accent: "primary-button--accent",
     primary: "primary-button--primary",
     outline: "transparent"

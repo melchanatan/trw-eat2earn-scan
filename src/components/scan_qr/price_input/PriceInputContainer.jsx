@@ -15,16 +15,16 @@ const PriceInputContainer = ({ isCompact = false }) => {
   return (
     <>
       {!isCompact ? (
-        <h1 className="mb-[40px] text-dark">
+        <h1 className="mb-[40px] text-primary">
           Pop in the amount you've splurged
         </h1>
       ) : (
-        <h1 className="mb-3 text-dark">your spend amount</h1>
+        <h1 className="mb-3 text-primary">your spend amount</h1>
       )}
       <form className="flex flex-col gap-2 mb-[40px]" onSubmit={onSubmit}>
         <PriceInput />
         {!isCompact && (
-          <Button color="accent" className="self-end">
+          <Button color="purple" className="self-end">
             Next step <FaArrowRightLong />
           </Button>
         )}

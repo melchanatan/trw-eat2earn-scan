@@ -19,7 +19,7 @@ const RootLayout = ({ children }) => {
 
   return (
     <html lang="en">
-      <body className={inter.className + " relative"}>
+      <body className={inter.className + " relative bg-[#FEFFDD]"}>
         <Suspense fallback={<SearchBarFallback />}>
 
           <UserInfoProvider>

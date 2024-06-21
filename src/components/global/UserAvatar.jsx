@@ -32,8 +32,8 @@ const UserAvatar = ({ className = "", label = "Hey there," }) => {
          )
       } 
       <div className="flex flex-col justify-center items-start">
-        <label>{label}</label>
-        <h2>{!name ? <div className="w-[10ch] h-6 loading"></div> : name}</h2>
+        <label className="text-grey">{label}</label>
+        <h2 className="text-primary">{!name ? <div className="w-[10ch] h-6 loading"></div> : name}</h2>
       </div>
     </div>
   );
@@ -41,7 +41,7 @@ const UserAvatar = ({ className = "", label = "Hey there," }) => {
 
 const Overlay = () => {
   const goBack = () => {
-    document.location.href = 'https://f012bd-c0.myshopify.com/';
+    document.location.href = 'https://everythai.net/';
   }
 
   return (

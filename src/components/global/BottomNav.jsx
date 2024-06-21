@@ -35,12 +35,12 @@ const BottomNav = () => {
   }
 
   return (
-    <nav className='sticky bottom-0 shadow-lg bg-white w-[100vw] h-16 flex items-center justify-around'>
+    <nav className='sticky bottom-0 shadow-lg bg-white w-[100vw] h-16 flex items-center justify-around text-primary'>
         <a href='https://www.everythai.net/' className='flex flex-col items-center font-avant'>
         <IoHome className='w-5 h-5' />
         Home
         </a>
-        <a onClick={toggleIsOpen} className='z-10 flex flex-col items-center font-avant bg-red-600 shadow-sm -translate-y-4 rounded-full p-4 text-white'>
+        <a onClick={toggleIsOpen} className='z-10 flex flex-col items-center font-avant bg-primary shadow-sm -translate-y-4 rounded-full p-4 text-white'>
           <BsFillGiftFill className='w-7 h-7' />
         </a>
         <a href='https://www.everythai.net/account' className='flex flex-col items-center font-avant'>

@@ -19,12 +19,6 @@ const RedeemGridBox = () => {
     const [userCoupon, setUserCoupon] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
 
-
-    // useEffect(() => {
-    //     if (point >= 200) setIsLocked(false)
-    //     else setIsLocked(true)
-    // }, [point])
-
     const fetchCoupon = async () => {
         const response = await fetch(
             process.env.NEXT_PUBLIC_SERVER_URI + "/v1/coupon",
@@ -76,7 +70,7 @@ const RedeemGridBox = () => {
                     onCancel={() => setIsPopupShowing(false)}
                     noConfirm={true}
                 >
-                    <div className="text-center text-white font-avant">
+                    <div className="text-center text-primary font-avant">
                         <h3 className='mb-6 text-xl'>Good news</h3>
                         <p className='w-[32ch] opacity-80 mb-6'>
                             something about eat2earn membership is free for the first 3 months, but you still need to earn 200 points.
@@ -84,7 +78,7 @@ const RedeemGridBox = () => {
                     </div>
                 </ConfirmationPopup>
             }
-            <div id="redeem" className={`bg-gradient-primary-lighter box-container col-span-full w-full rounded-t-[14px] ${isLocked ? 'relative' : ''}`}>
+            <div id="redeem" className={`bg-primary text-white box-container col-span-full w-full rounded-t-[14px] ${isLocked ? 'relative' : ''}`}>
                 {/* {
                     !isLoading && isLocked &&
                     <div className='font-avant text-white text-center flex-col gap-3 absolute top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50 z-40 rounded-t-[14px] backdrop-blur-sm'>
@@ -110,7 +104,7 @@ const RedeemGridBox = () => {
                         onClick={() => setModeToggle(true)}
                     >
                         {
-                            modeToggle && <img src="/assets/inverted-corner.svg" alt="ds" className="redeem-nav__corner--left" />
+                            modeToggle && <img src="/assets/inverted-corner-lighter.svg" alt="ds" className="redeem-nav__corner--left" />
                         }
 
                         <BsFillGiftFill className='w-5 h-5' /> Shop
@@ -124,13 +118,13 @@ const RedeemGridBox = () => {
                         onClick={() => setModeToggle(false)}
                     >
                         {
-                            !modeToggle && <img src="/assets/inverted-corner.svg" alt="ds" className="redeem-nav__corner--right" />
+                            !modeToggle && <img src="/assets/inverted-corner-lighter.svg" alt="ds" className="redeem-nav__corner--right" />
                         }
                         <RiCoupon3Fill className='w-5 h-5' /> Coupon
                     </button>
                 </div>
                 <div
-                    className='p-4 bg-gradient-accent-top flex gap-2 flex-col max-h-[500px] min-h-[300px] overflow-y-auto'
+                    className='p-4 bg-gradient-primary-lighter flex gap-2 flex-col max-h-[500px] min-h-[300px] overflow-y-auto'
                     style={{
                         borderRadius: `${!modeToggle ? '14px 0' : '0 14px'} 0px 0px`
                     }}

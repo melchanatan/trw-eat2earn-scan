@@ -138,7 +138,7 @@ const SummaryContainer = () => {
           />
         }
         <ProgressGridBox point={currentPoint} maxPoint={500} />
-        <div className="box-container rounded-[14px] bg-gradient-primary p-[32px]">
+        <div className="box-container rounded-[14px] bg-gradient-secondary p-[32px]">
           <h1 className="text-background pb-5">
             Whoop!  <br />
             You've just scored {awardedPoint}  points!
@@ -201,7 +201,7 @@ const LoadingPage = () => {
       className="info-page--accent text-white"
     >
       <Lottie options={loadingAnimationOptions} height={140} width={140} />
-      <h1 className="animate-bounce">Processing</h1>
+      <h1 className="animate-bounce text-white">Processing</h1>
     </motion.div>
   );
 };

@@ -9,17 +9,17 @@
 </g>
 <defs>
 <linearGradient id="paint0_linear_406_650" x1="0" y1="0" x2="224.257" y2="41.9138" gradientUnits="userSpaceOnUse">
-<stop stop-color="#FFFCFC"/>
-<stop offset="1" stop-color="#D2D2D2"/>
-<stop offset="1.0001" stop-color="#AC9169"/>
+<stop stop-color="#D9C8FF"/>
+<stop offset="1" stop-color="#D9C8FF"/>
+<stop offset="1.0001" stop-color="#D9C8FF"/>
 </linearGradient>
 <linearGradient id="paint1_linear_406_650" x1="79.4633" y1="38.3852" x2="113.089" y2="237.84" gradientUnits="userSpaceOnUse">
-<stop stop-color="#FFFBFB"/>
-<stop offset="1" stop-color="#999696"/>
+<stop stop-color="#D9C8FF"/>
+<stop offset="1" stop-color="#D9C8FF"/>
 </linearGradient>
 <linearGradient id="paint2_linear_406_650" x1="44" y1="11.9463" x2="210.888" y2="28.7647" gradientUnits="userSpaceOnUse">
-<stop stop-color="#FF5348"/>
-<stop offset="1" stop-color="#BD3A28"/>
+<stop stop-color="#D20094"/>
+<stop offset="1" stop-color="#8120AF"/>
 </linearGradient>
 <linearGradient id="paint3_linear_406_650" x1="133.808" y1="96" x2="136.095" y2="175.513" gradientUnits="userSpaceOnUse">
 <stop offset="0.34" stop-color="#FFFFFA"/>

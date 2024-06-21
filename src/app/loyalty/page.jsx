@@ -56,7 +56,7 @@ const LoyaltyPage = () => {
           <UserAvatar />
           <a
             onClick={pushToHistory}
-            className="mt-6 w-[48px] h-[48px] bg-[#F68C23]/30 rounded-[14px] flex justify-center items-center hover:bg-[#F68C23]/60 transition-all duration-300  text-primary hover:text-background"
+            className="mt-6 w-[48px] h-[48px] bg-[yellow] rounded-[14px] flex justify-center items-center transition-all duration-300 text-orange"
           >
             <MdHistory className="w-[36px] h-[36px]" />
           </a>
@@ -67,7 +67,7 @@ const LoyaltyPage = () => {
 
         <button
           onClick={pushToScan}
-          className="col-span-full border-[2px] rounded-[14px] border-dark py-5 flex justify-center items-center gap-2 hover:bg-dark hover:text-white transition-all duration-300 hover:fill-background "
+          className="col-span-full border-[2px] rounded-[14px] border-primary py-5 flex justify-center items-center gap-2 text-primary transition-all duration-300 hover:fill-background "
         >
           <h4 className="">Scan QR Code</h4>{" "}
           <RiQrScanLine className="w-[24px] h-[24px]" />

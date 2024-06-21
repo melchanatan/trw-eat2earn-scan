@@ -28,10 +28,10 @@ const Stepper = () => {
     //   bottom: <SignInContainer />,
     //   color: "accent",
     // },
-    {
-      bottom: <TutorialContainer />,
-      color: "accent"
-    },
+    // {
+    //   bottom: <TutorialContainer />,
+    //   color: "accent"
+    // },
     {
       top: <UserAvatar className="box-container pt-10" />,
       bottom: <PriceInputContainer />,
@@ -44,7 +44,7 @@ const Stepper = () => {
         </BottomContainer>
       ),
       bottom: <OpenCameraContainer />,
-      color: "accent",
+      color: "purple",
     },
     {
       top: <ConfirmationContainer />,
@@ -54,7 +54,7 @@ const Stepper = () => {
     {
       top: null,
       bottom: <OpenScanContainer />,
-      color: "accent",
+      color: "primary",
     },
     {
       top: <SummaryContainer />,

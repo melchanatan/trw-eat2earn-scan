@@ -62,7 +62,7 @@ const UnredeemCouponListItem = ({coupon, fetchCoupon, fetchUserCoupon, isLocked}
                     cancelText='Close'
                     confirmText='Redeem now!'
                 >
-                    <div className="text-center text-white font-avant">
+                    <div className="text-center text-white opacity-70 font-avant">
                         <h3 className='mb-6 text-xl'>Are you sure?</h3>
                         <p className='w-[36ch] opacity-80 mb-6'>
                             You did great on grabbing {selectedCoupon.name}.
@@ -73,7 +73,7 @@ const UnredeemCouponListItem = ({coupon, fetchCoupon, fetchUserCoupon, isLocked}
             }
             {
                 isLocked ? (
-                    <div className='text-center flex justify-center items-center mt-10 flex-col gap-4 text-white/30'>
+                    <div className='text-center flex justify-center items-center mt-10 flex-col gap-4 text-primary opacity-70'>
                         <FaLock className='w-20 h-20 shrink-0' />
                         <h3 className='font-avant w-[25ch] text-xl'>
                             To unlock this feature <br />
@@ -88,7 +88,7 @@ const UnredeemCouponListItem = ({coupon, fetchCoupon, fetchUserCoupon, isLocked}
                     return (
                         <div
                             key={item.couponId}
-                            className='on-click-animation mb-4 px-5 py-2 text-white font-avant rounded-[14px] border-[1px] border-white min-h-[140px] flex flex-col justify-between'
+                            className='on-click-animation mb-4 px-5 py-2 text-primary font-avant rounded-[14px] bg-white min-h-[140px] flex flex-col justify-between'
                             onClick={() => {
                                 if(point >= item.point) {setIsVisible(true); setSelectedCoupon(item);}
                             }}
@@ -98,9 +98,9 @@ const UnredeemCouponListItem = ({coupon, fetchCoupon, fetchUserCoupon, isLocked}
                                     <span className='text-sm opacity-50'>{item.type}</span>
                                     <h3 className='text-lg'>{item.name}</h3>
                                 </div>
-                                <BiSolidDiscount className='w-8 h-8 shrink-0' />
+                                <BiSolidDiscount className='w-8 h-8 shrink-0 fill-purple-lighter' />
                             </div>
-                            <div className="border-t-[1px] border-white/30 mt-2 pt-2 flex justify-between items-center" >
+                            <div className="border-t-[1px] border-purple-lighter mt-2 pt-2 flex justify-between items-center" >
                                 <p className='tracking-wider opacity-50 text-sm'>{item.quantity} left</p>
                                 <h3 className='flex gap-2 items-center text-2xl justify-end text-secondary '> <TiStarFullOutline />{item.point}</h3>
                             </div>
@@ -108,7 +108,7 @@ const UnredeemCouponListItem = ({coupon, fetchCoupon, fetchUserCoupon, isLocked}
                     )
                 else {
                     return (
-                        <div className='text-center flex justify-center items-center mt-10 flex-col gap-4 text-white/30'>
+                        <div className='text-center flex justify-center items-center mt-10 flex-col gap-4  text-primary opacity-70'>
                             <FaDropbox className='w-20 h-20 shrink-0' />
                             <h3 className='font-avant w-[25ch] text-xl'>Sorry, <br/> no coupons available at the moment</h3>
                         </div>

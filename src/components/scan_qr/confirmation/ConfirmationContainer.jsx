@@ -9,10 +9,10 @@ const ConfirmationContainer = () => {
     const { amount } = useContext(FormContext)
 
     return (
-        <div className=" rounded-[14px] w-[370px] absolute right-1/2 translate-x-1/2 bottom-1/2 translate-y-[40%] bg-gradient-secondary-lighter p-[32px] text-center flex flex-col justify-center items-center gap-[24px]">
+        <div className=" rounded-[14px] w-[370px] absolute right-1/2 translate-x-1/2 bottom-1/2 translate-y-[40%] bg-gradient-primary-lighter p-[32px] text-center flex flex-col justify-center items-center gap-[24px]">
             <UserAvatar label="" />
             <div className='flex flex-col justify-center items-center gap-[8px]'>
-                <h2 className="text-dark">
+                <h2 className="text-primary">
                     Bam! <br/> You're in for a treat with
                 </h2>
                 <h1 className='text-5xl flex items-center gap-4'> {Math.round(Number(amount))}
@@ -22,7 +22,7 @@ const ConfirmationContainer = () => {
                 </h1>
             </div>
             <p className='opacity-70'> Don't forget to show off to our restaurant staff!</p>
-            <Button onClick={goNext} color="accent" className='w-[70%]'>Done!</Button>
+            <Button onClick={goNext} color="purple" className='w-[70%]'>Done!</Button>
         </div>
     )
 }

@@ -38,8 +38,8 @@ const Setup = () => {
       }}
       className="info-page--accent text-white"
     >
-      <Lottie options={loadingAnimationOptions} height={140} width={140} />
-      <h1 className="animate-bounce">Loading</h1>
+      <Lottie options={loadingAnimationOptions} height={140} width={140}/>
+      <h1 className="animate-bounce text-white">Loading</h1>
     </motion.div>
   );
 }

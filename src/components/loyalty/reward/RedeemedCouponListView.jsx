@@ -85,7 +85,7 @@ const RedeemedCouponListItem = ({ userCoupon, fetchUserCoupon }) => {
             }
             {
                 userCoupon <= 0 ? (
-                    <div className='text-center flex justify-center items-center mt-10 flex-col gap-4 text-white/30'>
+                    <div className='text-center flex justify-center items-center mt-10 flex-col gap-4 text-primary opacity-70'>
                         <FaDropbox className='w-20 h-20 shrink-0' />
                         <h3 className='font-avant w-[25ch] text-xl'>Oopsie! Your coupon box is looking a bit lonely. Let's start collecting again!</h3>
                     </div>
@@ -100,7 +100,7 @@ const RedeemedCouponListItem = ({ userCoupon, fetchUserCoupon }) => {
                             return (
                                 <div
                                     key={item.userCouponId}
-                                    className='mb-4 px-5 py-2 text-white font-avant rounded-[14px] border-[1px] border-white flex flex-col justify-between'
+                                    className='mb-4 px-5 py-2 bg-white text-primary font-avant rounded-[14px] flex flex-col justify-between'
                                 >
                                     <div className='flex justify-between items-center'>
                                         <div>
@@ -112,7 +112,7 @@ const RedeemedCouponListItem = ({ userCoupon, fetchUserCoupon }) => {
                                             onClick={() => { setIsVisible(true); setSelectedUserCoupon(item); }}
                                             className="p-3 bg-white rounded-full"
                                         >
-                                            <HiOutlineExternalLink className='w-8 h-8 shrink-0 text-accent' />
+                                            <HiOutlineExternalLink className='w-8 h-8 shrink-0 text-primary' />
                                         </a>
                                     </div>
                                 </div>

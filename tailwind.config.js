@@ -22,6 +22,10 @@ module.exports = {
         background: "var(--background-color)",
         dark: "var(--dark-color)",
         grey: "var(--grey-color)",
+        yellow: "var(--yellow-color)",
+        orange: "var(--orange-color)",
+        "orange-lighter": "#FFBF1F",
+        "purple-lighter": "#D9C8FF",
       },
       backgroundImage: {
         "gradient-accent-lighter":
@@ -29,15 +33,15 @@ module.exports = {
         "gradient-accent-top":
           "linear-gradient(180deg, #FF5348 -2.68%, #FF7D75 99.94%)",
         "gradient-accent":
-          "linear-gradient(98deg, #FF5348 0.47%, #BD3A28 100%)",
+          "linear-gradient(136deg, #674290 0%, #36308F 98.11%)",
         "gradient-secondary":
-          "linear-gradient(136deg, #EFC625 0%, #E2BC26 98.11%)",
+          "linear-gradient(170deg, #D20094 0%, #8120AF 98.11%)",
         "gradient-secondary-lighter":
           "linear-gradient(136deg, rgba(239, 198, 37, .5) 0%, rgba(226, 188, 38, .5) 98.11%)",
         "gradient-primary":
-          "linear-gradient(136deg, #F68C23 0%, #C57526 98.11%)",
+          "linear-gradient(136deg, #674290 0%, #36308F 98.11%)",
         "gradient-primary-lighter":
-          "linear-gradient(136deg, rgba(246, 140, 35, 0.5) 0%, rgba(197, 117, 38, 0.5) 98.11%)",
+          "linear-gradient(136deg, #F1F1F1 0%, #F1F1F1 98.11%)",
         "gradient-background":
           "linear-gradient(180deg, #FEFFDC 0%, #FFFFF3 59.79%, #E5E5C7 94.91%)",
       },

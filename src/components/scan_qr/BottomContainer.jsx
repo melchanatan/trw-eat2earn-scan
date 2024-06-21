@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 
 const BottomContainer = ({ children, color = "primary", className = "" }) => {
   const avaliableColor = {
+    purple: "bg-gradient-secondary",
     primary: "bg-gradient-primary-lighter",
     accent: "bg-gradient-accent-lighter",
     transparent: "bg-transparent",

@@ -30,7 +30,7 @@ export default OpenScanContainer;
 const WebcamPlaceholder = ({ onClick }) => {
     return (
         <>
-            <h1 className="mb-[40px] text-center text-background flex items-center flex-col">
+            <h1 className="mb-[40px] text-center text-primary flex items-center flex-col">
             Snap QR code <br /> <h3 className="text-xl opacity-80 w-[20ch]">from the staff and let the points roll in!</h3>
             </h1 >
             <Image
@@ -40,10 +40,10 @@ const WebcamPlaceholder = ({ onClick }) => {
                 alt="receipt-icon"
                 className="mb-6"
             />
-            <p className="text-white/70 text-center mb-8 w-[26ch]">
+            <p className="text-primary/70 text-center mb-8 w-[26ch]">
                 Oh, and don’t forget to enable your camera. 
             </p>
-            <Button onClick={onClick}>
+            <Button onClick={onClick} color="purple">
                 Open camera <FaCamera className="w-[24px] h-[24px]" />
             </Button>
         </>
@@ -80,7 +80,7 @@ const QrScanner = ({ setIsCameraOpen }) => {
 
     return (
         <div className="w-full h-full flex flex-col justify-center items-center mb-10">
-            <h1 className="mb-[20px] text-background">
+            <h1 className="mb-[20px] text-primary">
                 Snap the QR code
             </h1>
             {Audio && (
@@ -99,7 +99,7 @@ const QrScanner = ({ setIsCameraOpen }) => {
                 }}
                 className="absolute bottom-20 left-10 mt-20"
             >
-                <FaArrowLeftLong className="w-[24px] h-[24px] fill-background" />
+                <FaArrowLeftLong className="w-[24px] h-[24px] fill-primary" />
             </a>
         </div>
     );
