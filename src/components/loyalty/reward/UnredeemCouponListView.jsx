@@ -53,6 +53,13 @@ const UnredeemCouponListItem = ({coupon, fetchCoupon, fetchUserCoupon, isLocked}
         setIsVisible(false);
     }
 
+    if(coupon.length == 0) return(
+        <div className='text-center flex justify-center items-center mt-10 flex-col gap-4  text-primary opacity-70'>
+            <FaDropbox className='w-20 h-20 shrink-0' />
+            <h3 className='font-avant w-[25ch] text-xl'>Sorry, <br/> no coupons available at the moment</h3>
+        </div>
+    )
+
     return (
         <>
             {isVisible &&
@@ -84,7 +91,6 @@ const UnredeemCouponListItem = ({coupon, fetchCoupon, fetchUserCoupon, isLocked}
                     </div>
                 ) :
                 coupon.map((item) => {
-                if (item.quantity > 0)
                     return (
                         <div
                             key={item.couponId}
@@ -106,14 +112,6 @@ const UnredeemCouponListItem = ({coupon, fetchCoupon, fetchUserCoupon, isLocked}
                             </div>
                         </div>
                     )
-                else {
-                    return (
-                        <div className='text-center flex justify-center items-center mt-10 flex-col gap-4  text-primary opacity-70'>
-                            <FaDropbox className='w-20 h-20 shrink-0' />
-                            <h3 className='font-avant w-[25ch] text-xl'>Sorry, <br/> no coupons available at the moment</h3>
-                        </div>
-                    )
-                }
             })}
         </>
     )

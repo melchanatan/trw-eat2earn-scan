@@ -65,19 +65,19 @@ const LoyaltyPage = () => {
 
         <ProgressGridBox className="col-span-2" point={currentPoint} maxPoint={100} />
 
-        <button
+        {/* <button
           onClick={pushToScan}
           className="col-span-full border-[2px] rounded-[14px] border-primary py-5 flex justify-center items-center gap-2 text-primary transition-all duration-300 hover:fill-background "
         >
           <h4 className="">Scan QR Code</h4>{" "}
           <RiQrScanLine className="w-[24px] h-[24px]" />
-        </button>
+        </button> */}
 
-        <HistoryGridBox onClick={pushToHistory} historySum={historySum} />
+        <HistoryGridBox onClick={pushToScan} historySum={historySum} />
 
         <RedeemGridBox />
       </div>
-      <BottomNav />
+      {/* <BottomNav /> */}
     </>
   );
 };

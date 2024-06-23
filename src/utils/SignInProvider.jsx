@@ -4,6 +4,7 @@ import { useSearchParams } from "next/navigation";
 import { UserInfoContext } from "./UserInfoProvider";
 import { CookiesProvider, useCookies } from "react-cookie";
 import PhoneInput, { isPossiblePhoneNumber } from "react-phone-number-input";
+import { useRouter } from "next/navigation";
 
 const SignInContext = createContext(0);
 
@@ -14,6 +15,7 @@ const SignInProvider = ({ children, setSignedIn }) => {
   const { phone, setPhone, setName, setPoint, history, setHistory, setId } = useContext(UserInfoContext);
   const [cookies, setCookie, removeCookie] = useCookies(['user'])
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter()
 
   // const checkCookies = async () => {
   //   console.log("user", searchParams.get("id"))
@@ -76,7 +78,7 @@ const SignInProvider = ({ children, setSignedIn }) => {
       }
       setIsLoading(false);
     }
-    else setSignedIn(false);
+    else router.push('/signup')
   }
 
   useEffect(() => {
