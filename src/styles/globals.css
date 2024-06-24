@@ -3,57 +3,58 @@
 @tailwind utilities;
 
 :root {
-  --primary-color: #36308F;
-  --yellow-color: #FAE25E;
-  --orange-color: #FF8000;
-  --primary2-color: #F68C23;
-  --secondary-color: #EFC625;
-  --accent-color: #36308F;
-  --background-color: #FFFFFA;
+  --primary-color: #36308f;
+  --yellow-color: #fae25e;
+  --orange-color: #ff8000;
+  --primary2-color: #f68c23;
+  --secondary-color: #efc625;
+  --accent-color: #36308f;
+  --background-color: #fffffa;
   --dark-color: #791414;
-  --grey-color: #4D4D4D
+  --grey-color: #4d4d4d;
 }
 
 @font-face {
   font-family: "Avant Garde";
   font-weight: 400;
 
-  src: url("/fonts/AvantGarde-regular.ttf") format('truetype');
+  src: url("/fonts/AvantGarde-regular.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Avant Garde";
   font-weight: 600;
-  src: url("/fonts/AvantGarde-semibold.ttf") format('truetype');
+  src: url("/fonts/AvantGarde-semibold.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Futura";
   font-weight: 400;
-  src: url("/fonts/Futura-regular.ttf") format('truetype');
+  src: url("/fonts/Futura-regular.ttf") format("truetype");
 }
 
 @keyframes shake {
- 0% ,100% {
-  transform: rotate(0deg);
- }
- 25% {
-  transform: rotate(10deg);
- }
- 75% {
-  transform: rotate(-10deg);
- }
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(10deg);
+  }
+  75% {
+    transform: rotate(-10deg);
+  }
 }
 
 @keyframes slide {
-  0% ,100% {
-   transform: translateX(0px);
+  0%,
+  100% {
+    transform: translateX(0px);
   }
   50% {
-   transform: translateX(5px);
+    transform: translateX(5px);
   }
- 
- }
+}
 
 @layer utilities {
   .text-balance {
@@ -62,7 +63,7 @@
 }
 
 .box-container {
-  @apply max-w-[370px] mx-auto;
+  @apply max-w-[390px] mx-auto;
 }
 
 body {
@@ -82,7 +83,7 @@ h4 {
 }
 
 p {
-  @apply text-base font-avant
+  @apply text-base font-avant;
 }
 
 .primary-button {
@@ -90,7 +91,7 @@ p {
 }
 
 .on-click-animation {
- @apply active:scale-90 duration-100 transition-all hover:brightness-90
+  @apply active:scale-90 duration-100 transition-all hover:brightness-90;
 }
 .primary-button--primary {
   @apply bg-secondary;
@@ -105,11 +106,11 @@ p {
 }
 
 .input {
-  @apply px-3 py-4 bg-white rounded-[14px] flex items-center
+  @apply px-3 py-4 bg-white rounded-[14px] flex items-center;
 }
 
 .floating-icon-button {
-  @apply bg-secondary shadow-md p-6 rounded-full absolute left-[50%] translate-x-[-50%] bottom-[-48px] active:scale-90 transition-all active:brightness-75 duration-100
+  @apply bg-secondary shadow-md p-6 rounded-full absolute left-[50%] translate-x-[-50%] bottom-[-48px] active:scale-90 transition-all active:brightness-75 duration-100;
 }
 
 .grid-box {
@@ -131,27 +132,27 @@ p {
 }
 
 .info-page--accent {
-  @apply w-screen h-screen flex items-center justify-center bg-gradient-accent flex-col
+  @apply w-screen h-screen flex items-center justify-center bg-gradient-accent flex-col;
 }
 
 .loading {
-  @apply animate-pulse bg-gray-500/20 rounded-[14px]
+  @apply animate-pulse bg-gray-500/20 rounded-[14px];
 }
 
 .redeem-nav__link {
-  @apply font-avant flex gap-2 items-center justify-center py-3 relative
+  @apply font-avant flex gap-2 items-center justify-center py-3 relative;
 }
 
 .redeem-nav__link--active {
-  @apply text-primary bg-gradient-primary-lighter w-full h-full rounded-t-[14px]
+  @apply text-primary bg-gradient-primary-lighter w-full h-full rounded-t-[14px];
 }
 
 .redeem-nav__corner--right {
-  @apply absolute bottom-0 scale-[-1] rotate-90 left-[-18px]
+  @apply absolute bottom-0 scale-[-1] rotate-90 left-[-18px];
 }
 
 .redeem-nav__corner--left {
-  @apply absolute bottom-0 right-[-18px]
+  @apply absolute bottom-0 right-[-18px];
 }
 
 .loading-text {
