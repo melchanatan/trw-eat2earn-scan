@@ -63,7 +63,7 @@
 }
 
 .box-container {
-  @apply max-w-[390px] mx-auto px-2;
+  @apply max-w-[370px] mx-auto;
 }
 
 body {

@@ -15,7 +15,7 @@ const BottomContainer = ({ children, color = "primary", className = "" }) => {
 
   return (
     <motion.div
-      className={`${avaliableColor[color]} w-full box-container absolute bottom-0 right-0 left-0 rounded-t-[14px] py-[44px] px-[32px] pb-20 ${className} `}
+      className={`${avaliableColor[color]} w-full box-container absolute bottom-0 right-0 left-0 rounded-t-[14px] py-[44px] px-[32px] pb-[100px] ${className} `}
       initial={{ y: 100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       exit={{ y: -100, opacity: 0 }}

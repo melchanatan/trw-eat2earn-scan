@@ -7,14 +7,14 @@ import OpenCameraContainer from "./open_camera/OpenCameraContainer";
 import PriceInputContainer from "./price_input/PriceInputContainer";
 import UserAvatar from "./../global/UserAvatar";
 import TutorialContainer from "./tutorial/TutorialContainer";
-import ConfirmationContainer from './confirmation/ConfirmationContainer';
-import OpenScanContainer from './open_scan/OpenScanContainer';
+import ConfirmationContainer from "./confirmation/ConfirmationContainer";
+import OpenScanContainer from "./open_scan/OpenScanContainer";
 
-import dynamic from 'next/dynamic'
+import dynamic from "next/dynamic";
 
 const SummaryContainer = dynamic(() => import("./summary/SummaryContainer"), {
-  ssr: false
-})
+  ssr: false,
+});
 
 const StepContext = createContext(0);
 
@@ -37,15 +37,15 @@ const Stepper = () => {
       bottom: <PriceInputContainer />,
       color: "primary",
     },
-    {
-      top: (
-        <BottomContainer className="top-[6rem] !max-w-[350px] pt-5">
-          <PriceInputContainer isCompact={true} />
-        </BottomContainer>
-      ),
-      bottom: <OpenCameraContainer />,
-      color: "purple",
-    },
+    // {
+    //   top: (
+    //     <BottomContainer className="top-[6rem] !max-w-[350px] pt-5">
+    //       <PriceInputContainer isCompact={true} />
+    //     </BottomContainer>
+    //   ),
+    //   bottom: <OpenCameraContainer />,
+    //   color: "purple",
+    // },
     {
       top: <ConfirmationContainer />,
       bottom: null,
@@ -63,7 +63,7 @@ const Stepper = () => {
     },
   ];
 
-  const submitForm = () => { };
+  const submitForm = () => {};
 
   const goNext = () => {
     if (currentStep >= step.length - 2) {
