@@ -81,7 +81,7 @@ const RedeemGridBox = () => {
       )}
       <div
         id="redeem"
-        className={`bg-primary text-white box-container col-span-full w-full rounded-t-[14px] ${
+        className={`bg-primary text-white box-container col-span-full w-full rounded-t-[14px] !px-0 ${
           isLocked ? "relative" : ""
         }`}
       >
